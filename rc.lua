@@ -282,7 +282,7 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Shift"   }, "Escape", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
@@ -314,7 +314,9 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioLowerVolume", function() awful.spawn("amixer set Master 3%-") end,
               {description = "Lower Volume", group = "Audio"}),
     awful.key({}, "XF86AudioMute", function() awful.spawn("amixer set Master 3%-") end,
-              {description = "Mute Audio", group = "Audio"})
+              {description = "Mute Audio", group = "Audio"}),
+    awful.key({"Ctrl", "Mod1"}, "e", function() awful.spawn("pcmanfm-qt") end,
+              {description = "Launch File Manager", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
@@ -324,7 +326,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ "Mod1"   }, "F4",      function (c) c:kill()                         end,
+    awful.key({ "Mod4" }, "q",      function (c) c:kill()                         end,
               {description = "close window", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
