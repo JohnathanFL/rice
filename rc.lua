@@ -316,7 +316,21 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioMute", function() awful.spawn("amixer set Master 3%-") end,
               {description = "Mute Audio", group = "Audio"}),
     awful.key({"Ctrl", "Mod1"}, "e", function() awful.spawn("pcmanfm-qt") end,
-              {description = "Launch File Manager", group = "launcher"})
+              {description = "Launch File Manager", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, 'o',
+    function ()
+        local allclients = function (c)
+            return true
+        end
+        for c in awful.client.iterate(allclients) do
+            local ctag = awful.tag.getidx(c:tags()[1])
+            local cscreen = c.screen.index + 1
+            if cscreen > screen.count() then
+                cscreen = 1
+            end
+            awful.client.movetotag(tags[cscreen][ctag], c)
+        end
+    end)
 )
 
 clientkeys = gears.table.join(
