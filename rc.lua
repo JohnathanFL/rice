@@ -10,6 +10,11 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+
+local switcher = require("awesome-switcher")
+switcher.settings.preview_box_delay = 0
+switcher.settings.preview_fps = 60
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -270,14 +275,9 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
+
+    awful.key({"Mod4"}, "Tab", function() switcher.switch(1, "Mod4", "Super_L", "Shift", "Tab") end),
+    awful.key({"Mod4", "Shift"}, "Tab", function() switcher.switch(-1, "Mod4", "Super_L", "Shift", "Tab") end),
 
     -- Standard program
     awful.key({ modkey, "Control" }, "r", awesome.restart,
