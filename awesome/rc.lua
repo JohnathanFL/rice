@@ -95,10 +95,17 @@ end
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.show_categories = false
+menubar.right_margin = 120
+menubar.left_margin = 120
+menubar.left_label = ""
+menubar.right_label = ""
+menubar.geometry = {
+  x = 800,
+  y = 200,
+  width = 500
+}
 -- }}}
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -193,7 +200,6 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
@@ -284,7 +290,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "`",     function () awful.spawn("alacritty") end,
               {description = "Command Line", group = "launcher"}),
     -- Menubar
-    awful.key({ "Mod1"}, "F1", function() awful.spawn("rofi -show drun") end,
+    awful.key({ "Mod4"}, "r", function() menubar.show() end,
+              {description = "launcher", group = "launcher"}),
+    awful.key({ "Mod4", "Shift"}, "r", function() awful.spawn("launcher.sh") end,
               {description = "launcher", group = "launcher"}),
     awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn("amixer set Master 3%+") end,
               {description = "Raise Volume", group = "Audio"}),
@@ -292,7 +300,7 @@ globalkeys = gears.table.join(
               {description = "Lower Volume", group = "Audio"}),
     awful.key({}, "XF86AudioMute", function() awful.spawn("amixer set Master 3%-") end,
               {description = "Mute Audio", group = "Audio"}),
-    awful.key({"Ctrl", "Mod1"}, "e", function() awful.spawn("pcmanfm-qt") end,
+    awful.key({"Mod4"}, "e", function() awful.spawn("pcmanfm-qt") end,
               {description = "Launch File Manager", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, 'o',
     function ()

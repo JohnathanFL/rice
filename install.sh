@@ -10,6 +10,10 @@ ln -s $RICE/zshrc ~/.zshrc
 rm -rf ~/.config/awesome
 ln -s $RICE/awesome ~/.config/awesome
 
+# launcher
+rm ~/bin/launcher.sh
+ln -s $RICE/launcher.sh ~/bin/launcher.sh
+
 # qtcreator themes
 mkdir -p ~/.config/QtProject/qtcreator/styles
 rm ~/.config/QtProject/qtcreator/styles/darcula.xml
