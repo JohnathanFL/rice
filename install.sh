@@ -10,6 +10,10 @@ ln -s $RICE/zshrc ~/.zshrc
 rm -rf ~/.config/awesome
 ln -s $RICE/awesome ~/.config/awesome
 
+# sway configs
+rm -rf ~/.config/sway
+ln -s $RICE/sway ~/.config/sway
+
 # launcher
 rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh

@@ -263,7 +263,7 @@ globalkeys = gears.table.join(
     awful.key({"Mod4", "Shift"}, "Tab", function() switcher.switch(-1, "Mod4", "Super_L", "Shift", "Tab") end),
 
     -- Standard program
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey, "Shift" }, "c", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "Escape", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
