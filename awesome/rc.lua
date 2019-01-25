@@ -225,7 +225,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey,           }, "h",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
@@ -289,6 +289,8 @@ globalkeys = gears.table.join(
     -- Prompt
     awful.key({ modkey },            "`",     function () awful.spawn("alacritty") end,
               {description = "Command Line", group = "launcher"}),
+    awful.key({modkey}, "s", function() awful.spawn("lximage-qt --screenshot") end,
+              {description = "Screenshot", group = "launcher"}),
     -- Menubar
     awful.key({ "Mod4"}, "r", function() menubar.show() end,
               {description = "launcher", group = "launcher"}),
