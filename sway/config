@@ -12,7 +12,9 @@ set $mod Mod4
 set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu rofi -show drun
+set $menu termite --name=launcher -e "bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'"
+for_window [app_id="^launcher$"] floating enable, border none
+
 
 output * bg ~/.configs/wall.png fill
 
@@ -39,8 +41,8 @@ output * bg ~/.configs/wall.png fill
     bindsym $mod+l exec $RICE/swaylock.sh
 
 # Audio
-bindsym XF86AudioRaiseVolume exec amixer set Master 3%+
-bindsym XF86AudioLowerVolume exec amixer set Master 3%-
+    bindsym XF86AudioRaiseVolume exec amixer set Master 3%+
+    bindsym XF86AudioLowerVolume exec amixer set Master 3%-
 
 #
 # Moving around:
