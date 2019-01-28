@@ -9,10 +9,10 @@
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Your preferred terminal emulator
-set $term alacritty
+set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu termite --name=launcher -e "bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'"
+set $menu termite --name=launcher -e $RICE/launcher.sh
 for_window [app_id="^launcher$"] floating enable, border none
 
 
