@@ -34,3 +34,6 @@ ln -s $RICE/qtcreatorthemed.desktop ~/.local/share/applications/qtcreatorthemed.
 # alacritty
 rm -rf ~/.config/alacritty
 ln -s $RICE/alacritty/ ~/.config/alacritty
+# and termite, for good measure
+rm -rf ~/.config/termite
+ln -s $RICE/termite ~/.config/termite
