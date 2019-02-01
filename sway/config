@@ -17,6 +17,31 @@ for_window [app_id="^launcher$"] floating enable, border none
 
 
 output * bg ~/.configs/wall.png fill
+output eDP-1 pos 0 0 res 1920x1080
+output HDMI-A-1 pos 0 -1080 res 1920x1080 
+
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 4 output eDP-1
+workspace 5 output eDP-1
+workspace 6 output eDP-1
+workspace 7 output eDP-1
+workspace 8 output eDP-1
+workspace 9 output eDP-1
+workspace 10 output eDP-1
+
+workspace 2-1 output HDMI-A-1    
+workspace 2-2 output HDMI-A-1    
+workspace 2-3 output HDMI-A-1    
+workspace 2-4 output HDMI-A-1    
+workspace 2-5 output HDMI-A-1    
+workspace 2-6 output HDMI-A-1    
+workspace 2-7 output HDMI-A-1       
+workspace 2-8 output HDMI-A-1       
+workspace 2-9 output HDMI-A-1       
+workspace 2-10 output HDMI-A-1 
+
 
 ### Key bindings
 #
@@ -83,6 +108,28 @@ output * bg ~/.configs/wall.png fill
     bindsym $mod+Shift+8 move container to workspace 8
     bindsym $mod+Shift+9 move container to workspace 9
     bindsym $mod+Shift+0 move container to workspace 10
+
+    bindsym $mod+Ctrl+1 workspace 2-1    
+    bindsym $mod+Ctrl+2 workspace 2-2    
+    bindsym $mod+Ctrl+3 workspace 2-3    
+    bindsym $mod+Ctrl+4 workspace 2-4    
+    bindsym $mod+Ctrl+5 workspace 2-5    
+    bindsym $mod+Ctrl+6 workspace 2-6    
+    bindsym $mod+Ctrl+7 workspace 2-7    
+    bindsym $mod+Ctrl+8 workspace 2-8    
+    bindsym $mod+Ctrl+9 workspace 2-9    
+    bindsym $mod+Ctrl+0 workspace 2-10    
+    # move focused container to workspace    
+    bindsym $mod+Ctrl+Shift+1 move container to workspace 2-1    
+    bindsym $mod+Ctrl+Shift+2 move container to workspace 2-2    
+    bindsym $mod+Ctrl+Shift+3 move container to workspace 2-3    
+    bindsym $mod+Ctrl+Shift+4 move container to workspace 2-4    
+    bindsym $mod+Ctrl+Shift+5 move container to workspace 2-5    
+    bindsym $mod+Ctrl+Shift+6 move container to workspace 2-6    
+    bindsym $mod+Ctrl+Shift+7 move container to workspace 2-7    
+    bindsym $mod+Ctrl+Shift+8 move container to workspace 2-8    
+    bindsym $mod+Ctrl+Shift+9 move container to workspace 2-9    
+    bindsym $mod+Ctrl+Shift+0 move container to workspace 2-10   
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -129,6 +176,6 @@ bar {
 #    }
 }
 
-exec /usr/local/bin/waybar
+exec waybar
 
 include /etc/sway/config.d/*
