@@ -55,6 +55,7 @@ workspace 2-10 output HDMI-A-1
 
     # LAUNCHER
     bindsym $mod+d exec $menu
+    bindsym Print exec $RICE/screenshot.sh
     bindsym $mod+Shift+e exec pcmanfm-qt
     floating_modifier $mod normal
 
