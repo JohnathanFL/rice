@@ -31,6 +31,10 @@ ln -s $RICE/themes/Qt-Creator-Darcula/darcula.xml ~/.config/QtProject/qtcreator/
 rm ~/.local/share/applications/qtcreatorthemed.desktop
 ln -s $RICE/qtcreatorthemed.desktop ~/.local/share/applications/qtcreatorthemed.desktop
 
+# qtcreator-themed script
+rm ~/bin/qtcreatorthemed
+ln -s $RICE/qtcreatorthemed ~/bin/qtcreatorthemed
+
 # alacritty
 rm -rf ~/.config/alacritty
 ln -s $RICE/alacritty/ ~/.config/alacritty

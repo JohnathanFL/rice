@@ -12,7 +12,7 @@ set $mod Mod4
 set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu termite --name=launcher -e $RICE/launcher.sh
+set $menu $RICE/launcher.sh
 for_window [app_id="^launcher$"] floating enable, border none
 
 
