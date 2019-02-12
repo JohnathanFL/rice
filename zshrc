@@ -92,7 +92,7 @@ BULLETTRAIN_PROMPT_CHAR="λ"
 
 fortune | cowsay
 
-export PATH="/home/`whoami`/.cargo/bin/:/home/oakenbow/.nimble/bin:$PATH"
+export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$PATH"
 export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
 export SCONS_CACHE_ROOT=/home/oakenbow/Dev/Scons_Cache
 alias autoyay="yay --noconfirm --sudoloop"
