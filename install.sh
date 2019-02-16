@@ -22,6 +22,11 @@ ln -s $RICE/waybar ~/.config/waybar
 rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
+cd desktop_parser
+nimble build
+mv desktop_parser ../parse_desktops
+cd ..
+
 # qtcreator themes
 mkdir -p ~/.config/QtProject/qtcreator/styles
 rm ~/.config/QtProject/qtcreator/styles/darcula.xml
