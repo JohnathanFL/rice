@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
     "modules-center": ["sway/window"],
-    "modules-right": ["tray", "pulseaudio", "network", "cpu", "memory", "clock"],
+    "modules-right": ["tray", "pulseaudio", "network", "cpu", "memory", "battery", "clock"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
