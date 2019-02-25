@@ -31,7 +31,8 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%Y-%m-%d  %H:%M}"
+        "format": "{:%Y-%m-%d  %H:%M}",
+	"on-click": "termite -e 'cal -3 && sleep 14214124124'"
     },
     "cpu": {
         "format": "{usage}% "

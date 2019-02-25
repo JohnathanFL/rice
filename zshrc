@@ -96,3 +96,4 @@ export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$PATH"
 export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
 export SCONS_CACHE_ROOT=/home/oakenbow/Dev/Scons_Cache
 alias autoyay="yay --noconfirm --sudoloop"
+alias ls='ls -s --block-size=M --color=auto' # show sizes in ls
