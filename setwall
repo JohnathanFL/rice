@@ -1,5 +1,12 @@
 #!/bin/sh
 
 cd $RICE
+
+if [ $# -eq 0 ]; then
+	echo "USAGE: setwall [WALLPAPER]"
+	echo "Available wallpapers: "
+	ls -1 wallpapers | sed -e 's/\..*$//'
+fi
+
 rm wall.png 2&> /dev/null
 ln -s wallpapers/$1.png wall.png
