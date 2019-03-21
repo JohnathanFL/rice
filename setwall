@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd $RICE
+rm wall.png 2&> /dev/null
+ln -s wallpapers/$1.png wall.png

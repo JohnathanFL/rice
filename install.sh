@@ -46,3 +46,8 @@ ln -s $RICE/alacritty/ ~/.config/alacritty
 # and termite, for good measure
 rm -rf ~/.config/termite
 ln -s $RICE/termite ~/.config/termite
+
+
+# wallpaper setter
+rm ~/bin/setwall
+ln -s $RICE/setwall ~/bin/
