@@ -47,6 +47,9 @@ ln -s $RICE/alacritty/ ~/.config/alacritty
 rm -rf ~/.config/termite
 ln -s $RICE/termite ~/.config/termite
 
+# wayfire
+rm ~/.config/wayfire.ini
+ln -s $RICE/wayfire.ini ~/.config/
 
 # wallpaper setter
 rm ~/bin/setwall
