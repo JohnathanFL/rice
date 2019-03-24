@@ -1,4 +1,5 @@
 #!/bin/sh
-
+export BEMENU_BACKEND=wayland
 CHOSEN=`ls $RICE/execs/ | bemenu -b -l 10 -p ">>>" -i -P "Run: "`
-cat "$RICE/execs/$CHOSEN" | xargs -r swaymsg -t command exec
+setsid `cat "$RICE/execs/$CHOSEN"`&
+exit

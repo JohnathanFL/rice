@@ -97,7 +97,3 @@ export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
 export SCONS_CACHE_ROOT=/home/oakenbow/Dev/Scons_Cache
 alias autoyay="yay --noconfirm --sudoloop"
 alias ls='ls -s --block-size=M --color=auto' # show sizes in ls
-alias mkdir='mkdir -pv' # always make parent dirs
-
-export QT_QPA_PLATFORM=wayland
-export GDK_BACKEND=wayland
