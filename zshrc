@@ -100,4 +100,15 @@ alias ls='ls -s --block-size=M --color=auto' # show sizes in ls
 alias mkdir='mkdir -pv' # always make parent dirs
 
 export QT_QPA_PLATFORM=wayland
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export GDK_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+
+TRAPUSR1() {
+  if [[ -o INTERACTIVE ]]; then
+     {clear; echo ZSH Reloaded} 1>&2
+     exec "${SHELL}"
+  fi
+}
+
+alias reloadzsh="pkill -usr1 zsh"
