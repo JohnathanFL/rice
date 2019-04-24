@@ -54,3 +54,6 @@ ln -s $RICE/wayfire.ini ~/.config/
 # wallpaper setter
 rm ~/bin/setwall
 ln -s $RICE/setwall ~/bin/
+
+echo "Installing /etc/issue"
+sudo ln -s $RICE/issue /etc/issue
