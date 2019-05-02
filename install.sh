@@ -56,4 +56,10 @@ rm ~/bin/setwall
 ln -s $RICE/setwall ~/bin/
 
 echo "Installing /etc/issue"
+sudo rm /etc/issue
 sudo ln -s $RICE/issue /etc/issue
+
+# qutebrowser
+mkdir -p ~/.config/qutebrowser
+rm ~/.config/qutebrowser/config.py
+ln -s $RICE/quteconfig.py ~/.config/qutebrowser/config.py
