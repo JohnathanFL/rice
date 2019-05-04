@@ -2,7 +2,7 @@ import os
 
 c.tabs.position = "left"
 c.tabs.width = '10%'
-c.tabs.show = 'switching'
+c.tabs.show = 'multiple'
 c.tabs.show_switching_delay = 1500
 #c.scrolling.smooth = True
 c.qt.low_end_device_mode = "never"
