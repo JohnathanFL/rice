@@ -16,6 +16,7 @@ c.qt.args += ' /usr/lib/qt/plugins/ppapi/libwidevinecdm.so'
 bindings = {
     "<Ctrl+Tab>": "tab-next",
     "<Ctrl+Shift+Tab>": "tab-prev",
+    "<F1>": "spawn mpv {url} --gpu-api=vulkan --gpu-context=waylandvk --ytdl --ytdl-raw-options=yes-playlist= --force-window"
 }
 
 delBindings = [
