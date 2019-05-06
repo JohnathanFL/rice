@@ -4,5 +4,8 @@
 
 FILENAME=`date +'printscr_%F_%s.png'`
 mkdir -p ~/Pictures/Screenshots
-grim ~/Pictures/Screenshots/$FILENAME
+
+[ ! -z $(which slurp) ] && \
+	grim -g "$(slurp)" ~/Pictures/Screenshots/$FILENAME \
+||      grim ~/Pictures/Screenshots/$FILENAME
 
