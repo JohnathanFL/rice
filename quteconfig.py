@@ -11,7 +11,7 @@ c.completion.shrink = True
 c.content.pdfjs = True
 
 c.qt.args += ' /usr/lib/qt/plugins/ppapi/libwidevinecdm.so'
-
+c.qt.process_model = 'process-per-site-instance'
 
 bindings = {
     "<Ctrl+Tab>": "tab-next",
