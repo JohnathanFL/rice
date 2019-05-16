@@ -1,70 +1,92 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar at the bottom of your screen
-    // "height": 30, // Waybar height
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["tray", "pulseaudio", "network", "cpu", "memory", "battery", "clock"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        "format": "{:%Y-%m-%d  %H:%M}",
-	"on-click": "termite -e 'cal -3 && sleep 14214124124'"
-    },
-    "cpu": {
-        "format": "{usage}% "
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": "Disconnected ⚠"
-    },
-    "pulseaudio": {
-        //"scroll-step": 1,
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/spotify": {
-        "format": " {}",
-        "max-length": 40,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-    }
+	"layer": "top", // Waybar at top layer
+		// "position": "bottom", // Waybar at the bottom of your screen
+		// "height": 30, // Waybar height
+		// "width": 1280, // Waybar width
+		// Choose the order of the modules
+		"modules-left": ["sway/workspaces", "sway/mode", "mpd"],
+		"modules-center": ["sway/window"],
+		"modules-right": ["tray", "pulseaudio", "network", "cpu", "memory", "battery", "clock"],
+		// Modules configuration
+		// "sway/workspaces": {
+		//     "disable-scroll": true,
+		//     "all-outputs": true,
+		//     "format": "{name}: {icon}",
+		//     "format-icons": {
+		//         "1": "",
+		//         "2": "",
+		//         "3": "",
+		//         "4": "",
+		//         "5": "",
+		//         "urgent": "",
+		//         "focused": "",
+		//         "default": ""
+		//     }
+		// },
+		"sway/mode": {
+			"format": "<span style=\"italic\">{}</span>"
+		},
+		"tray": {
+			// "icon-size": 21,
+			"spacing": 10
+		},
+		"clock": {
+			"format": "{:%Y-%m-%d  %H:%M}",
+			"on-click": "termite -e 'cal -3 && sleep 14214124124'"
+		},
+		"cpu": {
+			"format": "{usage}% "
+		},
+		"memory": {
+			"format": "{}% "
+		},
+		"network": {
+			// "interface": "wlp2s0", // (Optional) To force the use of this interface
+			"format-wifi": "{essid} ({signalStrength}%) ",
+			"format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+			"format-disconnected": "Disconnected ⚠"
+		},
+		"pulseaudio": {
+			//"scroll-step": 1,
+			"format": "{volume}% {icon}",
+			"format-bluetooth": "{volume}% {icon}",
+			"format-muted": "",
+			"format-icons": {
+				"headphones": "",
+				"handsfree": "",
+				"headset": "",
+				"phone": "",
+				"portable": "",
+				"car": "",
+				"default": ["", ""]
+			},
+			"on-click": "pavucontrol"
+		},
+
+		"mpd": {
+			"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+			"format-disconnected": "Disconnected",
+			"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+			"unknown-tag": "()",
+			"interval": 2,
+			"consume-icons": {
+				"on": " "
+			},
+			"random-icons": {
+				"off": "<span color=\"#f53c3c\"></span> ",
+				"on": " "
+			},
+			"repeat-icons": {
+				"on": " "
+			},
+			"single-icons": {
+				"on": "1 "
+			},
+			"state-icons": {
+				"paused": "",
+				"playing": ""
+			},
+			"tooltip-format": "MPD (connected)",
+			"tooltip-format-disconnected": "MPD (disconnected)"
+		}
 }
