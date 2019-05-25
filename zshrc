@@ -106,11 +106,13 @@ then
 	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 	export GDK_BACKEND=wayland
 	export SDL_VIDEODRIVER=wayland
+	echo "Wayland enabled"
 else
 	export QT_QPA_PLATFORM=xcb
 	#export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 	export GDK_BACKEND=x11
 	export SDL_VIDEODRIVER=x11
+	echo "Wayland disabled"
 fi
 
 alias zsh-disable-wayland='source ~/.zshrc no-wayland'
