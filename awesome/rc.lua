@@ -49,7 +49,7 @@ end
 beautiful.init(awful.util.getdir("config") .. "/theme/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "termite"
 editor = "scite"
 editor_cmd = editor
 
@@ -287,7 +287,7 @@ globalkeys = gears.table.join(
               {description = "select previous", group = "layout"}),
 
     -- Prompt
-    awful.key({ modkey },            "`",     function () awful.spawn("alacritty") end,
+    awful.key({ modkey },            "`",     function () awful.spawn(terminal) end,
               {description = "Command Line", group = "launcher"}),
     awful.key({modkey}, "s", function() awful.spawn("lximage-qt --screenshot") end,
               {description = "Screenshot", group = "launcher"}),
@@ -296,11 +296,11 @@ globalkeys = gears.table.join(
               {description = "launcher", group = "launcher"}),
     awful.key({ "Mod4", "Shift"}, "r", function() awful.spawn("launcher.sh") end,
               {description = "launcher", group = "launcher"}),
-    awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn("amixer set Master 3%+") end,
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn("amixer set Master 5%+") end,
               {description = "Raise Volume", group = "Audio"}),
-    awful.key({}, "XF86AudioLowerVolume", function() awful.spawn("amixer set Master 3%-") end,
+    awful.key({}, "XF86AudioLowerVolume", function() awful.spawn("amixer set Master 5%-") end,
               {description = "Lower Volume", group = "Audio"}),
-    awful.key({}, "XF86AudioMute", function() awful.spawn("amixer set Master 3%-") end,
+    awful.key({}, "XF86AudioMute", function() awful.spawn("amixer set Master toggle") end,
               {description = "Mute Audio", group = "Audio"}),
     awful.key({"Mod4"}, "e", function() awful.spawn("pcmanfm-qt") end,
               {description = "Launch File Manager", group = "launcher"}),
