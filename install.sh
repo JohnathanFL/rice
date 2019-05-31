@@ -22,11 +22,6 @@ ln -s $RICE/waybar ~/.config/waybar
 rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
-cd desktop_parser
-nimble build
-mv desktop_parser ../parse_desktops
-cd ..
-
 # qtcreator themes
 mkdir -p ~/.config/QtProject/qtcreator/styles
 rm ~/.config/QtProject/qtcreator/styles/darcula.xml
@@ -40,9 +35,6 @@ ln -s $RICE/qtcreatorthemed.desktop ~/.local/share/applications/qtcreatorthemed.
 rm ~/bin/qtcreatorthemed
 ln -s $RICE/qtcreatorthemed ~/bin/qtcreatorthemed
 
-# alacritty
-rm -rf ~/.config/alacritty
-ln -s $RICE/alacritty/ ~/.config/alacritty
 # and termite, for good measure
 rm -rf ~/.config/termite
 ln -s $RICE/termite ~/.config/termite
