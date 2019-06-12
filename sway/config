@@ -15,6 +15,9 @@ set $term termite
 set $menu pkill -usr1 volund #$RICE/launcher.sh
 for_window [app_id="^volund$"] floating enable, border none
 
+default_border pixel
+gaps outer 15
+gaps inner 5
 
 output * bg ~/.configs/wall.png fill
 output DVI-D-1 pos 0 0 res 1920x1080
