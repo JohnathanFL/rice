@@ -33,4 +33,4 @@ for key, bind in bindings.items():
 
 
 # THEME
-config.source(os.environ['RICE'] + '/nord-qutebrowser.py')
+config.source(os.environ['RICE'] + '/themes/nord-qutebrowser.py')
