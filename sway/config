@@ -177,7 +177,28 @@ workspace 2-10 output HDMI-A-1
 #
 # Read `man 5 sway-bar` for more information about this section.
 
-exec $RICE/keep_waybar.sh
+bar {
+	position top
+
+	pango_markup enabled
+	#font pango:Fira Code 10
+
+	status_command while $RICE/status_command.sh; do sleep 0.5; done
+	
+	gaps 5 5
+
+	colors {
+	        statusline #ffffff
+        	#background #323232
+	        background #00000000
+		inactive_workspace #32323200 #32323200 #5c5c5c
+	}
+}
+
+#exec $RICE/keep_waybar.sh
+
+
+
 exec $RICE/launcher.sh
 
 include /etc/sway/config.d/*

@@ -14,10 +14,6 @@ echo sway configs
 rm -rf ~/.config/sway
 ln -s $RICE/sway ~/.config/sway
 
-echo waybar
-rm -rf ~/.config/waybar
-ln -s $RICE/waybar ~/.config/waybar
-
 echo launcher
 rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh
