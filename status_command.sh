@@ -1,13 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 
 # Change this according to your device
 ################
 # Variables
 ################
-
-# Keyboard input name
-keyboard_input_name="1:1:AT_Translated_Set_2_keyboard"
 
 # Date and time
 date_and_week=$(date "+%Y/%m/%d (w%-V)")
@@ -24,19 +21,17 @@ battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "
 # Audio and multimedia
 audio_volume=$(amixer get Master | xargs | cut -d[ -f2 | cut -d] -f1 | xargs)
 audio_is_muted=$(amixer get Master | xargs | cut -d[ -f3 | cut -d] -f1)
-media_artist=$(playerctl metadata artist)
-media_song=$(playerctl metadata title)
-player_status=$(mpc | cut -d[ -f2 | cut -d] -f1)
+IFS="
+"
+audioInfo=($(mpc))
+songName=${audioInfo[0]}
+player_status=$(echo ${audioInfo[1]} | cut -d[ -f 2 | cut -d] -f 1)
 
 # Network
 routeinfo=$(ip route get 1.1.1.1 | xargs)
 network=$(echo $routeinfo | grep -Po '(?<=dev\s)\w+' | cut -f1 -d ' ')
 # Also allows for IPv6 addresses (::)
 ip=$(echo $routeinfo | grep -Po '(?<=src\s)(\w|\.|::)+' | xargs)
-
-# Others
-loadavg=$(cat /proc/loadavg | awk -F ' ' '{print $2}')
-loadavg=$(echo $(echo "$loadavg * 100" | bc | cut -d. -f1)%)
 
 if [[ $battery_status = "discharging" ]];
 then
@@ -69,4 +64,4 @@ else
     audio_active='𝅘𝅥𝅮'
 fi
 
-echo "🎧 $song_status $media_artist - $media_song | $network_active $ip - $network | 🏋 $loadavg | $audio_active $audio_volume | $battery_pluggedin $battery_charge | $date_and_week  $current_time"
+echo "$( [[ $song_status = '⏹' ]] && echo ⏹ || echo $song_status $songName) | $network_active $ip - $network | $audio_active $audio_volume | $battery_pluggedin $battery_charge | $date_and_week  $current_time"
