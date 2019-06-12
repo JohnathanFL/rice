@@ -188,7 +188,7 @@ bar {
 	pango_markup enabled
 	#font pango:Fira Code 10
 
-	status_command while $RICE/status_command.sh; do sleep 0.5; done
+	status_command while $RICE/status_command.sh; do sleep 1; done
 	
 	gaps 5 5
 
