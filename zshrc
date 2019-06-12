@@ -37,6 +37,7 @@ alias mkdir='mkdir -pv' # always make parent dirs
 if [[ $1 != "no-wayland" ]]
 then
 	export QT_QPA_PLATFORM=wayland
+	export QT_WAYLAND_FORCE_DPI=physical
 	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 	export GDK_BACKEND=wayland
 	export SDL_VIDEODRIVER=wayland
