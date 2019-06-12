@@ -4,9 +4,6 @@
 [submodule "themes/Qt-Creator-Darcula"]
 	path = themes/Qt-Creator-Darcula
 	url = https://github.com/mervick/Qt-Creator-Darcula
-[submodule "oh-my-zsh"]
-	path = oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh
 [submodule "desktop_parser"]
 	path = desktop_parser
 	url = https://github.com/JohnathanFL/desktop_parser
