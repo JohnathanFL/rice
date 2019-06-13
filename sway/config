@@ -14,13 +14,16 @@ set $term termite
 # Note: it's recommended that you pass the final command to sway
 set $menu pkill -usr1 volund #$RICE/launcher.sh
 
-client.focused #808080FF #00000000 #FFFFFFFF #80808080 #808080FF
-client.unfocused #00000000 #00000000 #FFFFFFFF #80808080 #80808080
-client.focused_inactive #00000000 #00000000 #FFFFFFFF #80808080 #80808080
+# 			<border>  <background> <text>    <indicator> <child_border>
+client.focused 		#5E81ACFF #00000000    #FFFFFFFF #80808080   #5E81ACFF
+client.unfocused 	#00000000 #00000000    #FFFFFFFF #80808080   #80808080
+client.focused_inactive #00000000 #00000000    #FFFFFFFF #80808080   #80808080
+
+hide_edge_borders smart
 
 for_window [app_id="^volund$"] floating enable, border none
 
-default_border pixel 5
+default_border pixel 2
 gaps outer 15
 gaps inner 5
 
@@ -198,7 +201,7 @@ bar {
 	        background #00000000
 		focused_workspace #808080FF #00000000 #FFFFFF
 		active_workspace #00000000 #00000000 #FFFFFF
-		inactive_workspace #32323200 #32323200 #5c5c5c
+		inactive_workspace #32323200 #32323200 #FFFFFFFF
 	}
 }
 
