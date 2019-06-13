@@ -31,7 +31,7 @@ echo qtcreator-themed script
 rm ~/bin/qtcreatorthemed
 ln -s $RICE/qtcreatorthemed ~/bin/qtcreatorthemed
 
-echo and termite, for good measure
+echo termite
 rm -rf ~/.config/termite
 ln -s $RICE/termite ~/.config/termite
 
@@ -54,4 +54,5 @@ ln -s $RICE/quteconfig.py ~/.config/qutebrowser/config.py
 
 echo mpd.conf
 mkdir -p ~/.config/mpd
+rm ~/.config/mpd/mpd.conf
 ln -s $RICE/mpd.conf ~/.config/mpd/mpd.conf
