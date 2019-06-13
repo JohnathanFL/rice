@@ -64,4 +64,11 @@ else
     audio_active='𝅘𝅥𝅮'
 fi
 
-echo "$( [[ $song_status = '⏹' ]] && echo ⏹ || echo $song_status $songName) | $network_active $ip - $network | $audio_active $audio_volume | $battery_pluggedin $battery_charge | $date_and_week  $current_time"
+if [[ $(cat /etc/hostname) = "LUAN" ]]
+then
+	batteryInfo="$battery_pluggedin $battery_charge |"
+else
+	batteryInfo=""
+fi
+
+echo "$( [[ $song_status = '⏹' ]] && echo ⏹ || echo $song_status $songName) | $network_active $ip - $network | $audio_active $audio_volume | $batteryInfo $date_and_week  $current_time"
