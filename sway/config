@@ -22,6 +22,7 @@ client.focused_inactive #00000000 #00000000    #FFFFFFFF #80808080   #80808080
 hide_edge_borders smart
 
 for_window [app_id="^volund$"] floating enable, border none
+for_window [app_id="^termite$"] opacity 0.9
 
 default_border pixel 2
 gaps outer 15
@@ -42,16 +43,16 @@ workspace 8 output DVI-D-1
 workspace 9 output DVI-D-1
 workspace 10 output DVI-D-1
 
-workspace 2-1 output HDMI-A-1    
-workspace 2-2 output HDMI-A-1    
-workspace 2-3 output HDMI-A-1    
-workspace 2-4 output HDMI-A-1    
-workspace 2-5 output HDMI-A-1    
-workspace 2-6 output HDMI-A-1    
-workspace 2-7 output HDMI-A-1       
-workspace 2-8 output HDMI-A-1       
-workspace 2-9 output HDMI-A-1       
-workspace 2-10 output HDMI-A-1 
+workspace 2-1 output HDMI-A-2    
+workspace 2-2 output HDMI-A-2    
+workspace 2-3 output HDMI-A-2    
+workspace 2-4 output HDMI-A-2    
+workspace 2-5 output HDMI-A-2    
+workspace 2-6 output HDMI-A-2    
+workspace 2-7 output HDMI-A-2       
+workspace 2-8 output HDMI-A-2       
+workspace 2-9 output HDMI-A-2       
+workspace 2-10 output HDMI-A-2 
 
 
 ### Key bindings
