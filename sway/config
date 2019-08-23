@@ -28,6 +28,12 @@ default_border pixel 2
 gaps outer 15
 gaps inner 5
 
+input "1133:49970:Logitech_Gaming_Mouse_G502" {
+	accel_profile flat
+	scroll_factor 1
+	pointer_accel -0.4
+}
+
 output * bg ~/.configs/wall.png fill
 output DVI-D-1 pos 0 0 res 1920x1080
 output HDMI-A-1 pos 1920 0 res 1360x768 
