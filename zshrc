@@ -51,18 +51,23 @@ fortune | cowsay
 export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$PATH"
 export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
 export SCONS_CACHE_ROOT=/home/oakenbow/Dev/Scons_Cache
+export PKGEXT=".pkg.tar"
+
+
 alias autoyay="yay --noconfirm --sudoloop"
 alias ls='ls -s --block-size=M --color=auto' # show sizes in ls
 alias mkdir='mkdir -pv' # always make parent dirs
-
+alias code='GDK_BACKEND=x11 code'
+alias startx='zsh-disable-wayland && startx'
 
 if [[ $1 != "no-wayland" ]]
 then
 	export QT_QPA_PLATFORM=wayland
-	export QT_WAYLAND_FORCE_DPI=physical
+	export QT_WAYLAND_FORCE_DPI=logical
 	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 	export GDK_BACKEND=wayland
 	export SDL_VIDEODRIVER=wayland
+	export _JAVA_AWT_WM_NONREPARENTING=1
 	echo "Wayland enabled"
 else
 	export QT_QPA_PLATFORM=xcb
