@@ -56,3 +56,6 @@ echo mpd.conf
 mkdir -p ~/.config/mpd
 rm ~/.config/mpd/mpd.conf
 ln -s $RICE/mpd.conf ~/.config/mpd/mpd.conf
+
+echo notify-at
+ln -s $RICE/notify-at ~/bin

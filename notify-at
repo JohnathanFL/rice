@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo -n "Message: "
+read MESSAGE
+
+echo "notify-send notify-at: \"$MESSAGE\"" | at "$@"
