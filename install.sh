@@ -31,9 +31,9 @@ echo qtcreator-themed script
 rm ~/bin/qtcreatorthemed
 ln -s $RICE/qtcreatorthemed ~/bin/qtcreatorthemed
 
-echo termite
-rm -rf ~/.config/termite
-ln -s $RICE/termite ~/.config/termite
+echo alacritty
+rm -rf ~/.config/alacritty
+ln -s $RICE/alacritty ~/.config/alacritty
 
 echo wayfire
 rm ~/.config/wayfire.ini
