@@ -2,6 +2,35 @@
 
 RICE=`pwd`
 
+
+# TODO: Fill this with all essential packages
+PACKAGES="
+alacritty-git
+alacritty-terminfo-git
+wlroots-git
+sway-git
+swaybg-git
+swaylock
+
+"
+
+
+install_packages() {
+	yay --sudoloop --noconfirm -S $(echo $PACKAGES | xargs)
+}
+
+read -p "Installing: $PACKAGES y/n?:  " shouldInstall
+case $shouldInstall in
+	[Yy]* ) install_packages;;
+	*     ) echo "Not installing packages";;
+esac
+
+# Setup
+mkdir -p ~/bin
+mkdir -p ~/.config
+
+
+
 echo zshrc
 rm ~/.zshrc
 ln -s $RICE/zshrc ~/.zshrc
@@ -18,6 +47,8 @@ echo launcher
 rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
+
+# TODO: May deprecate qtcreator
 echo qtcreator themes
 mkdir -p ~/.config/QtProject/qtcreator/styles
 rm ~/.config/QtProject/qtcreator/styles/darcula.xml
@@ -59,3 +90,7 @@ ln -s $RICE/mpd.conf ~/.config/mpd/mpd.conf
 
 echo notify-at
 ln -s $RICE/notify-at ~/bin
+
+echo mako notifications
+rm -rf ~/.config/mako
+ln -s $RICE/mako ~/.config/mako
