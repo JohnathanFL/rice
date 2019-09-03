@@ -220,5 +220,6 @@ bar {
 
 
 exec $RICE/launcher.sh
+exec mako
 
 include /etc/sway/config.d/*
