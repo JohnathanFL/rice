@@ -15,9 +15,11 @@ current_time=$(date "+%H:%M:%S")
 #############
 
 # Battery or charger
-battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "percentage" | awk '{print $2}')
-battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
-
+if [[ $(cat /etc/hostname) = "LUAN" ]]
+then
+	battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "percentage" | awk '{print $2}')
+	battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
+fi
 # Audio and multimedia
 audio_volume=$(amixer get Master | xargs | cut -d[ -f2 | cut -d] -f1 | xargs)
 audio_is_muted=$(amixer get Master | xargs | cut -d[ -f3 | cut -d] -f1)
@@ -33,7 +35,7 @@ network=$(echo $routeinfo | grep -Po '(?<=dev\s)\w+' | cut -f1 -d ' ')
 # Also allows for IPv6 addresses (::)
 ip=$(echo $routeinfo | grep -Po '(?<=src\s)(\w|\.|::)+' | xargs)
 
-if [[ $battery_status = "discharging" ]];
+if [[ $battery_status = "discharging" ]]
 then
     battery_pluggedin='🔋'
 else
@@ -42,7 +44,7 @@ fi
 
 if ! [ $network ]
 then
-   network_active="⛔"
+   network_active="No Network"
 else
    network_active="⇆"
 fi
