@@ -5,8 +5,7 @@ RICE=`pwd`
 
 # TODO: Fill this with all essential packages
 PACKAGES="
-alacritty-git
-alacritty-terminfo-git
+kitty
 wlroots-git
 sway-git
 swaybg-git
@@ -62,9 +61,9 @@ echo qtcreator-themed script
 rm ~/bin/qtcreatorthemed
 ln -s $RICE/qtcreatorthemed ~/bin/qtcreatorthemed
 
-echo alacritty
-rm -rf ~/.config/alacritty
-ln -s $RICE/alacritty ~/.config/alacritty
+echo kitty
+rm -rf ~/.config/kitty
+ln -s $RICE/kitty ~/.config/kitty
 
 echo wayfire
 rm ~/.config/wayfire.ini
