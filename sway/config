@@ -35,19 +35,20 @@ input "1133:49970:Logitech_Gaming_Mouse_G502" {
 }
 
 output * bg ~/.configs/wall.png fill
+output eDP-1 pos 0 0 res 1920x1080
 output DVI-D-1 pos 0 0 res 1920x1080
 output HDMI-A-1 pos 1920 0 res 1360x768 
 
-workspace 1 output DVI-D-1
-workspace 2 output DVI-D-1
-workspace 3 output DVI-D-1
-workspace 4 output DVI-D-1
-workspace 5 output DVI-D-1
-workspace 6 output DVI-D-1
-workspace 7 output DVI-D-1
-workspace 8 output DVI-D-1
-workspace 9 output DVI-D-1
-workspace 10 output DVI-D-1
+workspace 1 output DVI-D-1 eDP-1
+workspace 2 output DVI-D-1 eDP-1
+workspace 3 output DVI-D-1 eDP-1
+workspace 4 output DVI-D-1 eDP-1
+workspace 5 output DVI-D-1 eDP-1
+workspace 6 output DVI-D-1 eDP-1
+workspace 7 output DVI-D-1 eDP-1
+workspace 8 output DVI-D-1 eDP-1
+workspace 9 output DVI-D-1 eDP-1
+workspace 10 output DVI-D-1 eDP-1
 
 workspace 2-1 output HDMI-A-2    
 workspace 2-2 output HDMI-A-2    
