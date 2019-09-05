@@ -28,6 +28,7 @@ export RICE=~/.configs
 
 export TERM="xterm-256color"
 export EDITOR="vim"
+alias e="$EDITOR"
 
 # ANTIGEN
 source /usr/share/zsh/share/antigen.zsh
