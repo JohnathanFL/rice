@@ -27,6 +27,7 @@ export NORD_AURORA4=#b48ead
 export RICE=~/.configs
 
 export TERM="xterm-256color"
+export EDITOR="vim"
 
 # ANTIGEN
 source /usr/share/zsh/share/antigen.zsh
