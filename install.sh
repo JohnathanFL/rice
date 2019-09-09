@@ -93,3 +93,8 @@ ln -s $RICE/notify-at ~/bin
 echo mako notifications
 rm -rf ~/.config/mako
 ln -s $RICE/mako ~/.config/mako
+
+echo ncmcpp
+mkdir ~/.ncmcpp
+rm ~/.ncmcpp/config
+ln -s $RICE/ncmpcpp ~/.ncmcpp/config
