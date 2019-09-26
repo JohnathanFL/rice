@@ -35,9 +35,9 @@ input "1133:49970:Logitech_Gaming_Mouse_G502" {
 }
 
 output * bg ~/.configs/wall.png fill
-output eDP-1 pos 0 0 res 1920x1080
+output eDP-1 pos 1920 1080 res 1920x1080
 output DVI-D-1 pos 0 0 res 1920x1080
-output HDMI-A-1 pos 1920 0 res 1360x768 
+output HDMI-A-1 pos 1920 0 res 1920x1080 
 
 workspace 1 output DVI-D-1 eDP-1
 workspace 2 output DVI-D-1 eDP-1
@@ -52,16 +52,16 @@ workspace 10 output DVI-D-1 eDP-1
 
 workspace_auto_back_and_forth yes
 
-workspace 2-1 output HDMI-A-1 HDMI-A-2    
-workspace 2-2 output HDMI-A-1 HDMI-A-2    
-workspace 2-3 output HDMI-A-1 HDMI-A-2    
-workspace 2-4 output HDMI-A-1 HDMI-A-2    
-workspace 2-5 output HDMI-A-1 HDMI-A-2    
-workspace 2-6 output HDMI-A-1 HDMI-A-2    
-workspace 2-7 output HDMI-A-1 HDMI-A-2       
-workspace 2-8 output HDMI-A-1 HDMI-A-2       
-workspace 2-9 output HDMI-A-1 HDMI-A-2       
-workspace 2-10 output HDMI-A-1 HDMI-A-2 
+workspace 1:2-1 output HDMI-A-1 HDMI-A-2    
+workspace 2:2-2 output HDMI-A-1 HDMI-A-2    
+workspace 3:2-3 output HDMI-A-1 HDMI-A-2    
+workspace 4:2-4 output HDMI-A-1 HDMI-A-2    
+workspace 5:2-5 output HDMI-A-1 HDMI-A-2    
+workspace 6:2-6 output HDMI-A-1 HDMI-A-2    
+workspace 7:2-7 output HDMI-A-1 HDMI-A-2       
+workspace 8:2-8 output HDMI-A-1 HDMI-A-2       
+workspace 9:2-9 output HDMI-A-1 HDMI-A-2       
+workspace 10:2-10 output HDMI-A-1 HDMI-A-2 
 
 
 ### Key bindings
@@ -144,27 +144,27 @@ workspace 2-10 output HDMI-A-1 HDMI-A-2
     bindsym $mod+Shift+9 move container to workspace 9
     bindsym $mod+Shift+0 move container to workspace 10
 
-    bindsym $mod+Ctrl+1 workspace 2-1    
-    bindsym $mod+Ctrl+2 workspace 2-2    
-    bindsym $mod+Ctrl+3 workspace 2-3    
-    bindsym $mod+Ctrl+4 workspace 2-4    
-    bindsym $mod+Ctrl+5 workspace 2-5    
-    bindsym $mod+Ctrl+6 workspace 2-6    
-    bindsym $mod+Ctrl+7 workspace 2-7    
-    bindsym $mod+Ctrl+8 workspace 2-8    
-    bindsym $mod+Ctrl+9 workspace 2-9    
-    bindsym $mod+Ctrl+0 workspace 2-10    
+    bindsym $mod+Ctrl+1 workspace 1:2-1    
+    bindsym $mod+Ctrl+2 workspace 2:2-2    
+    bindsym $mod+Ctrl+3 workspace 3:2-3    
+    bindsym $mod+Ctrl+4 workspace 4:2-4    
+    bindsym $mod+Ctrl+5 workspace 5:2-5    
+    bindsym $mod+Ctrl+6 workspace 6:2-6    
+    bindsym $mod+Ctrl+7 workspace 7:2-7    
+    bindsym $mod+Ctrl+8 workspace 8:2-8    
+    bindsym $mod+Ctrl+9 workspace 9:2-9    
+    bindsym $mod+Ctrl+0 workspace 10:2-10    
     # move focused container to workspace    
-    bindsym $mod+Ctrl+Shift+1 move container to workspace 2-1    
-    bindsym $mod+Ctrl+Shift+2 move container to workspace 2-2    
-    bindsym $mod+Ctrl+Shift+3 move container to workspace 2-3    
-    bindsym $mod+Ctrl+Shift+4 move container to workspace 2-4    
-    bindsym $mod+Ctrl+Shift+5 move container to workspace 2-5    
-    bindsym $mod+Ctrl+Shift+6 move container to workspace 2-6    
-    bindsym $mod+Ctrl+Shift+7 move container to workspace 2-7    
-    bindsym $mod+Ctrl+Shift+8 move container to workspace 2-8    
-    bindsym $mod+Ctrl+Shift+9 move container to workspace 2-9    
-    bindsym $mod+Ctrl+Shift+0 move container to workspace 2-10   
+    bindsym $mod+Ctrl+Shift+1 move container to workspace 1:2-1    
+    bindsym $mod+Ctrl+Shift+2 move container to workspace 2:2-2    
+    bindsym $mod+Ctrl+Shift+3 move container to workspace 3:2-3    
+    bindsym $mod+Ctrl+Shift+4 move container to workspace 4:2-4    
+    bindsym $mod+Ctrl+Shift+5 move container to workspace 5:2-5    
+    bindsym $mod+Ctrl+Shift+6 move container to workspace 6:2-6    
+    bindsym $mod+Ctrl+Shift+7 move container to workspace 7:2-7    
+    bindsym $mod+Ctrl+Shift+8 move container to workspace 8:2-8    
+    bindsym $mod+Ctrl+Shift+9 move container to workspace 9:2-9    
+    bindsym $mod+Ctrl+Shift+0 move container to workspace 10:2-10   
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -200,12 +200,12 @@ workspace 2-10 output HDMI-A-1 HDMI-A-2
 
 bar {
 	position top
+	strip_workspace_numbers yes
 
 	pango_markup enabled
 	#font pango:Fira Code 10
 
 	status_command while $RICE/status_command.sh; do sleep 1; done
-	
 	gaps 5 5
 
 	colors {
