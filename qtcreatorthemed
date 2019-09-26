@@ -1,2 +1,0 @@
-#!/bin/sh
-sh -c "qtcreator -stylesheet=$RICE/themes/Qt-Creator-Darcula/darcula.css"

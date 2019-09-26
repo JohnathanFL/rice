@@ -47,20 +47,6 @@ rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
 
-# TODO: May deprecate qtcreator
-echo qtcreator themes
-mkdir -p ~/.config/QtProject/qtcreator/styles
-rm ~/.config/QtProject/qtcreator/styles/darcula.xml
-ln -s $RICE/themes/Qt-Creator-Darcula/darcula.xml ~/.config/QtProject/qtcreator/styles/darcula.xml
-
-echo qtcreator-themed desktop file
-rm ~/.local/share/applications/qtcreatorthemed.desktop
-ln -s $RICE/qtcreatorthemed.desktop ~/.local/share/applications/qtcreatorthemed.desktop
-
-echo qtcreator-themed script
-rm ~/bin/qtcreatorthemed
-ln -s $RICE/qtcreatorthemed ~/bin/qtcreatorthemed
-
 echo kitty
 rm -rf ~/.config/kitty
 ln -s $RICE/kitty ~/.config/kitty
@@ -94,7 +80,7 @@ echo mako notifications
 rm -rf ~/.config/mako
 ln -s $RICE/mako ~/.config/mako
 
-echo ncmcpp
-mkdir ~/.ncmcpp
-rm ~/.ncmcpp/config
-ln -s $RICE/ncmpcpp ~/.ncmcpp/config
+echo ncmpcpp
+mkdir ~/.ncmpcpp
+rm ~/.ncmpcpp/config
+ln -s $RICE/ncmpcpp ~/.ncmpcpp/config
