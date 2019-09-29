@@ -19,7 +19,7 @@ client.focused 		#5E81ACFF #00000000    #FFFFFFFF #80808080   #5E81ACFF
 client.unfocused 	#00000000 #00000000    #FFFFFFFF #80808080   #80808080
 client.focused_inactive #00000000 #00000000    #FFFFFFFF #80808080   #80808080
 
-hide_edge_borders smart
+hide_edge_borders both
 
 for_window [app_id="^volund$"] floating enable, border none
 for_window [app_id="^termite$"] opacity 0.9
@@ -76,8 +76,12 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
 
     # LAUNCHER
     bindsym $mod+r exec $menu
+
+    #SCREENSHOT
     bindsym Print exec $RICE/screenshot.sh
-    bindsym $mod+Shift+e exec pcmanfm-qt
+    
+    bindsym $mod+Shift+e exec thunar
+
     floating_modifier $mod normal
 
     # reload the configuration file
@@ -179,8 +183,6 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
-
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
@@ -224,5 +226,6 @@ bar {
 
 exec $RICE/launcher.sh
 exec mako
+exec thunar --daemon
 
 include /etc/sway/config.d/*
