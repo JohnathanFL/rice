@@ -39,8 +39,9 @@ rm -rf ~/.config/awesome
 ln -s $RICE/awesome ~/.config/awesome
 
 echo sway configs
-rm -rf ~/.config/sway
-ln -s $RICE/sway ~/.config/sway
+rm -rf ~/.config/sway/
+mkdir ~/.config/sway
+ln -s $RICE/sway ~/.config/sway/config
 
 echo launcher
 rm ~/bin/launcher.sh
@@ -49,7 +50,8 @@ ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
 echo kitty
 rm -rf ~/.config/kitty
-ln -s $RICE/kitty ~/.config/kitty
+mkdir ~/.config/kitty
+ln -s $RICE/kitty.conf ~/.config/kitty/
 
 echo wayfire
 rm ~/.config/wayfire.ini
@@ -74,11 +76,12 @@ rm ~/.config/mpd/mpd.conf
 ln -s $RICE/mpd.conf ~/.config/mpd/mpd.conf
 
 echo notify-at
-ln -s $RICE/notify-at ~/bin
+ln -s $RICE/notify-at ~/bin > /dev/null
 
 echo mako notifications
 rm -rf ~/.config/mako
-ln -s $RICE/mako ~/.config/mako
+mkdir ~/.config/mako
+ln -s $RICE/mako ~/.config/mako/config
 
 echo ncmpcpp
 mkdir ~/.ncmpcpp
