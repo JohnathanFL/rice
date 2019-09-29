@@ -80,7 +80,7 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
     #SCREENSHOT
     bindsym Print exec $RICE/screenshot.sh
     
-    bindsym $mod+Shift+e exec thunar
+    bindsym $mod+e exec thunar
 
     floating_modifier $mod normal
 
