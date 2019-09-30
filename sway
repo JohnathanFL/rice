@@ -12,7 +12,8 @@ set $mod Mod4
 set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu pkill -usr1 volund #$RICE/launcher.sh
+#set $menu pkill -usr1 volund #$RICE/launcher.sh
+set $menu echo > /tmp/j4-waiter
 
 # 			<border>  <background> <text>    <indicator> <child_border>
 client.focused 		#5E81ACFF #00000000    #FFFFFFFF #80808080   #5E81ACFF
@@ -76,8 +77,9 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
 
     # LAUNCHER
     bindsym $mod+r exec $menu
-
-    #SCREENSHOT
+#
+set $menu j4-dmenu-desktop --dmenu="bemenu -b --list 10" 
+   #SCREENSHOT
     bindsym Print exec $RICE/screenshot.sh
     
     bindsym $mod+e exec thunar
@@ -221,6 +223,7 @@ bar {
 	}
 }
 
+
 #exec $RICE/keep_waybar.sh
 
 
@@ -228,5 +231,9 @@ bar {
 exec $RICE/launcher.sh
 exec mako
 exec thunar --daemon
+
+exec_always rm /tmp/j4-waiter
+exec_always pkill j4-dmenu-desktop
+exec_always j4-dmenu-desktop --wait-on=/tmp/j4-waiter --dmenu="bemenu -b --list 10 --ignorecase --nb \#3b4252 --hb \#5e81ac --hf \#d8dee9 --fb \#434c5e --ff \#d8dee9 -p ''"
 
 include /etc/sway/config.d/*
