@@ -27,8 +27,10 @@ export NORD_AURORA4=#b48ead
 export RICE=~/.configs
 
 export TERM="xterm-256color"
-export EDITOR="vim"
-alias e="$EDITOR"
+export EDITOR=kak
+alias e=$EDITOR
+# until my muscle memory improves
+alias vim=kak
 
 # ANTIGEN
 source /usr/share/zsh/share/antigen.zsh
