@@ -54,7 +54,7 @@ song_columns_list_format = "(6)[]{} (23)[red]{a} (26)[red]{t|f} (40)[green]{b} (
 color1 = "white"
 color2 = "black"
 
-song_list_format = " $7%l  %n $2%t $R$5%a "
+song_list_format = " $7%l  %n $2%t $R$5%35b  |  %a"
 
 #uncomment both statement's below if you want to display the albumart
 #execute_on_song_change="~/.ncmpcpp/art.sh"
