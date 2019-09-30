@@ -224,16 +224,8 @@ bar {
 }
 
 
-#exec $RICE/keep_waybar.sh
-
-
-
-exec $RICE/launcher.sh
+exec_always $RICE/launcher.sh
 exec mako
 exec thunar --daemon
-
-exec_always rm /tmp/j4-waiter
-exec_always pkill j4-dmenu-desktop
-exec_always j4-dmenu-desktop --wait-on=/tmp/j4-waiter --dmenu="bemenu -b --list 10 --ignorecase --nb \#3b4252 --hb \#5e81ac --hf \#d8dee9 --fb \#434c5e --ff \#d8dee9 -p ''"
 
 include /etc/sway/config.d/*
