@@ -1,0 +1,41 @@
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/powerline.kak"
+
+
+plug "andreyorst/smarttab.kak" defer smarttab  %{
+     set-option global softtabstop 2
+     set-option global tabstop 2
+     set-option global indentwidth 2
+} config %{
+     # you can configure text that is being used to represent curent active mode
+	hook global WinSetOption filetype=(rust|c|cpp|kak|sh) expandtab
+	hook global WinSetOption filetype=(makefile) noexpandtab
+}
+
+
+add-highlighter global/ number-lines
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+        lsp-enable-window
+}
+
+hook global InsertCompletionShow .* %{
+        try %{
+                    exec -draft 'h<a-K>\h<ret>'
+                            map window insert <c-s-tab> <c-p>
+                          map window insert <c-tab> <c-n>
+        }
+}
+hook global InsertCompletionHide .* %{
+        unmap window insert <c-tab> <c-n>
+            unmap window insert <c-s-tab> <c-p>
+}
+
+hook global WinSetOption filetype=(cpp|c) %{
+      clang-enable-autocomplete; clang-enable-diagnostics
+}
+add-highlighter global/ wrap
+hook global WinSetOption filetype=(c|cpp) %{
+  set window formatcmd 'clang-format -style=file'
+}
