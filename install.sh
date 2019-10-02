@@ -29,6 +29,9 @@ mkdir -p ~/bin
 mkdir -p ~/.config
 
 
+echo clang-format
+rm ~/.clang-format
+ln -s $RICE/clang-format ~/.clang-format
 
 echo zshrc
 rm ~/.zshrc
