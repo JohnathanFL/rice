@@ -13,7 +13,7 @@ set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu pkill -usr1 volund #$RICE/launcher.sh
-set $menu echo > /tmp/j4-waiter
+set $menu $RICE/launcher.sh
 
 # 			<border>  <background> <text>    <indicator> <child_border>
 client.focused 		#5E81ACFF #00000000    #FFFFFFFF #80808080   #5E81ACFF
@@ -78,7 +78,7 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
     # LAUNCHER
     bindsym $mod+r exec $menu
 #
-set $menu j4-dmenu-desktop --dmenu="bemenu -b --list 10" 
+  set $menu j4-dmenu-desktop --dmenu="bemenu -b --list 10"
    #SCREENSHOT
     bindsym Print exec $RICE/screenshot.sh
     
@@ -224,7 +224,7 @@ bar {
 }
 
 
-exec_always $RICE/launcher.sh
+#exec_always $RICE/launcher.sh
 exec mako
 exec thunar --daemon
 
