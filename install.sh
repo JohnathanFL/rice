@@ -37,6 +37,12 @@ echo kak
 rm -rf ~/.config/kak
 ln -s $RICE/kak ~/.config/kak
 
+echo plug.kak
+if [ ! -d ~/.config/kak/plugins/plug.kak/ ]; then
+  mkdir -p ~/.config/kak/plugins/
+  git clone https://github.com/andreyorst/plug.kak.git ~/.config/kak/plugins/plug.kak
+fi
+
 echo zshrc
 rm ~/.zshrc
 ln -s $RICE/zshrc ~/.zshrc
