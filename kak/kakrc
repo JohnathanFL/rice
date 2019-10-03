@@ -41,3 +41,6 @@ hook global WinSetOption filetype=(c|cpp) %{
 hook global WinSetOption filetype=(sh|sway) %{
   set window formatcmd 'shfmt -i 2 -sr -kp'
 }
+hook global WinCreate [^*]* %{
+  editorconfig-load
+}
