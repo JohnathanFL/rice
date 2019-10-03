@@ -90,7 +90,7 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
   bindsym $mod+Shift+c reload
 
   # exit sway (logs you out of your Wayland session)
-  bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+  bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You sure mate?' -b 'Yessir' 'swaymsg exit'
   bindsym $mod+l exec $RICE/swaylock.sh
 
 # Audio
