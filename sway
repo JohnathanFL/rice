@@ -15,10 +15,10 @@ set $term kitty
 #set $menu pkill -usr1 volund #$RICE/launcher.sh
 set $menu $RICE/launcher.sh
 
-# 			<border>  <background> <text>    <indicator> <child_border>
-client.focused 		#5E81ACFF #00000000    #FFFFFFFF #80808080   #5E81ACFF
-client.unfocused 	#00000000 #00000000    #FFFFFFFF #80808080   #80808080
-client.focused_inactive #00000000 #00000000    #FFFFFFFF #80808080   #80808080
+#       <border>  <background> <text>  <indicator> <child_border>
+client.focused     #5E81ACFF #00000000  #FFFFFFFF #80808080   #5E81ACFF
+client.unfocused   #00000000 #00000000  #FFFFFFFF #80808080   #80808080
+client.focused_inactive #00000000 #00000000  #FFFFFFFF #80808080   #80808080
 
 hide_edge_borders both
 
@@ -30,9 +30,9 @@ gaps outer 15
 gaps inner 5
 
 input "1133:49970:Logitech_Gaming_Mouse_G502" {
-	accel_profile flat
-	scroll_factor 1
-	pointer_accel -0.4
+  accel_profile flat
+  scroll_factor 1
+  pointer_accel -0.4
 }
 
 output * bg ~/.configs/wall.png fill
@@ -53,15 +53,15 @@ workspace 10 output DVI-D-1 eDP-1
 
 workspace_auto_back_and_forth yes
 
-workspace 1:2-1 output HDMI-A-1 HDMI-A-2    
-workspace 2:2-2 output HDMI-A-1 HDMI-A-2    
-workspace 3:2-3 output HDMI-A-1 HDMI-A-2    
-workspace 4:2-4 output HDMI-A-1 HDMI-A-2    
-workspace 5:2-5 output HDMI-A-1 HDMI-A-2    
-workspace 6:2-6 output HDMI-A-1 HDMI-A-2    
-workspace 7:2-7 output HDMI-A-1 HDMI-A-2       
-workspace 8:2-8 output HDMI-A-1 HDMI-A-2       
-workspace 9:2-9 output HDMI-A-1 HDMI-A-2       
+workspace 1:2-1 output HDMI-A-1 HDMI-A-2  
+workspace 2:2-2 output HDMI-A-1 HDMI-A-2  
+workspace 3:2-3 output HDMI-A-1 HDMI-A-2  
+workspace 4:2-4 output HDMI-A-1 HDMI-A-2  
+workspace 5:2-5 output HDMI-A-1 HDMI-A-2  
+workspace 6:2-6 output HDMI-A-1 HDMI-A-2  
+workspace 7:2-7 output HDMI-A-1 HDMI-A-2     
+workspace 8:2-8 output HDMI-A-1 HDMI-A-2     
+workspace 9:2-9 output HDMI-A-1 HDMI-A-2     
 workspace 10:2-10 output HDMI-A-1 HDMI-A-2 
 
 
@@ -69,134 +69,134 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
 #
 # Basics:
 #
-    # TERMINAL
-    bindsym $mod+grave exec $term
+  # TERMINAL
+  bindsym $mod+grave exec $term
 
-    # CLOSE WINDOW
-    bindsym $mod+Shift+q kill
+  # CLOSE WINDOW
+  bindsym $mod+Shift+q kill
 
-    # LAUNCHER
-    bindsym $mod+r exec $menu
+  # LAUNCHER
+  bindsym $mod+r exec $menu
 #
   set $menu j4-dmenu-desktop --dmenu="bemenu -b --list 10"
    #SCREENSHOT
-    bindsym Print exec $RICE/screenshot.sh
-    
-    bindsym $mod+e exec thunar
+  bindsym Print exec $RICE/screenshot.sh
+  
+  bindsym $mod+e exec thunar
 
-    floating_modifier $mod normal
+  floating_modifier $mod normal
 
-    # reload the configuration file
-    bindsym $mod+Shift+c reload
+  # reload the configuration file
+  bindsym $mod+Shift+c reload
 
-    # exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+l exec $RICE/swaylock.sh
+  # exit sway (logs you out of your Wayland session)
+  bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+  bindsym $mod+l exec $RICE/swaylock.sh
 
 # Audio
-    bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
-    bindsym XF86AudioLowerVolume exec amixer set Master 5%-
-    bindsym XF86AudioMute exec amixer set Master toggle
+  bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+  bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+  bindsym XF86AudioMute exec amixer set Master toggle
 
 # Granular audio
-    bindsym Shift+XF86AudioRaiseVolume exec amixer set Master 1%+
-    bindsym Shift+XF86AudioLowerVolume exec amixer set Master 1%-
+  bindsym Shift+XF86AudioRaiseVolume exec amixer set Master 1%+
+  bindsym Shift+XF86AudioLowerVolume exec amixer set Master 1%-
 
-    bindsym XF86AudioPlay exec mpc toggle
-    bindsym XF86AudioPrev exec mpc prev
-    bindsym XF86AudioNext exec mpc next
+  bindsym XF86AudioPlay exec mpc toggle
+  bindsym XF86AudioPrev exec mpc prev
+  bindsym XF86AudioNext exec mpc next
 
 
 #
 # Moving around:
 #
-    # Move your focus around
-    bindsym $mod+Shift+Tab focus left
-    bindsym $mod+Left focus left    
+  # Move your focus around
+  bindsym $mod+Shift+Tab focus left
+  bindsym $mod+Left focus left  
 
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Tab focus right
-    bindsym $mod+Right focus right
+  bindsym $mod+Down focus down
+  bindsym $mod+Up focus up
+  bindsym $mod+Tab focus right
+  bindsym $mod+Right focus right
 
-    # ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+  # ditto, with arrow keys
+  bindsym $mod+Shift+Left move left
+  bindsym $mod+Shift+Down move down
+  bindsym $mod+Shift+Up move up
+  bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
-    # switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
-    # move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
-    bindsym $mod+Shift+5 move container to workspace 5
-    bindsym $mod+Shift+6 move container to workspace 6
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
-    bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
+  # switch to workspace
+  bindsym $mod+1 workspace 1
+  bindsym $mod+2 workspace 2
+  bindsym $mod+3 workspace 3
+  bindsym $mod+4 workspace 4
+  bindsym $mod+5 workspace 5
+  bindsym $mod+6 workspace 6
+  bindsym $mod+7 workspace 7
+  bindsym $mod+8 workspace 8
+  bindsym $mod+9 workspace 9
+  bindsym $mod+0 workspace 10
+  # move focused container to workspace
+  bindsym $mod+Shift+1 move container to workspace 1
+  bindsym $mod+Shift+2 move container to workspace 2
+  bindsym $mod+Shift+3 move container to workspace 3
+  bindsym $mod+Shift+4 move container to workspace 4
+  bindsym $mod+Shift+5 move container to workspace 5
+  bindsym $mod+Shift+6 move container to workspace 6
+  bindsym $mod+Shift+7 move container to workspace 7
+  bindsym $mod+Shift+8 move container to workspace 8
+  bindsym $mod+Shift+9 move container to workspace 9
+  bindsym $mod+Shift+0 move container to workspace 10
 
-    bindsym $mod+Ctrl+1 workspace 1:2-1    
-    bindsym $mod+Ctrl+2 workspace 2:2-2    
-    bindsym $mod+Ctrl+3 workspace 3:2-3    
-    bindsym $mod+Ctrl+4 workspace 4:2-4    
-    bindsym $mod+Ctrl+5 workspace 5:2-5    
-    bindsym $mod+Ctrl+6 workspace 6:2-6    
-    bindsym $mod+Ctrl+7 workspace 7:2-7    
-    bindsym $mod+Ctrl+8 workspace 8:2-8    
-    bindsym $mod+Ctrl+9 workspace 9:2-9    
-    bindsym $mod+Ctrl+0 workspace 10:2-10    
-    # move focused container to workspace    
-    bindsym $mod+Ctrl+Shift+1 move container to workspace 1:2-1    
-    bindsym $mod+Ctrl+Shift+2 move container to workspace 2:2-2    
-    bindsym $mod+Ctrl+Shift+3 move container to workspace 3:2-3    
-    bindsym $mod+Ctrl+Shift+4 move container to workspace 4:2-4    
-    bindsym $mod+Ctrl+Shift+5 move container to workspace 5:2-5    
-    bindsym $mod+Ctrl+Shift+6 move container to workspace 6:2-6    
-    bindsym $mod+Ctrl+Shift+7 move container to workspace 7:2-7    
-    bindsym $mod+Ctrl+Shift+8 move container to workspace 8:2-8    
-    bindsym $mod+Ctrl+Shift+9 move container to workspace 9:2-9    
-    bindsym $mod+Ctrl+Shift+0 move container to workspace 10:2-10   
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+  bindsym $mod+Ctrl+1 workspace 1:2-1  
+  bindsym $mod+Ctrl+2 workspace 2:2-2  
+  bindsym $mod+Ctrl+3 workspace 3:2-3  
+  bindsym $mod+Ctrl+4 workspace 4:2-4  
+  bindsym $mod+Ctrl+5 workspace 5:2-5  
+  bindsym $mod+Ctrl+6 workspace 6:2-6  
+  bindsym $mod+Ctrl+7 workspace 7:2-7  
+  bindsym $mod+Ctrl+8 workspace 8:2-8  
+  bindsym $mod+Ctrl+9 workspace 9:2-9  
+  bindsym $mod+Ctrl+0 workspace 10:2-10  
+  # move focused container to workspace  
+  bindsym $mod+Ctrl+Shift+1 move container to workspace 1:2-1  
+  bindsym $mod+Ctrl+Shift+2 move container to workspace 2:2-2  
+  bindsym $mod+Ctrl+Shift+3 move container to workspace 3:2-3  
+  bindsym $mod+Ctrl+Shift+4 move container to workspace 4:2-4  
+  bindsym $mod+Ctrl+Shift+5 move container to workspace 5:2-5  
+  bindsym $mod+Ctrl+Shift+6 move container to workspace 6:2-6  
+  bindsym $mod+Ctrl+Shift+7 move container to workspace 7:2-7  
+  bindsym $mod+Ctrl+Shift+8 move container to workspace 8:2-8  
+  bindsym $mod+Ctrl+Shift+9 move container to workspace 9:2-9  
+  bindsym $mod+Ctrl+Shift+0 move container to workspace 10:2-10   
+  # Note: workspaces can have any name you want, not just numbers.
+  # We just use 1-10 as the default.
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+  # You can "split" the current object of your focus with
+  # $mod+b or $mod+v, for horizontal and vertical splits
+  # respectively.
+  bindsym $mod+b splith
+  bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+w layout toggle split tabbed
-    #bindsym $mod+s layout stacking
-    #bindsym $mod+w layout tabbed
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+  # Switch the current container between different layout styles
+  bindsym $mod+w layout toggle split tabbed
+  #bindsym $mod+s layout stacking
+  #bindsym $mod+w layout tabbed
+  # Make the current focus fullscreen
+  bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+  # Toggle the current focus between tiling and floating mode
+  bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+  # Swap focus between the tiling area and the floating area
+  bindsym $mod+space focus mode_toggle
 
-    # move focus to the parent container
-    bindsym $mod+a focus parent
+  # move focus to the parent container
+  bindsym $mod+a focus parent
 
 #
 # Status Bar:
@@ -204,23 +204,23 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
 # Read `man 5 sway-bar` for more information about this section.
 
 bar {
-	position top
-	strip_workspace_numbers yes
+  position top
+  strip_workspace_numbers yes
 
-	pango_markup enabled
-	#font pango:Fira Code 10
+  pango_markup enabled
+  #font pango:Fira Code 10
 
-	status_command while $RICE/status_command.sh; do sleep 1; done
-	gaps 5 5
+  status_command while $RICE/status_command.sh; do sleep 1; done
+  gaps 5 5
 
-	colors {
-	        statusline #ffffff
-        	#background #323232
-	        background #00000000
-		focused_workspace #808080FF #00000000 #FFFFFF
-		active_workspace #00000000 #00000000 #FFFFFF
-		inactive_workspace #32323200 #32323200 #FFFFFFFF
-	}
+  colors {
+    statusline #ffffff
+    #background #323232
+    background #00000000
+    focused_workspace #808080FF #00000000 #FFFFFF
+    active_workspace #00000000 #00000000 #FFFFFF
+    inactive_workspace #32323200 #32323200 #FFFFFFFF
+  }
 }
 
 
