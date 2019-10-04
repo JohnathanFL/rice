@@ -1,0 +1,13 @@
+[Unit]
+Description=A brightness controller
+After=multi-user.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/brightnessd.sh
+ExecStop=rm /tmp/brightnessd.fifo
+
+
+[Install]
+WantedBy=multi-user.target

@@ -74,9 +74,7 @@ echo wallpaper setter
 rm ~/bin/setwall
 ln -s $RICE/setwall ~/bin/
 
-echo "Installing /etc/issue"
-sudo rm /etc/issue
-sudo ln -s $RICE/issue /etc/issue
+
 
 echo qutebrowser
 mkdir -p ~/.config/qutebrowser
@@ -100,3 +98,19 @@ echo ncmpcpp
 mkdir ~/.ncmpcpp
 rm ~/.ncmpcpp/config
 ln -s $RICE/ncmpcpp ~/.ncmpcpp/config
+
+
+
+echo "/etc/issue"
+sudo rm /etc/issue
+sudo ln -s $RICE/issue /etc/issue
+
+echo "brightnessd.sh"
+sudo rm /usr/local/bin/brightnessd
+sudo rm /etc/systemd/system/brightnessd.service
+
+sudo ln -s $RICE/brightnessd/brightnessd.sh /usr/local/bin/
+sudo ln -s $RICE/brightnessd/brightnessd.service /etc/systemd/system/
+
+sudo systemctl enable brightnessd
+sudo systemctl start brightnessd
