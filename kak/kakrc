@@ -7,7 +7,7 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set-option global indentwidth 2
 } config %{
   # you can configure text that is being used to represent curent active mode
-	hook global WinSetOption filetype=(rust|c|cpp|kak|sh) expandtab
+	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|java) expandtab
 	hook global WinSetOption filetype=(makefile) noexpandtab
 }
 
@@ -44,3 +44,4 @@ hook global WinSetOption filetype=(sh|sway) %{
 hook global WinCreate [^*]* %{
   editorconfig-load
 }
+
