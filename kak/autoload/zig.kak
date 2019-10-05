@@ -52,10 +52,17 @@ evaluate-commands %sh{
   # Order is important here. If zigDecNumber goes first, only the '0' in '0xaf' will match 
   zigNumber="$zigWeirdNumber|$zigDecNumber"
 
-  zigString="\"[^\"]*\""
+
+  #zigEscapeError   /\\./
+  zigEscape="\\\\([nrt\\'\"]|x\d{2})"
+  zigEscapeUnicode="/\\\(u\x\{4}\|U\x\{6}\)/"
+
+  zigString="\"($zigEscape|[^\"])*\""
   zigMultilineStringPre="c?\\\\"
   zigChar="'[^'^\n]*'"
- 
+
+  zigVarDesc="(var|const) (\w(\w|\d)*)(:\h*(\w(\w|\d)*))?\h*="
+  
   printf %s\\n "declare-option str-list zig_static_words ${zigStorage} ${zigStructure} ${zigStatement} ${zigConditional} ${zigRepeat} ${zigConstant} ${zigKeyword} ${zigType}" | tr '|' ' '
 
   printf %s "
