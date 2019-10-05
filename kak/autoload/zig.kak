@@ -54,6 +54,7 @@ evaluate-commands %sh{
 
   zigString="\"[^\"]*\""
   zigMultilineStringPre="c?\\\\"
+  zigChar="'[^'^\n]*'"
  
   printf %s\\n "declare-option str-list zig_static_words ${zigStorage} ${zigStructure} ${zigStatement} ${zigConditional} ${zigRepeat} ${zigConstant} ${zigKeyword} ${zigType}" | tr '|' ' '
 
@@ -62,7 +63,7 @@ evaluate-commands %sh{
     add-highlighter shared/zig/code/ regex \b(${zigType})\b 0:type
     add-highlighter shared/zig/code/ regex (${zigBuiltinFn})\b 0:function
     add-highlighter shared/zig/code/ regex \b(${zigNumber}) 0:value
-    add-highlighter shared/zig/code/ regex (${zigString}) 0:meta
+    add-highlighter shared/zig/code/ regex (${zigString}|${zigChar}) 0:meta
     add-highlighter shared/zig/code/ regex \h*$zigMultilineStringPre[^\n]*$ 0:meta
   "
 }
