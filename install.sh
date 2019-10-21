@@ -93,6 +93,10 @@ mkdir ~/.ncmpcpp
 rm ~/.ncmpcpp/config
 ln -s $RICE/ncmpcpp ~/.ncmpcpp/config
 
+echo kickbar
+rm ~/bin/kickbar
+ln -s $RICE/kickbar ~/bin/kickbar
+
 sudo_stuff() {
   echo "/etc/issue"
   sudo rm /etc/issue
