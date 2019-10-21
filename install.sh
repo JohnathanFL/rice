@@ -1,7 +1,6 @@
 #!/bin/sh
 
-RICE=`pwd`
-
+RICE=$(pwd)
 
 # TODO: Fill this with all essential packages
 PACKAGES="
@@ -9,25 +8,23 @@ kitty
 wlroots-git
 sway-git
 swaybg-git
-swaylock
-
-"
-
+swaylock"
 
 install_packages() {
-	yay --sudoloop --noconfirm -S $(echo $PACKAGES | xargs)
+  yay --sudoloop --noconfirm -S $(echo $PACKAGES | xargs)
 }
 
-read -p "Installing: $PACKAGES y/n?:  " shouldInstall
-case $shouldInstall in
-	[Yy]* ) install_packages;;
-	*     ) echo "Not installing packages";;
-esac
+echo -e -n "Install: $PACKAGES\ny/n?:  "
+read shouldInstall
+if [[ "$shouldInstall" =~ ^[Yy]$ ]]; then
+  install_packages
+else
+  echo "Not installing packages"
+fi
 
 # Setup
 mkdir -p ~/bin
 mkdir -p ~/.config
-
 
 echo clang-format
 rm ~/.clang-format
@@ -60,7 +57,6 @@ echo launcher
 rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
-
 echo kitty
 rm -rf ~/.config/kitty
 mkdir ~/.config/kitty
@@ -73,8 +69,6 @@ ln -s $RICE/wayfire.ini ~/.config/
 echo wallpaper setter
 rm ~/bin/setwall
 ln -s $RICE/setwall ~/bin/
-
-
 
 echo qutebrowser
 mkdir -p ~/.config/qutebrowser
@@ -99,18 +93,26 @@ mkdir ~/.ncmpcpp
 rm ~/.ncmpcpp/config
 ln -s $RICE/ncmpcpp ~/.ncmpcpp/config
 
+sudo_stuff() {
+  echo "/etc/issue"
+  sudo rm /etc/issue
+  sudo ln -s $RICE/issue /etc/issue
 
+  echo "brightnessd.sh"
+  sudo rm /usr/local/bin/brightnessd.sh
+  sudo rm /etc/systemd/system/brightnessd.service
 
-echo "/etc/issue"
-sudo rm /etc/issue
-sudo ln -s $RICE/issue /etc/issue
+  sudo ln -s $RICE/brightnessd/brightnessd.sh /usr/local/bin/
+  sudo ln -s $RICE/brightnessd/brightnessd.service /etc/systemd/system/
 
-echo "brightnessd.sh"
-sudo rm /usr/local/bin/brightnessd
-sudo rm /etc/systemd/system/brightnessd.service
+  sudo systemctl enable brightnessd
+  sudo systemctl start brightnessd
+}
 
-sudo ln -s $RICE/brightnessd/brightnessd.sh /usr/local/bin/
-sudo ln -s $RICE/brightnessd/brightnessd.service /etc/systemd/system/
-
-sudo systemctl enable brightnessd
-sudo systemctl start brightnessd
+echo -n "Install things requiring sudo? (issue/etc) [y/n]: "
+read answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+  sudo_stuff
+else
+  echo "NOT doing sudo stuff then, got it boss"
+fi
