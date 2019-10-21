@@ -39,7 +39,7 @@ MaxEmptyLinesToKeep: '2'
 NamespaceIndentation: Inner
 PointerAlignment: Left
 ReflowComments: 'true'
-SortIncludes: 'true'
+SortIncludes: 'false'
 SortUsingDeclarations: 'true'
 SpaceAfterCStyleCast: 'false'
 SpaceAfterTemplateKeyword: 'false'
