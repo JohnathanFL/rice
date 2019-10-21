@@ -1,0 +1,2 @@
+#!/bin/sh
+pkill -usr1 status_command.

@@ -97,17 +97,17 @@ workspace 10:2-10 output HDMI-A-1 HDMI-A-2
   bindsym XF86MonBrightnessUp exec echo + > /tmp/brightnessd.fifo
 
   # Audio
-  bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
-  bindsym XF86AudioLowerVolume exec amixer set Master 5%-
-  bindsym XF86AudioMute exec amixer set Master toggle
+  bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ && kickbar
+  bindsym XF86AudioLowerVolume exec amixer set Master 5%- && kickbar
+  bindsym XF86AudioMute exec amixer set Master toggle && kickbar
 
   # Granular audio
-  bindsym Shift+XF86AudioRaiseVolume exec amixer set Master 1%+
-  bindsym Shift+XF86AudioLowerVolume exec amixer set Master 1%-
+  bindsym Shift+XF86AudioRaiseVolume exec amixer set Master 1%+ && kickbar
+  bindsym Shift+XF86AudioLowerVolume exec amixer set Master 1%- && kickbar
 
-  bindsym XF86AudioPlay exec mpc toggle
-  bindsym XF86AudioPrev exec mpc prev
-  bindsym XF86AudioNext exec mpc next
+  bindsym XF86AudioPlay exec mpc toggle && kickbar
+  bindsym XF86AudioPrev exec mpc prev && kickbar
+  bindsym XF86AudioNext exec mpc next && kickbar
 
 
 #
@@ -215,9 +215,9 @@ bar {
   strip_workspace_numbers yes
 
   pango_markup enabled
-  #font pango:Fira Code 10
+  font pango:VictorMono 9
 
-  status_command while $RICE/status_command.sh; do sleep 1; done
+  status_command $RICE/status_command.sh
   gaps 5 5
 
   colors {
