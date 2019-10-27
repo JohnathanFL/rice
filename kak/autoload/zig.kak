@@ -7,6 +7,7 @@ hook global BufCreate .*/?.+\.zig %{
 add-highlighter shared/zig regions
 add-highlighter shared/zig/code default-region group
 add-highlighter shared/zig/comment region '//' $ fill comment
+add-highlighter shared/zig/multiStringLit region '\\\\' $ fill meta
 add-highlighter shared/zig/code/ regex \b(true|false|null|undefined)\b 0:value
 add-highlighter shared/zig/code/ regex [iu][1-9]{1,3} 0:type
 
@@ -57,9 +58,9 @@ evaluate-commands %sh{
   zigEscape="\\\\([nrt\\'\"]|x\d{2})"
   zigEscapeUnicode="/\\\(u\x\{4}\|U\x\{6}\)/"
 
-  zigString="\"($zigEscape|[^\"])*\""
+  zigString='"([^"]|\\.)*"'
   zigMultilineStringPre="c?\\\\"
-  zigChar="'[^'^\n]*'"
+  zigChar="'([^']|\\.)*'"
 
   zigVarDesc="(var|const) (\w(\w|\d)*)(:\h*(\w(\w|\d)*))?\h*="
   
@@ -70,8 +71,8 @@ evaluate-commands %sh{
     add-highlighter shared/zig/code/ regex \b(${zigType})\b 0:type
     add-highlighter shared/zig/code/ regex (${zigBuiltinFn})\b 0:function
     add-highlighter shared/zig/code/ regex \b(${zigNumber}) 0:value
-    add-highlighter shared/zig/code/ regex (${zigString}|${zigChar}) 0:meta
-    add-highlighter shared/zig/code/ regex \h*$zigMultilineStringPre[^\n]*$ 0:meta
+    add-highlighter shared/zig/code/ regex (${zigString}) 0:meta
+    add-highlighter shared/zig/code/ regex (${zigChar}) 0:meta
   "
 }
 
