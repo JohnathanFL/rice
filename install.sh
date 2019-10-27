@@ -80,7 +80,7 @@ ln -s $RICE/quteconfig.py ~/.config/qutebrowser/config.py
 
 echo qutebrowser profiles
 mkdir -p ~/.local/share/qutebrowser-containers/
-ln -s $RICE/qutebrowser_container.sh ~/bin/
+ln -s $RICE/qutebrowser-container ~/bin/
 
 echo mpd.conf
 mkdir -p ~/.config/mpd
