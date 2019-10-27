@@ -1,10 +1,23 @@
 #!/bin/sh
 
+# Alrighty, here's how this monstrosity works:
+# If we're called as something other than qutebrowser-container (symlink), then we take the container name from that.
+# Otherwise, we take it from a bemenu selection of all our container dirs
+#
+# If we don't have a container selection, we ain't doin anything
+#
+# Try to open it using the existing process, but if we can't, fall back to just running it.
+#   When just running a private container, spawn a new process that waits for it to exit then cleans up
+#     This prevents things like tuir from waiting for this script to exit
+#   If we ran the existing process for a private container, we can assume something else will clean up the mess.
+#
+# This is why i'm doing private tabs as a dedicated container path, rather than a temp-basedir.
+# This allows me to open as many links as I want (like from tuir) just by invoking qutebrowser-private <URL>
+# 
 
 ARGS=$@
 
 if [[ $(basename $0) == qutebrowser-container ]]; then
-  mkdir ~/.local/share/qutebrowser-containers/private
   container=$(find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2 | bemenu.sh --prompt "Container:")
 else
   container=$(basename $0 | cut -d- -f2)
@@ -15,8 +28,25 @@ if [ -z $container ]; then
   exit
 fi
 
-if [[ $container == private ]]; then
-  QUTE_CONTAINER=$container setsid qutebrowser --temp-basedir --config-py $RICE/quteconfig.py $ARGS &
+url="$1"
+qbVersion='1.0.4'
+protoVersion=1
+ipcDir=$( [ ! -z $container ] && echo ~/.local/share/qutebrowser-containers/$container/runtime || ${XDG_RUNTIME_DIR}/qutebrowser )
+echo Checking $ipcDir
+ipcSocket="$(find $ipcDir -type s)"
+echo For IPC file $ipcSocket
+
+baseDir=$HOME/.local/share/qutebrowser-containers/$container
+
+if [ ! -z $ipcSocket ] && printf '{"args": ["%s"], "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n' "${url}" "${qbVersion}" "${protoVersion}" "${PWD}" | socat - UNIX-CONNECT:"${ipcSocket}" ; then
+  echo
+elif [[ $container == private ]]; then
+
+  # Extra insurance in case the system shut down without allowing the baseDir to be removed.
+  rm -rf $baseDir/*
+
+  mkdir $baseDir
+  setsid sh -c "QUTE_CONTAINER=$container nohup qutebrowser --basedir $baseDir --config-py $RICE/quteconfig.py $ARGS && rm -rf $baseDir/*"&
 else
-  QUTE_CONTAINER=$container setsid qutebrowser --basedir ~/.local/share/qutebrowser-containers/$container --config-py $RICE/quteconfig.py $ARGS &
+  QUTE_CONTAINER=$container setsid qutebrowser --basedir $baseDir --config-py $RICE/quteconfig.py $ARGS &
 fi
