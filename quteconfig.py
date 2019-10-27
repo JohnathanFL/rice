@@ -1,5 +1,6 @@
 import os
 
+
 c.tabs.position = "left"
 c.tabs.width = '10%'
 c.tabs.show = 'always'
@@ -34,3 +35,8 @@ for key, bind in bindings.items():
 
 # THEME
 config.source(os.environ['RICE'] + '/themes/nord-qutebrowser.py')
+
+# Use a different color for work container to give visual distinction
+if os.environ['QUTE_CONTAINER'] == "work":
+    c.colors.tabs.selected.even.bg = "#d08770" # nord12
+    c.colors.tabs.selected.odd.bg = c.colors.tabs.selected.even.bg

@@ -44,6 +44,9 @@ echo zshrc
 rm ~/.zshrc
 ln -s $RICE/zshrc ~/.zshrc
 
+echo bemenu.sh
+ln -s $RICE/bemenu.sh ~/bin
+
 echo awesome configs
 rm -rf ~/.config/awesome
 ln -s $RICE/awesome ~/.config/awesome
@@ -74,6 +77,10 @@ echo qutebrowser
 mkdir -p ~/.config/qutebrowser
 rm ~/.config/qutebrowser/config.py
 ln -s $RICE/quteconfig.py ~/.config/qutebrowser/config.py
+
+echo qutebrowser profiles
+mkdir -p ~/.local/share/qutebrowser-containers/
+ln -s $RICE/qutebrowser_container.sh ~/bin/
 
 echo mpd.conf
 mkdir -p ~/.config/mpd
