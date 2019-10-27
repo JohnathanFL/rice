@@ -44,5 +44,7 @@ if "QUTE_CONTAINER" not in os.environ:
     c.colors.tabs.selected.even.bg = "#B48EAD"
 elif os.environ['QUTE_CONTAINER'] == "work":
     c.colors.tabs.selected.even.bg = "#d08770" # nord12
+elif os.environ['QUTE_CONTAINER'] == "private":
+    c.colors.tabs.selected.even.bg = "#FF00FF" # Doesn't keep with the color scheme on purpose
 
 c.colors.tabs.selected.odd.bg = c.colors.tabs.selected.even.bg
