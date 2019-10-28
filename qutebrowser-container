@@ -18,7 +18,8 @@
 ARGS=$@
 
 if [[ $(basename $0) == qutebrowser-container ]]; then
-  container=$(find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2 | sort | bemenu.sh --prompt "Container:")
+  # The extra seds are so I have nice Pascal Case names to select from.
+  container=$(find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2 | sed -e 's/\b\(.\)/\u\1/g'  | sort | bemenu.sh --prompt "Container:" | sed -e 's/\b\(.\)/\l\1/g')
 else
   container=$(basename $0 | cut -d- -f2)
   mkdir -p ~/.local/share/qutebrowser-containers/$container
