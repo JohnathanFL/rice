@@ -18,14 +18,22 @@ bindings = {
     "<Ctrl+Tab>": "tab-next",
     "<Ctrl+Shift+Tab>": "tab-prev",
     "<F1>": "spawn mpv {url} --gpu-api=vulkan --gpu-context=waylandvk --ytdl --ytdl-raw-options=yes-playlist= --force-window",
-    "j": "scroll-px 0 50",
-    "k": "scroll-px 0 -50",
-    "J": "scroll-px 0 800",
-    "K": "scroll-px 0 -800",
+
+    # In case the page grabs our arrow keys
+    "<Alt+j>": "scroll-px 0 50",
+    "<Alt+k>": "scroll-px 0 -50",
+
+    # for half pages
+    "<Alt+Shift+j>": "scroll-px 0 540",
+    "<Alt+Shift+k>": "scroll-px 0 -540",
+
+    
+    "J": "scroll-px 0 1080",
+    "K": "scroll-px 0 -1080",
 }
 
 delBindings = [
-        "j", "k", "h", "l", "J", "K"
+        "J", "K"
 ]
 
 
