@@ -8,7 +8,8 @@ kitty
 wlroots-git
 sway-git
 swaybg-git
-swaylock"
+swaylock
+socat"
 
 install_packages() {
   yay --sudoloop --noconfirm -S $(echo $PACKAGES | xargs)
