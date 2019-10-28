@@ -18,7 +18,7 @@
 ARGS=$@
 
 if [[ $(basename $0) == qutebrowser-container ]]; then
-  container=$(find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2 | bemenu.sh --prompt "Container:")
+  container=$(find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2 | sort | bemenu.sh --prompt "Container:")
 else
   container=$(basename $0 | cut -d- -f2)
   mkdir -p ~/.local/share/qutebrowser-containers/$container
