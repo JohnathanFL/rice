@@ -1,5 +1,6 @@
 import os
 
+c.downloads.location.directory = "~/Downloads/"
 
 c.tabs.position = "left"
 c.tabs.width = '10%'
@@ -48,7 +49,7 @@ for key, bind in bindings.items():
 config.source(os.environ['RICE'] + '/themes/nord-qutebrowser.py')
 
 # Use a different color for work container to give visual distinction
-if "QUTE_CONTAINER" not in os.environ:
+if "QUTE_CONTAINER" not in os.environ or os.environ['QUTE_CONTAINER'] == "facebook":
     c.colors.tabs.selected.even.bg = "#B48EAD"
 elif os.environ['QUTE_CONTAINER'] == "work":
     c.colors.tabs.selected.even.bg = "#d08770" # nord12
