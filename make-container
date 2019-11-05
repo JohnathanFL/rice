@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mkdir -p ~/.local/share/qutebrowser-containers/$1
+sed "s/CONTAINER/$1/g" $RICE/qutebrowser-template.desktop > ~/.local/share/applications/qutebrowser-$1.desktop
+ln -s $RICE/qutebrowser-container ~/bin/qutebrowser-$1
