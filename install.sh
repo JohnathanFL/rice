@@ -82,6 +82,8 @@ ln -s $RICE/quteconfig.py ~/.config/qutebrowser/config.py
 echo qutebrowser profiles
 mkdir -p ~/.local/share/qutebrowser-containers/
 ln -s $RICE/qutebrowser-container ~/bin/
+# Desktop file for selecting which container
+sed "s/CONTAINER/container/g" $RICE/qutebrowser-template.desktop > ~/.local/share/applications/qutebrowser-container.desktop
 
 echo mpd.conf
 mkdir -p ~/.config/mpd
