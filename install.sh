@@ -74,6 +74,13 @@ echo wallpaper setter
 rm ~/bin/setwall
 ln -s $RICE/setwall ~/bin/
 
+echo vim
+rm ~/.vimrc
+ln -s $RICE/vimrc ~/.vimrc
+cd /tmp
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh installer.sh ~/.cache/dein
+
 echo qutebrowser
 mkdir -p ~/.config/qutebrowser
 rm ~/.config/qutebrowser/config.py
@@ -89,6 +96,14 @@ echo mpd.conf
 mkdir -p ~/.config/mpd
 rm ~/.config/mpd/mpd.conf
 ln -s $RICE/mpd.conf ~/.config/mpd/mpd.conf
+
+echo mvi
+rm -rf ~/.config/mvi
+git clone https://github.com/occivink/mpv-image-viewer ~/.config/mvi
+echo '#!/bin/sh
+mpv $@ --config-dir="$HOME/.config/mvi"
+' > ~/bin/mvi
+chmod +x ~/bin/mvi
 
 echo notify-at
 ln -s $RICE/notify-at ~/bin > /dev/null
