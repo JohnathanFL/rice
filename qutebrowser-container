@@ -15,39 +15,50 @@
 # This allows me to open as many links as I want (like from tuir) just by invoking qutebrowser-private <URL>
 # 
 
+if [ -x /bin/qutebrowser ]; then
+  QUTE=/bin/qutebrowser
+elif [ -x /usr/bin/qutebrowser ]; then
+  QUTE=/usr/bin/qutebrowser
+elif [ -x /usr/local/bin/qutebrowser ]; then
+  QUTE=/usr/bin/qutebrowser
+else
+  echo "UNABLE TO FIND TRUE QUTEBROWSER"
+  exit 1
+fi
 ARGS=$@
 
-if [[ $(basename $0) == qutebrowser-container ]]; then
+
+if [ "$(basename "$0")" = "qutebrowser-container" ]; then
   # The extra seds are so I have nice Pascal Case names to select from.
   container=$(find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2 | sed -e 's/\b\(.\)/\u\1/g'  | sort | bemenu.sh --prompt "Container:" | sed -e 's/\b\(.\)/\l\1/g')
 else
-  container=$(basename $0 | cut -d- -f2)
-  mkdir -p ~/.local/share/qutebrowser-containers/$container
+  container=$(basename "$0" | cut -d- -f2)
+  mkdir -p "$HOME/.local/share/qutebrowser-containers/$container"
 fi
 
-if [ -z $container ]; then
+if [ -z "$container" ]; then
   exit
 fi
 
 url="$1"
 qbVersion='1.0.4'
 protoVersion=1
-ipcDir=$( [ ! -z $container ] && echo ~/.local/share/qutebrowser-containers/$container/runtime || ${XDG_RUNTIME_DIR}/qutebrowser )
-echo Checking $ipcDir
-ipcSocket="$(find $ipcDir -type s)"
-echo For IPC file $ipcSocket
+ipcDir=$( [ -n "$container" ] && echo "$HOME/.local/share/qutebrowser-containers/$container/runtime" ||" ${XDG_RUNTIME_DIR}/qutebrowser" )
+echo Checking "$ipcDir"
+ipcSocket="$(find "$ipcDir" -type s)"
+echo For IPC file "$ipcSocket"
 
 baseDir=$HOME/.local/share/qutebrowser-containers/$container
 
-if [ ! -z $ipcSocket ] && printf '{"args": ["%s"], "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n' "${url}" "${qbVersion}" "${protoVersion}" "${PWD}" | socat - UNIX-CONNECT:"${ipcSocket}" ; then
+if [ -n "$ipcSocket" ] && printf '{"args": ["%s"], "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n' "${url}" "${qbVersion}" "${protoVersion}" "${PWD}" | socat - UNIX-CONNECT:"${ipcSocket}" ; then
   echo
-elif [[ $container == private ]]; then
+elif [ "$container" = private ]; then
 
   # Extra insurance in case the system shut down without allowing the baseDir to be removed.
-  rm -rf $baseDir/*
+  rm -rf "${baseDir:?}/*"
 
-  mkdir $baseDir
-  setsid sh -c "QUTE_CONTAINER=$container nohup qutebrowser --basedir $baseDir --config-py $RICE/quteconfig.py $ARGS && rm -rf $baseDir/*"&
+  mkdir "$baseDir"
+  setsid sh -c "QUTE_CONTAINER=$container nohup $QUTE --basedir $baseDir --config-py $RICE/quteconfig.py $ARGS && rm -rf $baseDir/*"&
 else
-  QUTE_CONTAINER=$container setsid qutebrowser --basedir $baseDir --config-py $RICE/quteconfig.py $ARGS &
+  QUTE_CONTAINER=$container setsid $QUTE --basedir "$baseDir" --config-py "$RICE/quteconfig.py" $ARGS &
 fi
