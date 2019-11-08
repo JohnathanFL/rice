@@ -30,7 +30,7 @@ export TERM="xterm-256color"
 export EDITOR=kak
 alias e=$EDITOR
 # until my muscle memory improves
-alias vim=kak
+#alias vim=kak
 
 # ANTIGEN
 source /usr/share/zsh/share/antigen.zsh
