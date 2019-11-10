@@ -79,7 +79,7 @@ workspace_auto_back_and_forth yes
 
   # Choose between shutdown/reboot/suspend/quit sway
   bindsym $mod+Shift+Escape exec $RICE/system_action.sh
-  bindsym $mod+l exec $RICE/swaylock.sh
+  bindsym $mod+Alt+Delete exec $RICE/swaylock.sh
 
   # Brightness
   bindsym XF86MonBrightnessDown exec echo -- > /tmp/brightnessd.fifo
@@ -119,6 +119,20 @@ workspace_auto_back_and_forth yes
 
   bindsym $mod+Ctrl+Left workspace prev
   bindsym $mod+Ctrl+Right workspace next
+
+  bindsym $mod+J focus down
+  bindsym $mod+K focus up
+  bindsym $mod+L focus right
+  bindsym $mod+H focus left
+
+  # ditto, with arrow keys
+  bindsym $mod+Shift+H move left
+  bindsym $mod+Shift+J move down
+  bindsym $mod+Shift+K move up
+  bindsym $mod+Shift+L move right
+
+  bindsym $mod+Ctrl+H workspace prev
+  bindsym $mod+Ctrl+L workspace next
 
 #
 # Workspaces:
