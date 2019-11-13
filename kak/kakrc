@@ -1,5 +1,10 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-plug "andreyorst/powerline.kak"
+plug "andreyorst/powerline.kak" defer powerline %{
+  powerline-separator curve
+  powerline-theme tomorrow-night
+} config %{
+  powerline-start
+}
 plug "Delapouite/kakoune-buffers"
 plug "alexherbo2/auto-pairs.kak"
 plug "andreyorst/smarttab.kak" defer smarttab  %{
@@ -58,3 +63,4 @@ hook global WinCreate [^*]* %{
   editorconfig-load
 }
 
+colorscheme tomorrow-night
