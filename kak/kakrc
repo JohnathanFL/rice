@@ -72,3 +72,4 @@ hook global WinCreate [^*]* %{
   editorconfig-load
 }
 
+colorscheme tomorrow-night
