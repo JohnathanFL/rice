@@ -25,12 +25,12 @@ bindings = {
     "<Alt+k>": "scroll-px 0 -50",
 
     # for half pages
-    "<Alt+Shift+j>": "scroll-px 0 540",
-    "<Alt+Shift+k>": "scroll-px 0 -540",
+    "<Alt+Shift+j>": "scroll-px 0 300",
+    "<Alt+Shift+k>": "scroll-px 0 -300",
 
     
-    "J": "scroll-px 0 1080",
-    "K": "scroll-px 0 -1080",
+    "J": "scroll-px 0 600",
+    "K": "scroll-px 0 -600",
 }
 
 delBindings = [
