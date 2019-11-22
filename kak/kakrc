@@ -1,7 +1,7 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 plug "andreyorst/powerline.kak" defer powerline %{
   powerline-separator curve
-  powerline-theme tomorrow-night
+  powerline-theme desertex
 } config %{
   powerline-start
 }
@@ -12,15 +12,20 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set-option global tabstop 2
   set-option global indentwidth 2
 } config %{
-	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|nim|java) expandtab
+	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|zag|nim|java) expandtab
 	hook global WinSetOption filetype=(makefile) noexpandtab
 }
+plug "andreyorst/fzf.kak" defer fzf %{
+  set-option global fzf_window_map 'kitty @ new-window -- kak -c %val{session} -e'
+  set-option global fzf_vertical_map 'kitty @ new-window -- kak -c %val{session} -e'
+  set-option global fzf_horizontal_map 'kitty @ new-window -- kak -c %val{session} -e'
+}
 
+map global normal <c-p> ': fzf-mode<ret>'
 
 set global ui_options ncurses_assistant=none
 add-highlighter global/ number-lines
 
-# ciao macros
 map global normal ^ q
 map global normal <a-^> Q
 map global normal q b
@@ -63,4 +68,4 @@ hook global WinCreate [^*]* %{
   editorconfig-load
 }
 
-colorscheme tomorrow-night
+colorscheme desertex
