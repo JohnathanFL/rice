@@ -1,4 +1,3 @@
-
 if &compatible
   set nocompatible
 endif
@@ -24,14 +23,32 @@ if dein#load_state('~/.cache/dein')
   call dein#add('terryma/vim-multiple-cursors')
   call dein#add('dense-analysis/ale')
   call dein#add('maxbrunsfeld/vim-yankstack')
+  call dein#add('alvan/vim-closetag')
 
   call dein#end()
   call dein#save_state()
 endif
+set pyxversion=3
 
-call deoplete#custom#option('sources', {
-\ '_': ['ale'],
-\})
+pythonx import pynvim
+call deoplete#custom#option('sources', 
+      \{ '_': ['buffer', 'ale'],
+      \'rust': ['ale'],
+      \'cpp': ['ale'],
+      \'sh': ['ale'],
+      \})
+call deoplete#custom#option({ 'auto_complete_delay': 200, 'smart_case': v:true, 'ignore_case': v:true, })
+let g:deoplete#enable_at_startup = 1
+
+call deoplete#custom#option('omni_patterns', {
+  \ 'java': '[^. *\t]\.\w*',
+  \  'html': ['<', '</', '<[^>]*\s[[:alnum:]-]*'],
+  \  'xhtml': ['<', '</', '<[^>]*\s[[:alnum:]-]*'],
+  \  'xml': ['<', '</', '<[^>]*\s[[:alnum:]-]*'],
+  \})
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
 
 filetype plugin indent on
 syntax enable
@@ -39,11 +56,14 @@ set nu
 set wildmenu
 set nomodeline
 set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+" Make it so we can use [qwe] to navigate by word
+nnoremap q b
 
 let g:ale_linters = {'rust': ['rls']}
-
+set omnifunc=ale#completion#OmniFunc
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme='hybridline'
 let g:airline_theme='hybridline'

@@ -1,7 +1,9 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 plug "andreyorst/powerline.kak" defer powerline %{
-  powerline-separator curve
+  colorscheme desertex
   powerline-theme desertex
+  powerline-separator curve
+  powerline-format git bufname line_column mode_info filetype client session position
 } config %{
   powerline-start
 }
@@ -12,8 +14,15 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set-option global tabstop 2
   set-option global indentwidth 2
 } config %{
-	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|zag|nim|java) expandtab
+	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|zag|nim|java|javascript|css|html) expandtab
 	hook global WinSetOption filetype=(makefile) noexpandtab
+
+	hook global WinSetOption filetype=(zig) %{
+  	set-option buffer softtabstop 4
+  	set-option buffer tabstop 4
+  	set indentwidth 4
+  	expandtab
+	}
 }
 plug "andreyorst/fzf.kak" defer fzf %{
   set-option global fzf_window_map 'kitty @ new-window -- kak -c %val{session} -e'
@@ -38,7 +47,7 @@ map global normal B ':enter-user-mode -lock buffers<ret>'   -docstring 'buffers 
 hook global WinDisplay .* info-buffers
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|html|js|css|json) %{
   lsp-enable-window
 }
 
@@ -68,4 +77,3 @@ hook global WinCreate [^*]* %{
   editorconfig-load
 }
 
-colorscheme desertex
