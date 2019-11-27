@@ -11,7 +11,8 @@ add-highlighter shared/zag/code default-region group
 add-highlighter shared/zag/string   region c?"       (?<!\\)(?:\\\\)*" group
 add-highlighter shared/zag/mlstring region %{c?\\\\} $                 fill string
 add-highlighter shared/zag/char     region c?'       (?<!\\)(?:\\\\)*' group
-add-highlighter shared/zag/comment region \(: $                 fill comment
+
+add-highlighter shared/zag/comment region \(: $|:\) fill comment
 add-highlighter shared/zag/doc_comment region \(= $                 fill comment
 add-highlighter shared/zag/code/  regex `(\w|\d)+\b 0:variable
 add-highlighter shared/zag/code/ regex \.(addr|deref|has|val|ptr|len) 0:variable # Since these two can never be a valid field access otherwise
@@ -29,14 +30,14 @@ KAK
 }
 
 add-highlighter shared/zag/code/ regex \b(const|field|let|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|section)\b 0:keyword
-add-highlighter shared/zag/code/ regex \b(struct|enum|union|concept|extend)\b 0:keyword
+add-highlighter shared/zag/code/ regex \b(block|struct|enum|union|concept|extend)\b 0:keyword
 add-highlighter shared/zag/code/ regex \b(break|return|continue|asm|defer|errdefer|unreachable|try|catch|orelse|async|await|suspend|resume|cancel)\b 0:keyword
 add-highlighter shared/zag/code/ regex \b(case|if|elif|finally|else|switch|and|or|xor)\b 0:keyword
 add-highlighter shared/zag/code/ regex \b(while|for)\b 0:keyword
 add-highlighter shared/zag/code/ regex \b(purefn|fn|use|test)\b 0:keyword
 
 add-highlighter shared/zag/code/ regex \b(bool|f32|f64|f128|void|noreturn|type|error|promise)\b 0:type
-add-highlighter shared/zag/code/ regex \b(u\d+|i\d+|isize|usize)\b 0:type
+add-highlighter shared/zag/code/ regex \b(u\d+|i\d+|isize|usize)\b|\b(\d+(\.\d+)?)(u\d+|i\d+|isize|usize|f32|f64)\b 1:type 2:variable 4:type
 add-highlighter shared/zag/code/ regex \b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b 0:type
 
 add-highlighter shared/zag/code/ regex \b(null|undef|this)\b 0:variable
