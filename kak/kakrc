@@ -24,16 +24,22 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   	expandtab
 	}
 }
-plug "andreyorst/fzf.kak" defer fzf %{
-  set-option global fzf_window_map 'kitty @ new-window -- kak -c %val{session} -e'
-  set-option global fzf_vertical_map 'kitty @ new-window -- kak -c %val{session} -e'
-  set-option global fzf_horizontal_map 'kitty @ new-window -- kak -c %val{session} -e'
+plug "andreyorst/fzf.kak" config %{
+  require-module kitty
+} defer fzf %{
+  set-option global fzf_terminal_command 'kitty-terminal  kak -c %val{session} -e "%arg{@}"'
+#terminal kak -c %val{session} -e "%arg{@}"
+#  set-option global fzf_window_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
+#  set-option global fzf_vertical_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
+#  set-option global fzf_horizontal_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
 }
 
 map global normal <c-p> ': fzf-mode<ret>'
 
 set global ui_options ncurses_assistant=none
 add-highlighter global/ number-lines
+
+add-highlighter global/ regex TODO 0:todo_face
 
 map global normal ^ q
 map global normal <a-^> Q
@@ -75,5 +81,5 @@ hook global WinSetOption filetype=(sh|sway) %{
 }
 hook global WinCreate [^*]* %{
   editorconfig-load
+  set-face buffer todo_face red,white+ufg
 }
-
