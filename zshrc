@@ -50,7 +50,6 @@ antigen apply
 
 BULLETTRAIN_PROMPT_CHAR="λ"
 
-fortune | cowsay
 
 export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$PATH"
 export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
@@ -92,4 +91,10 @@ TRAPUSR1() {
 	}
 
 alias reloadzsh="pkill -usr1 zsh"
+
+
+# STUFF THE USER CAN SEE
+FORTUNES="debian calvin riddles tao computers ferengi_rules_of_acquisition science linux startrek"
+
+fortune debian calvin riddles tao computers ferengi_rules_of_acquisition science linux startrek | cowsay
 
