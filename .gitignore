@@ -3,3 +3,4 @@ launcher.list.tmp
 execs/
 parse_desktops
 kak/plugins/
+.fzf-projects
