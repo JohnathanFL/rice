@@ -22,8 +22,8 @@ client.focused_inactive #00000000 #00000000  #FFFFFFFF #80808080   #80808080
 
 hide_edge_borders both
 
-for_window [app_id="^mpv$"] floating enable
-for_window [app_id="^mvi$"] floating enable
+for_window [app_id="^mpv$"] fullscreen enable
+for_window [app_id="^mvi$"] fullscreen enable
 for_window [app_id="^termite$"] opacity 0.9
 
 default_border pixel 2
