@@ -36,7 +36,9 @@ input "1133:49970:Logitech_Gaming_Mouse_G502" {
   pointer_accel -0.4
 }
 
-output * bg ~/.configs/wall.png fill
+#output * bg ~/.configs/wall.png fill
+exec $RICE/wallpapers/random.sh
+
 output eDP-1 pos 1920 1080 res 1920x1080
 output DVI-D-1 pos 0 0 res 1920x1080
 output HDMI-A-1 pos 1920 0 res 1920x1080 
