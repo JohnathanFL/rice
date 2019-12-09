@@ -2,4 +2,4 @@
 
 
 setsid swaybg --mode fill \
-  --image $(find $RICE/wallpapers/rotation | sort -R | tail -1)
+  --image $(find $RICE/wallpapers/rotation -type f,l | sort -R | tail -1)

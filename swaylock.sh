@@ -11,7 +11,7 @@ addArg() {
 
 # This mess is just copied straight from `man swaylock`, with a little regex replacement
 
-addArg --image $(find $RICE/wallpapers/rotation | sort -R | tail -1)
+addArg --image $(find $RICE/wallpapers/rotation -type f,l | sort -R | tail -1)
 
 addArg --disable-caps-lock-text
     #Disable the Caps Lock Text.
