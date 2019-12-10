@@ -72,7 +72,7 @@ ln -s $RICE/wayfire.ini ~/.config/
 
 echo wallpaper setter
 rm ~/bin/setwall
-ln -s $RICE/setwall ~/bin/
+ln -s $RICE/wallpaper.sh ~/bin/setwall
 
 echo vim
 rm ~/.vimrc
