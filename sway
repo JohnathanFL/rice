@@ -37,7 +37,7 @@ input "1133:49970:Logitech_Gaming_Mouse_G502" {
 }
 
 #output * bg ~/.configs/wall.png fill
-exec $RICE/wallpapers/random.sh
+exec setwall
 
 output eDP-1 pos 1920 1080 res 1920x1080
 output DVI-D-1 pos 0 0 res 1920x1080
