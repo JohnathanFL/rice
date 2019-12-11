@@ -18,7 +18,7 @@ c.qt.process_model = 'process-per-site-instance'
 bindings = {
     "<Ctrl+Tab>": "tab-next",
     "<Ctrl+Shift+Tab>": "tab-prev",
-    "<F1>": "spawn mpv {url} --gpu-api=vulkan --gpu-context=waylandvk --ytdl --ytdl-raw-options=yes-playlist= --force-window",
+    "<F1>": "spawn --detach mpv {url} --gpu-api=vulkan --gpu-context=waylandvk --force-window --keep-open",
 
     # In case the page grabs our arrow keys
     "<Alt+j>": "scroll-px 0 50",
