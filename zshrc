@@ -43,7 +43,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-history-substring-search
 
-antigen theme agnoster
+antigen theme xiong-chiamiov-plus
 
 antigen apply
 
