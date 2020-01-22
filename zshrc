@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Darks
 export NORD_DARK0=#2e3440
 export NORD_DARK1=#3b4252
@@ -29,6 +26,10 @@ export RICE=~/.configs
 export TERM="xterm-256color"
 export EDITOR=kak
 alias e=$EDITOR
+alias tmp="mkdir /tmp/usrtmp-$(date +%H-%M-%S); cd \$_"
+cdir() {
+  mkdir $1 && cd $1
+}
 # until my muscle memory improves
 #alias vim=kak
 
@@ -51,10 +52,11 @@ antigen apply
 BULLETTRAIN_PROMPT_CHAR="λ"
 
 
-export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$HOME/go/bin:$PATH"
 export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
 export SCONS_CACHE_ROOT=/home/oakenbow/Dev/Scons_Cache
 export PKGEXT=".pkg.tar"
+export RUSTC_WRAPPER=sccache
 
 
 alias autoyay="yay --noconfirm --sudoloop"
@@ -96,5 +98,5 @@ alias reloadzsh="pkill -usr1 zsh"
 # STUFF THE USER CAN SEE
 FORTUNES="debian calvin riddles tao computers ferengi_rules_of_acquisition science linux startrek"
 
-fortune debian calvin riddles tao computers ferengi_rules_of_acquisition science linux startrek | cowsay
+fortune calvin tao computers | cowsay
 
