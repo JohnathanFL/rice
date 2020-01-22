@@ -36,6 +36,12 @@ input "1133:49970:Logitech_Gaming_Mouse_G502" {
   pointer_accel -0.4
 }
 
+input "1204:51:HID_04b4:0033" {
+  accel_profile flat
+  scroll_factor 3
+  pointer_accel -0.3
+}
+
 #output * bg ~/.configs/wall.png fill
 exec setwall
 
@@ -190,31 +196,31 @@ bindsym {
 #
 # Read `man 5 sway-bar` for more information about this section.
 
-bar {
-  mode dock
-  position top
-  strip_workspace_numbers yes
-
-  pango_markup enabled
-  font pango:VictorMono 9
-
-  status_command $RICE/status_command.sh
-  gaps 5 5
-
-  colors {
-    statusline #ffffff
-    #background #2e3440
-    background #00000000
-    focused_workspace #808080FF #00000000 #FFFFFF
-    active_workspace #00000000 #00000000 #FFFFFF
-    inactive_workspace #32323200 #32323200 #FFFFFFFF
-  }
-}
+#bar {
+#  mode dock
+#  position top
+#  strip_workspace_numbers yes
+#
+#  pango_markup enabled
+#  font pango:VictorMono 9
+#
+#  status_command $RICE/status_command.sh
+#  gaps 5 5
+#
+#  colors {
+#    statusline #ffffff
+#    #background #2e3440
+#    background #00000000
+#    focused_workspace #808080FF #00000000 #FFFFFF
+#    active_workspace #00000000 #00000000 #FFFFFF
+#    inactive_workspace #32323200 #32323200 #FFFFFFFF
+#  }
+#}
 
 
 #exec_always $RICE/launcher.sh
 exec mako
-exec thunar --daemon
+exec waybar
 exec mkfifo $SWAYSOCK.wob
 exec tail -f $SWAYSOCK.wob | wob
 
