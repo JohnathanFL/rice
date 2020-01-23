@@ -70,6 +70,10 @@ echo wayfire
 rm ~/.config/wayfire.ini
 ln -s $RICE/wayfire.ini ~/.config/
 
+echo waybar
+rm ~/.config/waybar -rf
+ln -s $RICE/waybar ~/.config
+
 echo wallpaper setter
 rm ~/bin/setwall
 ln -s $RICE/wallpaper.sh ~/bin/setwall
