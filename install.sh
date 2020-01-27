@@ -78,6 +78,10 @@ echo wallpaper setter
 rm ~/bin/setwall
 ln -s $RICE/wallpaper.sh ~/bin/setwall
 
+echo wldash
+rm -rf ~/.config/wldash
+ln -s $RICE/wldash ~/.config/
+
 echo vim
 rm ~/.vimrc
 ln -s $RICE/vimrc ~/.vimrc
