@@ -14,7 +14,7 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set-option global tabstop 2
   set-option global indentwidth 2
 } config %{
-	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|zag|nim|java|javascript|css|html) expandtab
+	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|zag|nim|go|java|javascript|css|html) expandtab
 	hook global WinSetOption filetype=(makefile) noexpandtab
 
 	hook global WinSetOption filetype=(zig) %{
@@ -26,13 +26,16 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
 }
 plug "andreyorst/fzf.kak" config %{
   require-module kitty
+  set-option global kitty_window_type 'os'
 } defer fzf %{
-  set-option global fzf_terminal_command 'kitty-terminal  kak -c %val{session} -e "%arg{@}"'
+  #set-option global fzf_terminal_command 'kitty kak -c %val{session} -e "%arg{@}"'
 #terminal kak -c %val{session} -e "%arg{@}"
 #  set-option global fzf_window_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
 #  set-option global fzf_vertical_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
 #  set-option global fzf_horizontal_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
 }
+
+
 
 map global normal <c-p> ': fzf-mode<ret>'
 
@@ -72,6 +75,11 @@ hook global InsertCompletionHide .* %{
 hook global WinSetOption filetype=(cpp|c) %{
   clang-enable-autocomplete; clang-enable-diagnostics
 }
+
+hook global WinSetOption filetype=(html) %{
+  set window formatcmd 'pup -i 2'
+}
+
 add-highlighter global/ wrap
 hook global WinSetOption filetype=(c|cpp) %{
   set window formatcmd 'clang-format -style=file'

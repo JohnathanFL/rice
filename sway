@@ -1,3 +1,5 @@
+xwayland disable
+
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -13,7 +15,7 @@ set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu pkill -usr1 volund #$RICE/launcher.sh
-set $menu $RICE/launcher.sh
+set $menu wldash #$RICE/launcher.sh
 
 #       <border>  <background> <text>  <indicator> <child_border>
 client.focused     #5E81ACFF #00000000  #FFFFFFFF #80808080   #5E81ACFF
@@ -25,6 +27,7 @@ hide_edge_borders both
 for_window [app_id="^mpv$"] fullscreen enable
 for_window [app_id="^mvi$"] fullscreen enable
 for_window [app_id="^termite$"] opacity 0.9
+for_window [title="^fzfcmd$"] floating enable
 
 default_border pixel 2
 gaps outer 15
