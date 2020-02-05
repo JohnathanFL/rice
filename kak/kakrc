@@ -1,4 +1,5 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "occivink/kakoune-roguelight"
 plug "andreyorst/powerline.kak" defer powerline %{
   colorscheme desertex
   powerline-theme desertex
@@ -10,28 +11,25 @@ plug "andreyorst/powerline.kak" defer powerline %{
 plug "Delapouite/kakoune-buffers"
 plug "alexherbo2/auto-pairs.kak"
 plug "andreyorst/smarttab.kak" defer smarttab  %{
-  set-option global softtabstop 2
-  set-option global tabstop 2
-  set-option global indentwidth 2
+  set global softtabstop 2
+  set global tabstop 2
+  set global indentwidth 2
+  expandtab
 } config %{
-	hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|zag|nim|java|javascript|css|html) expandtab
-	hook global WinSetOption filetype=(makefile) noexpandtab
+  hook global WinSetOption filetype=(rust|c|cpp|kak|sh|zig|zag|nim|java|javascript|css|html) expandtab
+  hook global WinSetOption filetype=(makefile) noexpandtab
 
-	hook global WinSetOption filetype=(zig) %{
-  	set-option buffer softtabstop 4
-  	set-option buffer tabstop 4
-  	set indentwidth 4
-  	expandtab
-	}
+  hook global WinSetOption filetype=(zig) %{
+    set-option buffer softtabstop 4
+    set-option buffer tabstop 4
+    set indentwidth 4
+    expandtab
+  }
 }
 plug "andreyorst/fzf.kak" config %{
   require-module kitty
 } defer fzf %{
   set-option global fzf_terminal_command 'kitty-terminal  kak -c %val{session} -e "%arg{@}"'
-#terminal kak -c %val{session} -e "%arg{@}"
-#  set-option global fzf_window_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
-#  set-option global fzf_vertical_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
-#  set-option global fzf_horizontal_map 'kitty @ new-window -- kak -c %val{session} -e "%arg{@}"'
 }
 
 map global normal <c-p> ': fzf-mode<ret>'
