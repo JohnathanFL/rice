@@ -51,8 +51,8 @@ antigen apply
 
 BULLETTRAIN_PROMPT_CHAR="λ"
 
-
-export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$HOME/go/bin:$PATH"
+export GOBIN=$HOME/go/bin
+export PATH="$GOBIN:$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$HOME/go/bin:$PATH"
 export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
 export SCONS_CACHE_ROOT=/home/oakenbow/Dev/Scons_Cache
 export PKGEXT=".pkg.tar"

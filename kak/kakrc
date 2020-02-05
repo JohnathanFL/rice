@@ -28,9 +28,12 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
 }
 plug "andreyorst/fzf.kak" config %{
   require-module kitty
+  set-option global kitty_window_type 'os'
 } defer fzf %{
   set-option global fzf_terminal_command 'kitty-terminal  kak -c %val{session} -e "%arg{@}"'
 }
+
+
 
 map global normal <c-p> ': fzf-mode<ret>'
 
@@ -70,6 +73,11 @@ hook global InsertCompletionHide .* %{
 hook global WinSetOption filetype=(cpp|c) %{
   clang-enable-autocomplete; clang-enable-diagnostics
 }
+
+hook global WinSetOption filetype=(html) %{
+  set window formatcmd 'pup -i 2'
+}
+
 add-highlighter global/ wrap
 hook global WinSetOption filetype=(c|cpp) %{
   set window formatcmd 'clang-format -style=file'
