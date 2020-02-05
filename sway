@@ -13,7 +13,7 @@ set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu pkill -usr1 volund #$RICE/launcher.sh
-set $menu $RICE/launcher.sh
+set $menu wldash #$RICE/launcher.sh
 
 #       <border>  <background> <text>  <indicator> <child_border>
 client.focused     #5E81ACFF #00000000  #FFFFFFFF #80808080   #5E81ACFF
@@ -111,13 +111,8 @@ bindsym {
 # Moving around:
 bindsym {
   # Move your focus around
-  $mod+Shift+Tab focus left
-  $mod+Left focus left  
-
-  $mod+Down focus down
-  $mod+Up focus up
   $mod+Tab focus right
-  $mod+Right focus right
+  $mod+Shift+Tab focus left
 
   # ditto, with arrow keys
   $mod+Shift+Left move left
@@ -128,19 +123,21 @@ bindsym {
   $mod+Ctrl+Left workspace prev
   $mod+Ctrl+Right workspace next
 
-  $mod+J focus down
-  $mod+K focus up
-  $mod+L focus right
-  $mod+H focus left
+  $mod+S focus down
+  $mod+W focus up
+  $mod+D focus right
+  $mod+A focus left
 
   # ditto, with arrow keys
-  $mod+Shift+H move left
-  $mod+Shift+J move down
-  $mod+Shift+K move up
-  $mod+Shift+L move right
+  $mod+Shift+A move left
+  $mod+Shift+S move down
+  $mod+Shift+W move up
+  $mod+Shift+D move right
 
-  $mod+Ctrl+H workspace prev
-  $mod+Ctrl+L workspace next
+  $mod+Ctrl+W resize grow height 5
+  $mod+Ctrl+A resize shrink width 5
+  $mod+Ctrl+S resize shrink height 5
+  $mod+Ctrl+D resize grow width 5
 }
 #
 # Workspaces:
@@ -176,7 +173,7 @@ bindsym {
   #bindsym $mod+v splitv
 bindsym {
   # Switch the current container between different layout styles
-  $mod+w layout toggle split tabbed
+  $mod+v layout toggle split tabbed
   #$mod+s layout stacking
   #$mod+w layout tabbed
   # Make the current focus fullscreen
@@ -189,7 +186,7 @@ bindsym {
   $mod+space focus mode_toggle
 
   # move focus to the parent container
-  $mod+a focus parent
+  $mod+up focus parent
 }
 #
 # Status Bar:
