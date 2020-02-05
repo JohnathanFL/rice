@@ -56,7 +56,7 @@ export PATH="$HOME/.cargo/bin/:/$HOME/.nimble/bin:/$HOME/bin:$HOME/go/bin:$PATH"
 export SCONS_CACHE=/home/oakenbow/Dev/Scons_Cache
 export SCONS_CACHE_ROOT=/home/oakenbow/Dev/Scons_Cache
 export PKGEXT=".pkg.tar"
-export RUSTC_WRAPPER=sccache
+#export RUSTC_WRAPPER=sccache
 
 
 alias autoyay="yay --noconfirm --sudoloop"
