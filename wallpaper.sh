@@ -12,6 +12,6 @@ fi
 if [ -d "$RICE/wall" ]; then
   "$RICE/wallpapers/random.sh" "$RICE/wall" &
 else
-  swaybg --image "$RICE/wall" --mode fill &
+  swaybg --image "$RICE/wall" --mode fill --color $(cat $RICE/wallpapers/background) &
 fi
 

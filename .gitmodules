@@ -7,3 +7,6 @@
 [submodule "desktop_parser"]
 	path = desktop_parser
 	url = https://github.com/JohnathanFL/desktop_parser
+[submodule "kitty/kitty-themes"]
+	path = kitty/kitty-themes
+	url = https://github.com/dexpota/kitty-themes
