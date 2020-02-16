@@ -1,4 +1,4 @@
-xwayland disable
+#xwayland disable
 
 # Default config for sway
 #
@@ -18,7 +18,7 @@ set $term kitty
 set $menu wldash #$RICE/launcher.sh
 
 #       <border>  <background> <text>  <indicator> <child_border>
-client.focused     #5E81ACFF #00000000  #FFFFFFFF #80808080   #5E81ACFF
+client.focused     #66D9EF #00000000  #FFFFFFFF #80808080   #66D9EF
 client.unfocused   #00000000 #00000000  #FFFFFFFF #80808080   #80808080
 client.focused_inactive #00000000 #00000000  #FFFFFFFF #80808080   #80808080
 
