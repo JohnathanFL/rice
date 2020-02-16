@@ -63,8 +63,7 @@ ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
 echo kitty
 rm -rf ~/.config/kitty
-mkdir ~/.config/kitty
-ln -s $RICE/kitty.conf ~/.config/kitty/
+ln -s $RICE/kitty/ ~/.config/
 
 echo wayfire
 rm ~/.config/wayfire.ini
