@@ -46,7 +46,7 @@ for key, bind in bindings.items():
 
 
 # THEME
-config.source(os.environ['RICE'] + '/themes/nord-qutebrowser.py')
+config.source(os.environ['RICE'] + '/themes/monokai-qutebrowser.py')
 
 # Use a different color for work container to give visual distinction
 if "QUTE_CONTAINER" not in os.environ or os.environ['QUTE_CONTAINER'] == "facebook":
