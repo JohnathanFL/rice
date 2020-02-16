@@ -19,28 +19,10 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #D8DEE9;
+    color: #f8f8f2;
     border-bottom: 3px solid transparent;
 }
 
@@ -52,12 +34,12 @@ window#waybar.chromium {
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    background-color: #ae81ff;
+    border-bottom: 3px solid #ae81ff;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: #F92672;
 }
 
 #mode {
@@ -113,52 +95,8 @@ window#waybar.chromium {
 label:focus {
     background-color: #000000;
 }
-
-#cpu {
-    color: #D8DEE9;
-}
-
-#memory {
-}
-
-#backlight {
-}
-
-#network {
-}
-
-#network.disconnected {
-}
-
-#pulseaudio {
-    color: #D8DEE9;
-}
-
-#pulseaudio.muted {
-    color: #D8DEE9;
-}
-
 #custom-media {
-    color: #D8DEE9;
     min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-}
-
-#custom-media.custom-vlc {
-}
-
-#temperature {
-}
-
-#temperature.critical {
-}
-
-#tray {
-}
-
-#idle_inhibitor {
 }
 
 #idle_inhibitor.activated {
@@ -169,11 +107,3 @@ label:focus {
     color: #D8DEE9;
 }
 
-#mpd.disconnected {
-}
-
-#mpd.stopped {
-}
-
-#mpd.paused {
-}
