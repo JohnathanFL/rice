@@ -106,7 +106,7 @@ c.colors.hints.match.fg = mon['red']
 
 ## Background color of the keyhint widget.
 ## Type: QssColor
-c.colors.keyhint.bg = mon['yellow']
+c.colors.keyhint.bg = mon['purple']
 
 ## Text color for the keyhint widget.
 ## Type: QssColor
