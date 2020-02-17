@@ -1,8 +1,8 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 plug "occivink/kakoune-roguelight"
 plug "andreyorst/powerline.kak" defer powerline %{
-  colorscheme default
-  powerline-theme desertex
+  colorscheme monokai
+  powerline-theme default
   powerline-separator curve
   powerline-format git bufname line_column mode_info filetype client session position
 } config %{
