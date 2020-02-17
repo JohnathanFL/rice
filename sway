@@ -1,11 +1,3 @@
-#xwayland disable
-
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -18,7 +10,7 @@ set $term kitty
 set $menu wldash #$RICE/launcher.sh
 
 #       <border>  <background> <text>  <indicator> <child_border>
-client.focused     #66D9EF #00000000  #FFFFFFFF #80808080   #66D9EF
+client.focused     #F92672 #00000000  #FFFFFFFF #80808080   #F92672
 client.unfocused   #00000000 #00000000  #FFFFFFFF #80808080   #80808080
 client.focused_inactive #00000000 #00000000  #FFFFFFFF #80808080   #80808080
 
