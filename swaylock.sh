@@ -23,7 +23,7 @@ addArg --indicator-caps-lock
     #Scaling mode for images: stretch, fill, fit, center, or tile. Use the additional mode solid_color to display only the
     #background color, even if a background image is specified.
 
-#addArg --color 
+addArg --color $(cat $RICE/wallpapers/background)
     #Turn the screen into the given color. If -i is used, this sets the background of the image to the given color. De‐
     #faults to white (FFFFFF).
 
