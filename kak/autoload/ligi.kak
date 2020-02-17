@@ -29,7 +29,7 @@ KAK
 }
 
 add-highlighter shared/ligi/code/ regex \b(const|property|field|alias|let|cvar|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|section)\b 0:keyword
-add-highlighter shared/ligi/code/ regex \b(block|struct|enum|union|concept|extend)\b 0:keyword
+add-highlighter shared/ligi/code/ regex \b(block|overload|struct|enum|union|concept)\b 0:keyword
 add-highlighter shared/ligi/code/ regex \b(array|slice|pure|assert|break|return|continue|asm|defer|errdefer|unreachable|try|catch|orelse|async|await|suspend|resume|cancel)\b 0:keyword
 add-highlighter shared/ligi/code/ regex \b(caseof|if|elif|finally|else|switch|and|or|xor|not|in)\b 0:keyword
 add-highlighter shared/ligi/code/ regex \b(until|while|for|loop)\b 0:keyword
