@@ -62,7 +62,7 @@ widget:
                         length: 600
         - calendar:
             font_size: 16.0
-            sections: 1
+            sections: 2
         - launcher:
             font_size: 24.0
             length: 1200
