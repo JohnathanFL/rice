@@ -129,6 +129,10 @@ echo kickbar
 rm ~/bin/kickbar
 ln -s $RICE/kickbar ~/bin/kickbar
 
+echo zathura
+rm ~/.config/zathura -rf
+ln -s -T $RICE/zathura ~/.config/zathura
+
 sudo_stuff() {
   echo "/etc/issue"
   sudo rm /etc/issue
