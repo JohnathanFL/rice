@@ -76,17 +76,17 @@ hook global WinSetOption filetype=(cpp|c) %{
   clang-enable-autocomplete; clang-enable-diagnostics
 }
 
-hook global WinSetOption filetype=(html) %{
-  set window formatcmd 'pup -i 2'
+hook global WinSetOption filetype=(html) %{ set window formatcmd 'pup -i 2 -p' }
+hook global WinSetOption filetype=(go) %{
+  set window formatcmd 'goimports'
+  set window tabstop 2
 }
 
-add-highlighter global/ wrap
-hook global WinSetOption filetype=(c|cpp) %{
-  set window formatcmd 'clang-format -style=file'
-}
-hook global WinSetOption filetype=(sh|sway) %{
-  set window formatcmd 'shfmt -i 2 -sr -kp'
-}
+hook global WinSetOption filetype=(c|cpp) %{ set window formatcmd 'clang-format -style=file' }
+hook global WinSetOption filetype=(sh|sway) %{ set window formatcmd 'shfmt -i 2 -sr -kp' }
+
+add-highlighter global/ wrap -word -indent -width 100 -marker '┣' # Wraps lines
+
 hook global WinCreate [^*]* %{
   editorconfig-load
   set-face buffer todo_face red,white+ufg
