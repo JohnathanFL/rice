@@ -1,0 +1,9 @@
+set default-bg \#272822
+set inputbar-bg \#74715e
+set inputbar-fg \#f8f8f2
+set completion-bg \#74715e
+set completion-highlight-bg \#f92672
+set completion-highlight-fg \#f8f8f2
+set statusbar-bg \#ae81ff
+set statusbar-home-tilde true
+
