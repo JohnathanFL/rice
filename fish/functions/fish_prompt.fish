@@ -16,7 +16,7 @@ function fish_prompt
   echo -n (set_color $userColor)$USER' '
   echo -n (set_color $hostColor)(prompt_hostname)
   echo -n (set_color $promptColor)']' '['
-  echo -n (set_color $pathColor)(prompt_pwd)
+  echo -n (set_color $pathColor)(pwd)
   echo -n (set_color $promptColor)'] - ['
   echo -n (set_color $dateColor)(date)
   echo (set_color $promptColor)']'
