@@ -31,6 +31,10 @@ echo clang-format
 rm ~/.clang-format
 ln -s $RICE/clang-format ~/.clang-format
 
+echo fish
+rm -rf ~/.config/fish
+ln -s $RICE/fish ~/.config/fish
+
 echo kak
 rm -rf ~/.config/kak
 ln -s $RICE/kak ~/.config/kak

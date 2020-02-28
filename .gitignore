@@ -4,3 +4,4 @@ execs/
 parse_desktops
 kak/plugins/
 .fzf-projects
+fish/fish_variables
