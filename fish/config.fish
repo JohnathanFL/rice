@@ -1,21 +1,41 @@
-# Colors:
-set fish_color_normal F8F8F2 # the default color
-set fish_color_command F92672 # the color for commands
-set fish_color_quote E6DB74 # the color for quoted blocks of text
-set fish_color_redirection AE81FF # the color for IO redirections
-set fish_color_end F8F8F2 # the color for process separators like ';' and '&'
-set fish_color_error F8F8F2 --background=F92672 # the color used to highlight potential errors
-set fish_color_param A6E22E # the color for regular command parameters
-set fish_color_comment 75715E # the color used for code comments
-set fish_color_match F8F8F2 # the color used to highlight matching parenthesis
-set fish_color_search_match --background=49483E # the color used to highlight history search matches
-set fish_color_operator AE81FF # the color for parameter expansion operators like '*' and '~'
-set fish_color_escape 66D9EF # the color used to highlight character escapes like '\n' and '\x70'
-set fish_color_cwd 66D9EF # the color used for the current working directory in the default prompt
-#
-# # Additionally, the following variables are available to change the highlighting in the completion pager:
-set fish_pager_color_prefix F8F8F2 # the color of the prefix string, i.e. the string that is to be completed
-set fish_pager_color_completion 75715E # the color of the completion itself
-set fish_pager_color_description 49483E # the color of the completion description
-set fish_pager_color_progress F8F8F2 # the color of the progress bar at the bottom left corner
-set fish_pager_color_secondary F8F8F2 # the background color of the every second completion
+
+set -x RICE ~/.configs
+set -x fish_user_paths ~/bin
+
+set -x EDITOR kak
+alias e $EDITOR
+
+
+
+set -x NORD_DARK0 '#2e3440'
+set -x NORD_DARK1 '#3b4252'
+set -x NORD_DARK2 '#434c5e'
+set -x NORD_DARK3 '#4c566a'
+
+# Lights
+set -x NORD_LIGHT0 '#d8dee9'
+set -x NORD_LIGHT1 '#e5e9f0'
+set -x NORD_LIGHT2 '#eceff4'
+
+# Frosts
+set -x NORD_FROST0 '#8fbcbb'
+set -x NORD_FROST1 '#88c0d0'
+set -x NORD_FROST2 '#81a1c1'
+set -x NORD_FROST3 '#5e81ac'
+
+set -x NORD_AURORA0 '#bf616a'
+set -x NORD_AURORA1 '#d08770'
+set -x NORD_AURORA2 '#ebcb8b'
+set -x NORD_AURORA3 '#a3be8c'
+set -x NORD_AURORA4 '#b48ead'
+
+set -x MONOKAI_BLACK '#272822'
+set -x MONOKAI_WHITE '#f8f8f2'
+set -x MONOKAI_GREY '#74715e'
+set -x MONOKAI_RED '#F92672'
+set -x MONOKAI_BLUE '#66D9EF'
+set -x MONOKAI_GREEN '#A6E22E'
+set -x MONOKAI_ORANGE '#FD971F'
+set -x MONOKAI_PURPLE '#ae81ff'
+set -x MONOKAI_YELLOW '#e6db74'
+
