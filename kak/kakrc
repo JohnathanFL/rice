@@ -17,7 +17,7 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set global indentwidth 2
   expandtab
 } config %{
-  hook global WinSetOption filetype=(ligi|rust|c|cpp|kak|sh|zig|zag|nim|java|javascript|css|html|php|plain|markdown) expandtab
+  hook global WinSetOption filetype=(ligi|rust|c|cpp|kak|sh|zig|zag|nim|java|javascript|css|html|php|plain|markdown|fish) expandtab
   hook global WinSetOption filetype=(makefile) noexpandtab
 
   hook global WinSetOption filetype=(zig) %{
@@ -90,4 +90,8 @@ add-highlighter global/ wrap -word -indent -width 100 -marker '┣' # Wraps line
 hook global WinCreate [^*]* %{
   editorconfig-load
   set-face buffer todo_face red,white+ufg
+}
+
+hook global WinSetOption filetype=ligi %{
+  hook window InsertChar '/'
 }
