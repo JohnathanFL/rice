@@ -52,6 +52,8 @@ map global normal <a-Q> <a-B>
 map global normal b ':enter-buffers-mode<ret>'              -docstring 'buffers…'
 map global normal B ':enter-user-mode -lock buffers<ret>'   -docstring 'buffers (lock)…'
 map global normal <c-c> ':comment-line'
+map global normal ^ <c-b>
+map global normal <c-b> ':lsp-definition<ret>'
 
 hook global WinDisplay .* info-buffers
 
