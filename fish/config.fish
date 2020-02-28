@@ -17,7 +17,7 @@ set -x NORD_LIGHT0 '#d8dee9'
 set -x NORD_LIGHT1 '#e5e9f0'
 set -x NORD_LIGHT2 '#eceff4'
 
-H# Frosts
+# Frosts
 set -x NORD_FROST0 '#8fbcbb'
 set -x NORD_FROST1 '#88c0d0'
 set -x NORD_FROST2 '#81a1c1'
