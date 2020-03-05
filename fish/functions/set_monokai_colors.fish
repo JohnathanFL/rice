@@ -74,7 +74,7 @@ function set_monokai_colors -d "Set the colors for all fish stuff to a palette f
   ##set -U fish_pager_color_completion brwhite
   
   # the color of the completion description
-  ##set -U fish_pager_color_description red
+  set -U fish_pager_color_description red
   
   # fish_pager_color_background of every second unselected completion.
   # Defaults to fish_pager_color_background
