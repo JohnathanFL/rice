@@ -1,6 +1,6 @@
 
 set -x RICE ~/.configs
-set -x fish_user_paths ~/bin
+set -x fish_user_paths ~/bin /bin /usr/bin /usr/local/bin ~/go/bin/ ~/.nimble/bin/ ~/.cargo/bin
 
 set -x EDITOR kak
 alias e $EDITOR
