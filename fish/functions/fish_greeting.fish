@@ -1,5 +1,5 @@
 function fish_greeting --description "Greeting that runs whenever a new shell is started"
-  set fish_pager_color_description red
-  
+  set_monokai_colors
+  set_wayland on
   fortune | cowsay
 end
