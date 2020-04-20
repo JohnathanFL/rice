@@ -13,7 +13,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local switcher = require("awesome-switcher")
 switcher.settings.preview_box_delay = 0
-switcher.settings.preview_fps = 60
+switcher.settings.preview_fps = 120
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -309,6 +309,9 @@ globalkeys = gears.table.join(
               {description = "Next Track", group = "Audio"}),
     awful.key({}, "XF86AudioPrev", function() awful.spawn("mpc prev") end,
               {description = "Prev Track", group = "Audio"}),
+    
+    awful.key({}, "Print", function() awful.spawn("scrot -s") end,
+              {description = "Screenshot", group = "Audio"}),
               
     awful.key({"Mod4"}, "e", function() awful.spawn("pcmanfm-qt") end,
               {description = "Launch File Manager", group = "launcher"}),
@@ -335,7 +338,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ "Mod4" }, "q",      function (c) c:kill()                         end,
+    awful.key({ "Mod4", "Shift" }, "q",      function (c) c:kill()                         end,
               {description = "close window", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
@@ -551,6 +554,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
---awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 -- }}}
