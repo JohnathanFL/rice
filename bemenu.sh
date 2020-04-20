@@ -17,6 +17,7 @@ scrollbarBg=$MONOKAI_PURPLE
 scrollbarFg=$MONOKAI_WHITE
 
 bemenu -b \
+  -m -1 \
   --list 10 \
   --ignorecase \
   --fn $font \
