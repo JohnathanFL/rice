@@ -1,5 +1,7 @@
 #!/bin/sh
 
+
+thingy="|"
 get_status() {
   # Change this according to your device
   ################
@@ -8,7 +10,12 @@ get_status() {
 
   # Date and time
   date_and_week=$(date "+%Y/%m/%d (w%-V)")
-  current_time=$(date "+%H:%M:%S")
+  current_time="$(date '+%H:%M') $thingy"
+  if [ "$thingy" = "-" ]; then
+    thingy="|"
+  else
+    thingy="-"
+  fi
 
   #############
   # Commands
@@ -73,8 +80,11 @@ trap 'get_status' USR1
 
 # Only repaint once a second, UNLESS...
 # The trap to USR1 is for kickbar, so e.g volume and mpd changes are instant
+#export -f get_status
+#watch -c -t -n1 get_status
 while true; do
-  sleep 1&
-  wait $!
+  sleep 0.5&
+  wait
   get_status
 done
+  
