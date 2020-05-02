@@ -2,4 +2,8 @@
 #setsid volund
 
 
-j4-dmenu-desktop --dmenu="bemenu.sh"
+j4-dmenu-desktop \
+  --no-generic \
+  --term=kitty \
+  --usage-log=$HOME/.local/share/launcher-usage \
+  --dmenu="bemenu.sh"
