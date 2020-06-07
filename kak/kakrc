@@ -17,15 +17,10 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set global indentwidth 2
   expandtab
 } config %{
-  hook global WinSetOption filetype=(ligi|rust|c|cpp|kak|sh|zig|zag|nim|java|javascript|css|html|php|plain|markdown|fish) expandtab
+  hook global WinSetOption filetype=(python|ligi|rust|c|sql|cpp|kak|sh|zig|nim|java|javascript|css|html|php|plain|markdown|fish|go) expandtab
   hook global WinSetOption filetype=(makefile) noexpandtab
 
-  hook global WinSetOption filetype=(zig) %{
-    set-option buffer softtabstop 4
-    set-option buffer tabstop 4
-    set indentwidth 4
-    expandtab
-  }
+
 }
 plug "andreyorst/fzf.kak" config %{
   require-module kitty
@@ -33,12 +28,25 @@ plug "andreyorst/fzf.kak" config %{
 } defer fzf %{
   set-option global fzf_terminal_command 'kitty-terminal  kak -c %val{session} -e "%arg{@}"'
 }
+plug "danr/kakoune-easymotion" config %{
+  map global normal ^ f
+  map global normal f ':enter-user-mode easymotion<ret>'
+}
+plug "occivink/kakoune-sudo-write"
+plug "andreyorst/kaktree" defer kaktree %{
+  set-option global kaktree_double_click_duration '0.5'
+  set-option global kaktree_indentation 1
+  set-option global kaktree_dir_icon_open  '▾ 🗁 '
+  set-option global kaktree_dir_icon_close '▸ 🗀 '
+  set-option global kaktree_file_icon      '⠀⠀🖺'
+} config %{}
 
 
 
 map global normal <c-p> ': fzf-mode<ret>'
 
-set global ui_options ncurses_assistant=none
+set global ui_options ncurses_assistant=none ncurses_set_title=false
+set global scrolloff 5,5 # Keep 5 lines below/above the cursor
 add-highlighter global/ number-lines
 
 add-highlighter global/ regex TODO 0:todo_face
@@ -61,6 +69,13 @@ eval %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|html|js|css|json|php|nim) %{
   lsp-enable-window
 }
+hook global WinSetOption filetype=zig %{
+  set buffer softtabstop 4
+  set buffer tabstop 4
+  set buffer indentwidth 4
+  expandtab
+  set buffer formatcmd 'zig fmt --stdin'
+}
 
 hook global InsertCompletionShow .* %{
   try %{
@@ -79,6 +94,11 @@ hook global WinSetOption filetype=(cpp|c) %{
 }
 
 hook global WinSetOption filetype=(html) %{ set window formatcmd 'pup -i 2 -p' }
+hook global WinSetOption filetype=(python) %{
+  set window formatcmd 'black -'
+  set window indentwidth 4
+}
+
 hook global WinSetOption filetype=(go) %{
   set window formatcmd 'goimports'
   set window tabstop 2
@@ -95,5 +115,6 @@ hook global WinCreate [^*]* %{
 }
 
 hook global WinSetOption filetype=ligi %{
-  hook window InsertChar '/'
 }
+
+set-option global lsp_server_configuration pyls.configurationSources=["flake8"]
