@@ -4,7 +4,11 @@ set -x fish_user_paths ~/bin /bin /usr/bin /usr/local/bin ~/go/bin/ ~/.nimble/bi
 
 set -x EDITOR kak
 alias e $EDITOR
+alias sway 'set_wayland on; /usr/bin/sway'
+alias hikari 'set_wayland on; /usr/bin/hikari'
+alias startx 'set_wayland off; /bin/startx'
 
+set -x CGO_ENABLED 1
 
 
 set -x NORD_DARK0 '#2e3440'

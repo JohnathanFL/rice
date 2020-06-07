@@ -18,7 +18,7 @@ function fish_prompt
   echo -n (set_color $promptColor)']' '['
   echo -n (set_color $pathColor)(pwd)
   echo -n (set_color $promptColor)'] - ['
-  echo -n (set_color $dateColor)(date)
+  echo -n (set_color $dateColor)(date +"%m-%d %H:%M:%S")
   echo (set_color $promptColor)']'
   echo -n '└─['
   echo -n (set_color $dollarColor)'$'(set_color $promptColor)'] '
