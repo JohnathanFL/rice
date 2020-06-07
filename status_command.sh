@@ -31,9 +31,9 @@ get_status() {
   audio_is_muted=$(amixer get Master | xargs | cut -d[ -f3 | cut -d] -f1)
   IFS="
 "
-  audioInfo=$(mpc)
-  songName=$(echo "$audioInfo" | awk 'NR==0')
-  player_status=$(echo "$audioInfo" | awk 'NR==0' | cut -d[ -f 2 | cut -d] -f 1)
+  audioInfo="$(mpc)"
+  songName="$(echo "$audioInfo" | awk 'NR==1')"
+  player_status="$(echo "$audioInfo" | awk 'NR==2' | cut -d[ -f 2 | cut -d] -f 1)"
 
   # Network
   routeinfo=$(ip route get 1.1.1.1 | xargs)
@@ -83,7 +83,7 @@ trap 'get_status' USR1
 #export -f get_status
 #watch -c -t -n1 get_status
 while true; do
-  sleep 0.5&
+  sleep 1&
   wait
   get_status
 done
