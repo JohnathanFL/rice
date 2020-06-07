@@ -22,7 +22,7 @@ get_status() {
   #############
 
   # Battery or charger
-  if [[ $(cat /etc/hostname) == "LUAN" ]]; then
+  if [ $(cat /etc/hostname) = "LUAN" ]; then
     battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "percentage" | awk '{print $2}')
     battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
   fi
@@ -31,9 +31,9 @@ get_status() {
   audio_is_muted=$(amixer get Master | xargs | cut -d[ -f3 | cut -d] -f1)
   IFS="
 "
-  audioInfo=($(mpc))
-  songName=${audioInfo[0]}
-  player_status=$(echo ${audioInfo[1]} | cut -d[ -f 2 | cut -d] -f 1)
+  audioInfo=$(mpc)
+  songName=$(echo "$audioInfo" | awk 'NR==0')
+  player_status=$(echo "$audioInfo" | awk 'NR==0' | cut -d[ -f 2 | cut -d] -f 1)
 
   # Network
   routeinfo=$(ip route get 1.1.1.1 | xargs)
@@ -41,7 +41,7 @@ get_status() {
   # Also allows for IPv6 addresses (::)
   ip=$(echo $routeinfo | grep -Po '(?<=src\s)(\w|\.|::)+' | xargs)
 
-  if [[ $battery_status == "discharging" ]]; then
+  if [ "$battery_status" = "discharging" ]; then
     battery_pluggedin='🔋'
   else
     battery_pluggedin='🔌'
@@ -53,27 +53,27 @@ get_status() {
     network_active="⇆"
   fi
 
-  if [[ $player_status == "playing" ]]; then
+  if [ "$player_status" = "playing" ]; then
     song_status='▶'
-  elif [[ $player_status == "paused" ]]; then
+  elif [ "$player_status" = "paused" ]; then
     song_status='⏸'
   else
     song_status='⏹'
   fi
 
-  if [[ $audio_is_muted == "off" ]]; then
+  if [ "$audio_is_muted" = "off" ]; then
     audio_active='𝄻'
   else
     audio_active='𝅘𝅥𝅮'
   fi
 
-  if [[ $(cat /etc/hostname) == "LUAN" ]]; then
+  if [ $(cat /etc/hostname) = "LUAN" ]; then
     batteryInfo="$battery_pluggedin $battery_charge |"
   else
     batteryInfo=""
   fi
 
-  echo "$([[ $song_status == '⏹' ]] && echo ⏹   || echo $song_status $songName) | $network_active $ip - $network | $audio_active $audio_volume | $batteryInfo $date_and_week  $current_time"
+  echo "$([ $song_status = '⏹' ] && echo ⏹   || echo $song_status $songName) | $network_active $ip - $network | $audio_active $audio_volume | $batteryInfo $date_and_week  $current_time"
 }
 
 trap 'get_status' USR1
