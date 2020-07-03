@@ -86,7 +86,7 @@ evaluate-commands %sh{
 
     # Highlight keywords
     printf %s "
-        add-highlighter shared/ruby/code/ regex \b(${keywords})\b 0:keyword
+        add-highlighter shared/ruby/code/ regex \b(${keywords})[^0-9A-Za-z_!?] 1:keyword
         add-highlighter shared/ruby/code/ regex \b(${attributes})\b 0:attribute
         add-highlighter shared/ruby/code/ regex \b(${values})\b 0:value
         add-highlighter shared/ruby/code/ regex \b(${meta})\b 0:meta
@@ -102,11 +102,11 @@ define-command ruby-alternative-file -docstring 'Jump to the alternate file (imp
     case $kak_buffile in
         *spec/*_spec.rb)
             altfile=$(eval echo $(echo $kak_buffile | sed s+spec/+'*'/+';'s/_spec//))
-            [ ! -f $altfile ] && echo "echo -markup '{Error}implementation file not found'" && exit
+            [ ! -f $altfile ] && echo "fail 'implementation file not found'" && exit
         ;;
         *test/*_test.rb)
             altfile=$(eval echo $(echo $kak_buffile | sed s+test/+'*'/+';'s/_test//))
-            [ ! -f $altfile ] && echo "echo -markup '{Error}implementation file not found'" && exit
+            [ ! -f $altfile ] && echo "fail 'implementation file not found'" && exit
         ;;
         *.rb)
             path=$kak_buffile
@@ -119,10 +119,10 @@ define-command ruby-alternative-file -docstring 'Jump to the alternate file (imp
                     break
                 fi
             done
-            [ ! -d $altdir ] && echo "echo -markup '{Error}spec/ and test/ not found'" && exit
+            [ ! -d $altdir ] && echo "fail 'spec/ and test/ not found'" && exit
         ;;
         *)
-            echo "echo -markup '{Error}alternative file not found'" && exit
+            echo "fail 'alternative file not found'" && exit
         ;;
     esac
     echo "edit $altfile"
@@ -139,10 +139,10 @@ define-command -hidden ruby-trim-indent %{
 define-command -hidden ruby-indent-on-char %{
     evaluate-commands -no-hooks -draft -itersel %{
         # align middle and end structures to start
-        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (else|elsif) $ <ret> <a-\;> <a-?> ^ \h * (if)                                                       <ret> s \A | \z <ret> ) <a-&> }
-        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (when)       $ <ret> <a-\;> <a-?> ^ \h * (case)                                                     <ret> s \A | \z <ret> ) <a-&> }
-        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (rescue)     $ <ret> <a-\;> <a-?> ^ \h * (begin)                                                    <ret> s \A | \z <ret> ) <a-&> }
-        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (end)        $ <ret> <a-\;> <a-?> ^ \h * (begin|case|class|def|for|if|module|unless|until|while) <ret> s \A | \z <ret> ) <a-&> }
+        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (else|elsif) $ <ret> <a-semicolon> <a-?> ^ \h * (if)                                                       <ret> s \A | \z <ret> ) <a-&> }
+        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (when)       $ <ret> <a-semicolon> <a-?> ^ \h * (case)                                                     <ret> s \A | \z <ret> ) <a-&> }
+        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (rescue)     $ <ret> <a-semicolon> <a-?> ^ \h * (begin)                                                    <ret> s \A | \z <ret> ) <a-&> }
+        try %{ execute-keys -draft <a-x> <a-k> ^ \h * (end)        $ <ret> <a-semicolon> <a-?> ^ \h * (begin|case|class|def|for|if|module|unless|until|while) <ret> s \A | \z <ret> ) <a-&> }
     }
 }
 
@@ -153,23 +153,23 @@ define-command -hidden ruby-indent-on-new-line %{
         # filter previous line
         try %{ execute-keys -draft k : ruby-trim-indent <ret> }
         # indent after start structure
-        try %{ execute-keys -draft k <a-x> <a-k> ^ \h * (begin|case|class|def|else|elsif|ensure|for|if|module|rescue|unless|until|when|while|.+\bdo$|.+\bdo\h\|.+(?=\|)) \b <ret> j <a-gt> }
+        try %{ execute-keys -draft k <a-x> <a-k> ^ \h * (begin|case|class|def|else|elsif|ensure|for|if|module|rescue|unless|until|when|while|.+\bdo$|.+\bdo\h\|.+(?=\|)) [^0-9A-Za-z_!?] <ret> j <a-gt> }
     }
 }
 
 define-command -hidden ruby-insert-on-new-line %[
     evaluate-commands -no-hooks -draft -itersel %[
         # copy _#_ comment prefix and following white spaces
-        try %{ execute-keys -draft k <a-x> s '^\h*\K#\h*' <ret> y j <a-x>\; P }
+        try %{ execute-keys -draft k <a-x> s '^\h*\K#\h*' <ret> y j <a-x><semicolon> P }
         # wisely add end structure
         evaluate-commands -save-regs x %[
             try %{ execute-keys -draft k <a-x> s ^ \h + <ret> \" x y } catch %{ reg x '' }
             try %[
                 evaluate-commands -draft %[
                     # Check if previous line opens a block
-                    execute-keys -draft k<a-x> <a-k>^<c-r>x(begin|case|class|def|for|if|module|unless|until|while|.+\bdo$|.+\bdo\h\|.+(?=\|))\b<ret>
+                    execute-keys -draft k<a-x> <a-k>^<c-r>x(begin|case|class|def|for|if|module|unless|until|while|.+\bdo$|.+\bdo\h\|.+(?=\|))[^0-9A-Za-z_!?]<ret>
                     # Check that we do not already have an end for this indent level which is first set via `ruby-indent-on-new-line` hook
-                    execute-keys -draft }i J <a-x> <a-K> ^<c-r>x(end|else|elsif|rescue)\b<ret>
+                    execute-keys -draft }i J <a-x> <a-K> ^<c-r>x(end|else|elsif|rescue)[^0-9A-Za-z_!?]<ret>
                 ]
                 execute-keys -draft o<c-r>xend<esc> # insert a new line with containing end
             ]

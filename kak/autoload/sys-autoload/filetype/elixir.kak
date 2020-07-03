@@ -8,13 +8,17 @@ hook global BufCreate .*[.](ex|exs) %{
     set-option buffer filetype elixir
 }
 
+hook global BufCreate .*[.]html[.]l?eex %{
+    set-option buffer filetype eex
+}
+
 # Initialization
 # ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 hook global WinSetOption filetype=elixir %{
     require-module elixir
 
-    hook window ModeChange insert:.* -group elixir-trim-indent  elixir-trim-indent
+    hook window ModeChange pop:insert:.* -group elixir-trim-indent  elixir-trim-indent
     hook window InsertChar \n -group elixir-indent elixir-indent-on-new-line
 
     hook -once -always window WinSetOption filetype=.* %{ remove-hooks window elixir-.+ }
@@ -25,18 +29,41 @@ hook -group elixir-highlight global WinSetOption filetype=elixir %{
     hook -once -always window WinSetOption filetype=.* %{ remove-highlighter window/elixir }
 }
 
+hook global WinSetOption filetype=eex %{
+    require-module eex
+
+    hook -once -always window WinSetOption filetype=.* %{ remove-hooks window eex-.+ }
+}
+
+hook -group eex-highlight global WinSetOption filetype=eex %{
+    add-highlighter window/eex ref eex
+    hook -once -always window WinSetOption filetype=.* %{ remove-highlighter window/eex }
+}
+
+provide-module eex %{
+require-module html
+require-module elixir
+
+add-highlighter shared/eex regions
+add-highlighter shared/eex/html default-region ref html
+add-highlighter shared/eex/comment region '<%#' '%>' fill comment
+add-highlighter shared/eex/quote region '<%%' '%>' ref html
+add-highlighter shared/eex/code region '<%=?' '%>' ref elixir
+}
 
 provide-module elixir %[
+require-module eex
 
 # Highlighters
 # ‾‾‾‾‾‾‾‾‾‾‾‾
 
 add-highlighter shared/elixir regions
 add-highlighter shared/elixir/code default-region group
-add-highlighter shared/elixir/double_string region '"'   (?<!\\)(\\\\)*"   regions
-add-highlighter shared/elixir/triple_string region '"""' (?<!\\)(\\\\)*""" ref shared/elixir/double_string
-add-highlighter shared/elixir/single_string region "'"   (?<!\\)(\\\\)*'   fill string
-add-highlighter shared/elixir/comment       region '#'   '$'               fill comment
+add-highlighter shared/elixir/double_string region -match-capture ("""|") (?<!\\)(?:\\\\)*("""|") regions
+add-highlighter shared/elixir/single_string region "'" "(?<!\\)(?:\\\\)*'" fill string
+add-highlighter shared/elixir/comment region '#' '$' fill comment
+
+add-highlighter shared/elixir/leex region -match-capture '~L("""|")' '(?<!\\)(?:\\\\)*("""|")' ref eex
 
 add-highlighter shared/elixir/double_string/base default-region fill string
 add-highlighter shared/elixir/double_string/interpolation region -recurse \{ \Q#{ \} fill builtin
@@ -70,13 +97,13 @@ define-command -hidden elixir-indent-on-new-line %{
         # copy -- comments prefix and following white spaces
         try %{ execute-keys -draft k <a-x> s ^\h*\K--\h* <ret> y gh j P }
         # preserve previous line indent
-        try %{ execute-keys -draft \; K <a-&> }
+        try %{ execute-keys -draft <semicolon> K <a-&> }
         # indent after line ending with:
 	# try %{ execute-keys -draft k x <a-k> (do|else|->)$ <ret> & }
 	# filter previous line
         try %{ execute-keys -draft k : elixir-trim-indent <ret> }
         # indent after lines ending with do or ->
-        try %{ execute-keys -draft \\; k x <a-k> ^.+(do|->)$ <ret> j <a-gt> }
+        try %{ execute-keys -draft <semicolon> k x <a-k> ^.+(do|->)$ <ret> j <a-gt> }
     }
 }
 

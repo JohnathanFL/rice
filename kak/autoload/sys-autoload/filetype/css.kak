@@ -14,7 +14,7 @@ hook global BufCreate .*[.](css) %{
 hook global WinSetOption filetype=css %[
     require-module css
 
-    hook window ModeChange insert:.* -group css-trim-indent  css-trim-indent
+    hook window ModeChange pop:insert:.* -group css-trim-indent  css-trim-indent
     hook window InsertChar \n -group css-indent css-indent-on-new-line
     hook window InsertChar \} -group css-indent css-indent-on-closing-curly-brace
     set-option buffer extra_word_chars '_' '-'
@@ -41,6 +41,7 @@ add-highlighter shared/css/comment    region /[*] [*]/ fill comment
 add-highlighter shared/css/declaration/base default-region group
 add-highlighter shared/css/declaration/double_string region '"' (?<!\\)(\\\\)*" fill string
 add-highlighter shared/css/declaration/single_string region "'" "'"             fill string
+add-highlighter shared/css/declaration/comment region /[*] [*]/ fill comment
 
 # https://developer.mozilla.org/en-US/docs/Web/CSS/length
 add-highlighter shared/css/declaration/base/ regex (#[0-9A-Fa-f]+)|((\d*\.)?\d+(ch|cm|em|ex|mm|pc|pt|px|rem|vh|vmax|vmin|vw)) 0:value
@@ -65,7 +66,7 @@ define-command -hidden css-trim-indent %{
 define-command -hidden css-indent-on-new-line %[
     evaluate-commands -draft -itersel %[
         # preserve previous line indent
-        try %[ execute-keys -draft \; K <a-&> ]
+        try %[ execute-keys -draft <semicolon> K <a-&> ]
         # filter previous line
         try %[ execute-keys -draft k : css-trim-indent <ret> ]
         # indent after lines ending with with {

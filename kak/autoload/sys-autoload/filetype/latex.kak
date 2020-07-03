@@ -4,7 +4,7 @@
 # Detection
 # ‾‾‾‾‾‾‾‾‾
 
-hook global BufCreate .*\.tex %{
+hook global BufCreate .*\.(tex|cls|sty|dtx) %{
     set-option buffer filetype latex
 }
 
@@ -16,7 +16,7 @@ hook global WinSetOption filetype=latex %(
 
     hook window InsertChar \n -group latex-indent %{ latex-indent-newline }
     hook window InsertChar \} -group latex-indent %{ latex-indent-closing-brace }
-    hook window ModeChange insert:.* -group latex-indent %{ latex-trim-indent }
+    hook window ModeChange pop:insert:.* -group latex-indent %{ latex-trim-indent }
     hook -once -always window WinSetOption filetype=.* %{ remove-hooks latex-indent }
 )
 
@@ -39,11 +39,14 @@ add-highlighter shared/latex/content/ regex '\\(?!_)\w+\b' 0:keyword
 # Options passed to scopes, between brackets
 add-highlighter shared/latex/content/ regex '\\(?!_)\w+\b\[([^\]]+)\]' 1:value
 # Content between dollar signs/pairs
-add-highlighter shared/latex/content/ regex '(\$(\\\$|[^$])+\$)|(\$\$(\\\$|[^$])+\$\$)' 0:meta
+add-highlighter shared/latex/content/ regex '((?<!\\)\$(\\\$|[^$])+\$)|((?<!\\)\$\$(\\\$|[^$])+\$\$)|((?<!\\)\\\[.*?\\\])|(\\\(.*?\\\))' 0:meta
 # Emphasized text
 add-highlighter shared/latex/content/ regex '\\(emph|textit)\{([^}]+)\}' 2:default+i
 # Bold text
 add-highlighter shared/latex/content/ regex '\\textbf\{([^}]+)\}' 1:default+b
+# Section headings
+add-highlighter shared/latex/content/ regex '\\(part|section)\*?\{([^}]+)\}' 2:title
+add-highlighter shared/latex/content/ regex '\\(chapter|(sub)+section|(sub)*paragraph)\*?\{([^}]+)\}' 4:header
 
 
 # Indent
