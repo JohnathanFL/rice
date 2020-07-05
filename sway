@@ -44,6 +44,7 @@ exec setwall
 output eDP-1 pos 1920 1080 res 1920x1080
 output DVI-D-1 pos 0 0 res 1920x1080
 output HDMI-A-1 pos 1920 0 res 1920x1080 
+output HDMI-A-2 pos -1360 0 res 1360x768
 
 workspace 1 output DVI-D-1 eDP-1
 workspace 2 output DVI-D-1 eDP-1
