@@ -17,7 +17,7 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set global indentwidth 2
   expandtab
 } config %{
-  hook global WinSetOption filetype=(python|ligi|rust|c|sql|cpp|kak|sh|zig|nim|java|javascript|css|html|php|plain|markdown|fish|go) expandtab
+  hook global WinSetOption filetype=(json|python|ligi|rust|c|sql|cpp|kak|sh|zig|nim|java|javascript|css|html|php|plain|markdown|fish|go) expandtab
   hook global WinSetOption filetype=(makefile) noexpandtab
 
 
@@ -39,7 +39,9 @@ plug "andreyorst/kaktree" defer kaktree %{
   set-option global kaktree_dir_icon_open  '▾ 🗁 '
   set-option global kaktree_dir_icon_close '▸ 🗀 '
   set-option global kaktree_file_icon      '⠀⠀🖺'
-} config %{}
+} config %{
+  kaktree-enable
+}
 
 
 
@@ -63,6 +65,8 @@ map global normal <c-c> ':comment-line'
 map global normal ^ <c-b>
 map global normal <c-b> ':lsp-definition<ret>'
 
+#map global insert <c-j> '<esc>ji'
+
 hook global WinDisplay .* info-buffers
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
@@ -74,7 +78,8 @@ hook global WinSetOption filetype=zig %{
   set buffer tabstop 4
   set buffer indentwidth 4
   expandtab
-  set buffer formatcmd 'zig fmt --stdin'
+  set window formatcmd 'zig fmt --color off --stdin'
+  hook buffer BufWritePre .* %{format}
 }
 
 hook global InsertCompletionShow .* %{
@@ -104,7 +109,10 @@ hook global WinSetOption filetype=(go) %{
   set window tabstop 2
 }
 
-hook global WinSetOption filetype=(c|cpp) %{ set window formatcmd 'clang-format -style=file' }
+hook global WinSetOption filetype=(c|cpp) %{
+  set window formatcmd 'clang-format -style=file'
+  hook buffer BufWritePre .* %{format}
+}
 hook global WinSetOption filetype=(sh|sway) %{ set window formatcmd 'shfmt -i 2 -sr -kp' }
 
 add-highlighter global/ wrap -word -indent -width 100 -marker '┣' # Wraps lines
@@ -115,6 +123,9 @@ hook global WinCreate [^*]* %{
 }
 
 hook global WinSetOption filetype=ligi %{
+  set buffer softtabstop 2
+  set buffer tabstop 2
+  set buffer indentwidth 2
 }
 
 set-option global lsp_server_configuration pyls.configurationSources=["flake8"]
