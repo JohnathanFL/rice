@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 # bemenu wrapper with my personalized settings
 
 # MONOKAI THEME
