@@ -65,6 +65,10 @@ echo launcher
 rm ~/bin/launcher.sh
 ln -s $RICE/launcher.sh ~/bin/launcher.sh
 
+echo luakit
+rm -rf ~/.config/luakit
+ln -sf $RICE/luakit ~/.config/luakit
+
 echo kitty
 rm -rf ~/.config/kitty
 ln -s $RICE/kitty/ ~/.config/
