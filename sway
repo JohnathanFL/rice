@@ -3,7 +3,7 @@
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Your preferred terminal emulator
-set $term kitty
+set $term kitty fish
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu pkill -usr1 volund #$RICE/launcher.sh
@@ -68,7 +68,7 @@ bindsym {
   $mod+grave exec $term
 
   # PICK BROWSER
-  $mod+Shift+r exec qutebrowser-container
+  $mod+Shift+r exec luakit
 
   # CLOSE WINDOW
   $mod+Shift+q kill
@@ -223,6 +223,6 @@ bar {
 #exec_always $RICE/launcher.sh
 exec mako
 #exec waybar
-exec mkfifo $SWAYSOCK.wob
-exec tail -f $SWAYSOCK.wob | wob
+#exec mkfifo $SWAYSOCK.wob
+#exec tail -f $SWAYSOCK.wob | wob
 
