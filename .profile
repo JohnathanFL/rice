@@ -1,0 +1,40 @@
+#!/bin/sh
+
+export PATH=$PATH:$HOME/bin:$HOME/.nimble/bin:$HOME/.cargo/bin
+export TERMINAL=kitty
+export EDITOR=kak
+export RICE=~/.configs
+export PKGEXT=".pkg.tar"
+
+export NORD_DARK0='#2e3440'
+export NORD_DARK1='#3b4252'
+export NORD_DARK2='#434c5e'
+export NORD_DARK3='#4c566a'
+
+# Lights
+export NORD_LIGHT0='#d8dee9'
+export NORD_LIGHT1='#e5e9f0'
+export NORD_LIGHT2='#eceff4'
+
+# Frosts
+export NORD_FROST0='#8fbcbb'
+export NORD_FROST1='#88c0d0'
+export NORD_FROST2='#81a1c1'
+export NORD_FROST3='#5e81ac'
+
+export NORD_AURORA0='#bf616a'
+export NORD_AURORA1='#d08770'
+export NORD_AURORA2='#ebcb8b'
+export NORD_AURORA3='#a3be8c'
+export NORD_AURORA4='#b48ead'
+
+export MONOKAI_BLACK='#272822'
+export MONOKAI_WHITE='#f8f8f2'
+export MONOKAI_GREY='#74715e'
+export MONOKAI_RED='#F92672'
+export MONOKAI_BLUE='#66D9EF'
+export MONOKAI_GREEN='#A6E22E'
+export MONOKAI_ORANGE='#FD971F'
+export MONOKAI_PURPLE='#ae81ff'
+export MONOKAI_YELLOW='#e6db74'
+

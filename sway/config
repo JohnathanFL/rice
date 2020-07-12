@@ -68,7 +68,7 @@ bindsym {
   $mod+grave exec $term
 
   # PICK BROWSER
-  $mod+Shift+r exec luakit
+  $mod+Shift+r exec qutebrowser-container
 
   # CLOSE WINDOW
   $mod+Shift+q kill
