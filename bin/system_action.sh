@@ -2,29 +2,28 @@
 # Show a bemenu of options for system management
 
 
-options="Exit Sway
+options="Exit
 Shutdown
 Reboot
-Suspend
-"
+Suspend"
 
-choice=$(echo "$options" | $RICE/bemenu.sh)
+choice=$(echo "$options" | bemenu.sh)
 
 case $choice in
   # TODO: Move this to an abstract thing for awesome or sway
-  "Exit Sway")
+  "Exit" )
     #echo "Exiting sway"
     swaymsg exit
     ;;
-  Shutdown)
+  Shutdown )
     #echo "Shutting down"
     shutdown now
     ;;
-  Reboot)
+  Reboot )
     #echo "Rebooting"
     reboot
     ;;
-  Suspend)
+  Suspend )
     #echo "Suspending"
     systemctl suspend
     ;;

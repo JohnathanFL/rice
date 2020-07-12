@@ -2,4 +2,4 @@
 
 # Shadow the normal qutebrowser command
 
-$RICE/qutebrowser-container $@
+qutebrowser-container $@
