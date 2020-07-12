@@ -1,9 +1,10 @@
 #!/bin/sh
+#
+export RICE=~/rice
 
 export PATH=$PATH:$HOME/bin:$HOME/.nimble/bin:$HOME/.cargo/bin
 export TERMINAL=kitty
 export EDITOR=kak
-export RICE=~/.configs
 export PKGEXT=".pkg.tar"
 
 export NORD_DARK0='#2e3440'

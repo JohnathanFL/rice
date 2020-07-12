@@ -38,7 +38,6 @@ input "1204:51:HID_04b4:0033" {
   pointer_accel -0.3
 }
 
-#output * bg ~/.configs/wall.png fill
 exec setwall
 
 output eDP-1 pos 1920 1080 res 1920x1080
