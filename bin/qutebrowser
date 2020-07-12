@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Shadow the normal qutebrowser command
+
+$RICE/qutebrowser-container $@

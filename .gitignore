@@ -1,7 +1,5 @@
 launcher.list
 launcher.list.tmp
-execs/
-parse_desktops
-kak/plugins/
+config/kak/plugins/
 .fzf-projects
-fish/fish_variables
+config/fish/fish_variables
