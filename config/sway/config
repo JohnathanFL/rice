@@ -75,7 +75,7 @@ bindsym {
   # LAUNCHER
   $mod+r exec $menu
   #SCREENSHOT
-  Print exec $RICE/screenshot.sh
+  Print exec screenshot.sh
   
   $mod+e exec thunar
 
@@ -84,8 +84,8 @@ bindsym {
   $mod+Shift+c reload
 
   # Choose between shutdown/reboot/suspend/quit sway
-  $mod+Shift+Escape exec $RICE/system_action.sh
-  $mod+Alt+Delete exec $RICE/swaylock.sh
+  $mod+Shift+Escape exec system_action.sh
+  $mod+Alt+Delete exec swaylock.sh
 
   # Brightness
   XF86MonBrightnessDown exec echo -- > /tmp/brightnessd.fifo
@@ -205,7 +205,7 @@ bar {
  pango_markup enabled
  font pango:VictorMono 11
 
- status_command $RICE/status_command.sh
+ status_command status_command.sh
  gaps 5 5
 
  colors {
@@ -219,7 +219,7 @@ bar {
 }
 
 
-#exec_always $RICE/launcher.sh
+#exec_always launcher.sh
 exec mako
 #exec waybar
 #exec mkfifo $SWAYSOCK.wob
