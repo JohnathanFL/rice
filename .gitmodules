@@ -1,12 +1,12 @@
 [submodule "themes/Qt-Creator-Darcula"]
 	path = themes/Qt-Creator-Darcula
 	url = https://github.com/mervick/Qt-Creator-Darcula
-[submodule "kitty/kitty-themes"]
-	path = config/kitty/kitty-themes
-	url = https://github.com/dexpota/kitty-themes
 [submodule "mpv-image-viewer"]
 	path = mpv-image-viewer
 	url = https://github.com/occivink/mpv-image-viewer
-[submodule "kak/plugins/plug.kak"]
+[submodule "config/kitty/kitty-themes"]
+	path = config/kitty/kitty-themes
+	url = https://github.com/dexpota/kitty-themes
+[submodule "config/kak/plugins/plug.kak"]
 	path = config/kak/plugins/plug.kak
 	url = https://github.com/andreyorst/plug.kak
