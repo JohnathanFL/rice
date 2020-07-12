@@ -17,7 +17,7 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
   set global indentwidth 2
   expandtab
 } config %{
-  hook global WinSetOption filetype=(json|python|ligi|rust|c|sql|cpp|kak|sh|zig|nim|java|javascript|css|html|php|plain|markdown|fish|go) expandtab
+  hook global WinSetOption filetype=(scss|json|python|ligi|rust|c|sql|cpp|kak|sh|zig|nim|java|javascript|css|html|php|plain|markdown|fish|go) expandtab
   hook global WinSetOption filetype=(makefile) noexpandtab
 
 

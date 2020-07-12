@@ -10,3 +10,9 @@
 [submodule "kitty/kitty-themes"]
 	path = kitty/kitty-themes
 	url = https://github.com/dexpota/kitty-themes
+[submodule "mpv-image-viewer"]
+	path = mpv-image-viewer
+	url = https://github.com/occivink/mpv-image-viewer
+[submodule "kak/plugins/plug.kak"]
+	path = kak/plugins/plug.kak
+	url = https://github.com/andreyorst/plug.kak
