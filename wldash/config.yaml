@@ -2,10 +2,10 @@
 outputMode: active
 scale: 1
 background:
-  red: 0.0
-  green: 0.0
-  blue: 0.0
-  opacity: 0.7
+  red: 0.15294117647059
+  green: 0.15686274509804
+  blue: 0.13333333333333
+  opacity: 1
 widget:
   margin:
     margins:
@@ -25,8 +25,10 @@ widget:
                 widget:
                   verticalLayout:
                     - date:
+                        font: ~
                         font_size: 64.0
                     - clock:
+                        font: ~
                         font_size: 256.0
             - verticalLayout:
                 - margin:
@@ -37,8 +39,9 @@ widget:
                       - 8
                     widget:
                       battery:
+                        font: ~
                         font_size: 24.0
-                        length: 600
+                        length: 0
                 - margin:
                     margins:
                       - 0
@@ -48,8 +51,9 @@ widget:
                     widget:
                       backlight:
                         device: intel_backlight
+                        font: ~
                         font_size: 24.0
-                        length: 600
+                        length: 0
                 - margin:
                     margins:
                       - 0
@@ -58,14 +62,21 @@ widget:
                       - 8
                     widget:
                       pulseAudio:
+                        font: ~
                         font_size: 24.0
-                        length: 600
+                        length: 0
         - calendar:
+            font_primary: ~
+            font_secondary: ~
             font_size: 16.0
-            sections: 2
+            sections: 3
         - launcher:
-            font_size: 24.0
-            length: 1200
+            font: ~
+            font_size: 32.0
+            length: 0
             app_opener: ""
-            term_opener: "kitty"
-            url_opener: "qutebrowser"
+            term_opener: ""
+            url_opener: ""
+fonts:
+  sans: sans
+  mono: mono
