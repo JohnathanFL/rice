@@ -30,7 +30,14 @@ ARGS=$@
 
 if [ "$(basename "$0")" = "qutebrowser-container" ]; then
   # The extra seds are so I have nice Pascal Case names to select from.
-  container=$(find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" | tail -n +2 | sed -e 's/\b\(.\)/\u\1/g'  | sort | bemenu.sh --prompt "Container:" | sed -e 's/\b\(.\)/\l\1/g')
+  container=$(
+    find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" |
+      tail -n +2 | # Ignore . and ..
+      sed -e 's/\b\(.\)/\u\1/g' |
+      sort |
+      bemenu.sh --prompt "Container:" |
+      sed -e 's/\b\(.\)/\l\1/g' # Lowercase it
+    ) 
 else
   container=$(basename "$0" | cut -d- -f2)
   mkdir -p "$HOME/.local/share/qutebrowser-containers/$container"
@@ -40,25 +47,49 @@ if [ -z "$container" ]; then
   exit
 fi
 
-url="$1"
+if [ -z "$1" ]; then
+  url="duckduckgo.com"
+else
+  url="$1"
+fi
+
 qbVersion='1.0.4'
 protoVersion=1
-ipcDir=$( [ -n "$container" ] && echo "$HOME/.local/share/qutebrowser-containers/$container/runtime" ||" ${XDG_RUNTIME_DIR}/qutebrowser" )
+if [ -n "$container" ]; then
+  ipcDir="$HOME/.local/share/qutebrowser-containers/$container/runtime"
+else
+  ipcDir="${XDG_RUNTIME_DIR}/qutebrowser"
+fi
+
 echo Checking "$ipcDir"
 ipcSocket="$(find "$ipcDir" -type s)"
 echo For IPC file "$ipcSocket"
 
 baseDir=$HOME/.local/share/qutebrowser-containers/$container
 
-if [ -n "$ipcSocket" ] && printf '{"args": ["%s"], "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n' "${url}" "${qbVersion}" "${protoVersion}" "${PWD}" | socat - UNIX-CONNECT:"${ipcSocket}" ; then
-  echo
-elif [ "$container" = private ]; then
+openUrl() {
+  printf \
+    '{"args": ["%s"], "target_arg": null, "version": "%s", "protocol_version": %d, "cwd": "%s"}\n'\
+    "${url}" "${qbVersion}" "${protoVersion}" "${PWD}" |
+      socat - UNIX-CONNECT:"${ipcSocket}"
+  return $?
+}
 
+if [ -n "$ipcSocket" ] && openUrl; then # we can (and did) open it in an existing window
+  exit
+elif [ "$container" = private ]; then # we need to make a new private instance
   # Extra insurance in case the system shut down without allowing the baseDir to be removed.
   rm -rf "${baseDir:?}/*"
 
   mkdir "$baseDir"
-  setsid sh -c "QUTE_CONTAINER=$container nohup $QUTE --basedir $baseDir --config-py $RICE/quteconfig.py $ARGS && rm -rf $baseDir/*"&
-else
-  QUTE_CONTAINER=$container setsid $QUTE --basedir "$baseDir" --config-py "$RICE/quteconfig.py" $ARGS &
+  setsid sh -c "
+    QUTE_CONTAINER=private nohup $QUTE \
+      --basedir $baseDir \
+      --config-py $RICE/quteconfig.py \
+      $ARGS \
+      >/dev/null \
+    && rm -rf $baseDir/*" &
+else # we need to make a new normal container
+  export QUTE_CONTAINER=$container
+  setsid $QUTE --basedir "$baseDir" --config-py "$RICE/quteconfig.py" $ARGS &
 fi
