@@ -2,9 +2,10 @@
 #
 export RICE=~/rice
 
-export PATH=$PATH:$HOME/bin:$HOME/.nimble/bin:$HOME/.cargo/bin
+export PATH=$HOME/bin:$HOME/.nimble/bin:$HOME/.cargo/bin:$PATH
 export TERMINAL=kitty
 export EDITOR=kak
+export BROWSER=qutebrowser
 export PKGEXT=".pkg.tar"
 
 export NORD_DARK0='#2e3440'
@@ -39,3 +40,36 @@ export MONOKAI_ORANGE='#FD971F'
 export MONOKAI_PURPLE='#ae81ff'
 export MONOKAI_YELLOW='#e6db74'
 
+
+set_wayland() {
+  if [ $1 = on ]; then
+  	export QT_QPA_PLATFORM=wayland
+  	export QT_WAYLAND_FORCE_DPI=logical
+  	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  	export GDK_BACKEND=wayland
+  	export SDL_VIDEODRIVER=wayland
+  	export _JAVA_AWT_WM_NONREPARENTING=1
+  	export XDG_SESSION_TYPE=wayland
+  	echo "Wayland enabled"
+  else
+  	export QT_QPA_PLATFORM=xcb
+  	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  	export GDK_BACKEND=x11
+  	export SDL_VIDEODRIVER=x11
+  	export XDG_SESSION_TYPE=x11
+  	echo "Wayland disabled"
+  fi
+}
+
+sway() {
+  set_wayland on
+  command sway
+}
+hikari() {
+  set_wayland on
+  command hikari
+}
+startx() {
+  set_wayland off
+  command startx
+}
