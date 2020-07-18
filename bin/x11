@@ -1,0 +1,5 @@
+#!/bin/sh
+. ~/.dashrc
+
+set_wayland off
+setsid $@
