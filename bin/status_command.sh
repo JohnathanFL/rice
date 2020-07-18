@@ -83,8 +83,8 @@ trap 'get_status' USR1
 #export -f get_status
 #watch -c -t -n1 get_status
 while true; do
-  sleep 1&
-  wait
   get_status
+  sleep 1& #& so we can still get the traps
+  wait
 done
   
