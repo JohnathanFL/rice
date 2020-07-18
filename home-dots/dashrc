@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set_wayland() {
+  if [ $1 = on ]; then
+  	export QT_QPA_PLATFORM=wayland
+  	export QT_WAYLAND_FORCE_DPI=logical
+  	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  	export GDK_BACKEND=wayland
+  	export SDL_VIDEODRIVER=wayland
+  	export _JAVA_AWT_WM_NONREPARENTING=1
+  	export XDG_SESSION_TYPE=wayland
+  	echo "Wayland enabled"
+  else
+  	export QT_QPA_PLATFORM=xcb
+  	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  	export GDK_BACKEND=x11
+  	export SDL_VIDEODRIVER=x11
+  	export XDG_SESSION_TYPE=x11
+  	echo "Wayland disabled"
+  fi
+}
+
+sway() {
+  set_wayland on
+  command sway
+  pkill status_command.sh
+}
+hikari() {
+  set_wayland on
+  command hikari
+  pkill status_command.sh
+}
+startx() {
+  set_wayland off
+  command startx
+  pkill status_command.sh
+}
