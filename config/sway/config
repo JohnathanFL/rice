@@ -3,11 +3,11 @@
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Your preferred terminal emulator
-set $term kitty fish
+set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu pkill -usr1 volund #$RICE/launcher.sh
-set $menu wldash
+set $menu launcher.sh
 
 #       <border>  <background> <text>  <indicator> <child_border>
 client.focused     #F92672 #00000000  #FFFFFFFF #80808080   #F92672
@@ -203,7 +203,7 @@ bar {
  strip_workspace_numbers yes
 
  pango_markup enabled
- font pango:VictorMono 11
+ font pango:IosevkaTerm 13
 
  status_command status_command.sh
  gaps 5 5
