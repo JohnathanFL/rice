@@ -9,7 +9,7 @@ get_status() {
   ################
 
   # Date and time
-  date_and_week=$(date "+%Y/%m/%d (w%-V)")
+  date_and_week=$(date "+%a %Y/%m/%d (w%-V)")
   current_time="$(date '+%H:%M') $thingy"
   if [ "$thingy" = "-" ]; then
     thingy="|"
