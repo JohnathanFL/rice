@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+export SVDIR=~/runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
 
