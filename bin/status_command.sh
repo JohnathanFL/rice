@@ -27,8 +27,8 @@ get_status() {
     battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
   fi
   # Audio and multimedia
-  audio_volume=$(amixer get Master | xargs | cut -d[ -f2 | cut -d] -f1 | xargs)
-  audio_is_muted=$(amixer get Master | xargs | cut -d[ -f3 | cut -d] -f1)
+  audio_volume=$(amixer get Master | xargs | cut -d[ -f3 | cut -d] -f1 | xargs)
+  audio_is_muted=$(amixer get Master | xargs | cut -d[ -f4 | cut -d] -f1)
   IFS="
 "
   audioInfo="$(mpc)"
