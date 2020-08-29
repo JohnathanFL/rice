@@ -97,8 +97,8 @@ bindsym {
   XF86AudioMute exec amixer set Master toggle && kickbar
 
   # Granular audio
-  Shift+XF86AudioRaiseVolume exec amixer set Master 1%+ && kickbar
-  Shift+XF86AudioLowerVolume exec amixer set Master 1%- && kickbar
+  Shift+XF86AudioRaiseVolume exec amixer set Master 1dB+ && kickbar
+  Shift+XF86AudioLowerVolume exec amixer set Master 1dB- && kickbar
 
   XF86AudioPlay exec mpc toggle && kickbar
   XF86AudioPrev exec mpc prev && kickbar
