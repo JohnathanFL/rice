@@ -1,8 +1,29 @@
 pcm.!default {
+  # This is here so e.g apulse can auto convert as needed
+  type plug
+  slave.pcm "realdefault"
+}
+
+pcm.realdefault {
   type asym
   playback.pcm "softvoler"
+  # capture.pcm "rnnoised"
   capture.pcm "dsnooper"
 }
+
+# pcm.rnnoised {
+#   type ladspa
+#   slave.pcm "dsnooper"
+#   path "/usr/lib/ladspa/"
+#   capture_plugins [
+#     {
+#       label "noise_suppressor_mono"
+#       # inputs {
+#       #   control 50
+#       # }
+#     }
+#   ]
+# }
 
 pcm.dsnooper {
   type dsnoop

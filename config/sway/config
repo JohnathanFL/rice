@@ -95,13 +95,13 @@ bindsym {
   XF86MonBrightnessUp exec echo + > /tmp/brightnessd.fifo
 
   # Audio
-  XF86AudioRaiseVolume exec amixer set Master 5dB+ && kickbar
-  XF86AudioLowerVolume exec amixer set Master 5dB- && kickbar
-  XF86AudioMute exec amixer set Master toggle && kickbar
+  XF86AudioRaiseVolume exec amixer set Soft 5dB+ && kickbar
+  XF86AudioLowerVolume exec amixer set Soft 5dB- && kickbar
+  XF86AudioMute exec amixer set Soft toggle && kickbar
 
   # Granular audio
-  Shift+XF86AudioRaiseVolume exec amixer set Master 1dB+ && kickbar
-  Shift+XF86AudioLowerVolume exec amixer set Master 1dB- && kickbar
+  Shift+XF86AudioRaiseVolume exec amixer set Soft 1dB+ && kickbar
+  Shift+XF86AudioLowerVolume exec amixer set Soft 1dB- && kickbar
 
   XF86AudioPlay exec mpc toggle && kickbar
   XF86AudioPrev exec mpc prev && kickbar
