@@ -1,0 +1,45 @@
+pcm.!default {
+  type asym
+  playback.pcm "softvoler"
+  capture.pcm "dsnooper"
+}
+
+pcm.dsnooper {
+  type dsnoop
+  ipc_key 1025
+  slave {
+    pcm "mobo"
+  }
+}
+
+pcm.softvoler {
+  type softvol
+  slave.pcm "dmixer"
+  control {
+    name "Soft Playback Volume"
+    card 0
+  }
+}
+
+pcm.dmixer {
+  type dmix
+  ipc_key 1024
+  
+  slave {
+    pcm "mobo"
+    rate 44100
+    period_time 0
+    period_size 1024
+    buffer_size 4096
+  }
+  bindings {
+    0 0
+    1 1
+  }
+}
+
+pcm.mobo {
+  type hw
+  card 0
+  device 0
+}
