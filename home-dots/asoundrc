@@ -7,23 +7,28 @@ pcm.!default {
 pcm.realdefault {
   type asym
   playback.pcm "softvoler"
-  # capture.pcm "rnnoised"
-  capture.pcm "dsnooper"
+  # capture.pcm "ladspad"
+  capture.pcm "dsnooper_plug"
 }
 
-# pcm.rnnoised {
-#   type ladspa
-#   slave.pcm "dsnooper"
-#   path "/usr/lib/ladspa/"
-#   capture_plugins [
-#     {
-#       label "noise_suppressor_mono"
-#       # inputs {
-#       #   control 50
-#       # }
-#     }
-#   ]
-# }
+pcm.ladspad {
+  type ladspa
+  slave.pcm "dsnooper_plug"
+  path "/usr/lib/ladspa/"
+  capture_plugins [
+    {
+      label "noise_suppressor_mono"
+      input {
+        control 70
+      }
+    }
+  ]
+}
+
+pcm.dsnooper_plug {
+  type plug
+  slave.pcm "dsnooper"
+}
 
 pcm.dsnooper {
   type dsnoop
@@ -64,3 +69,24 @@ pcm.mobo {
   card 0
   device 0
 }
+
+# TODO
+pcm.bt {
+  type plug
+  slave {
+    pcm {
+      type bluealsa
+      device 40:EF:4C:FA:03:FF
+      profile "a2dp"
+    }
+  }
+  hint {
+    show on
+    description "Bluetooth"
+  }
+}
+
+defaults.bluealsa.service "org.bluealsa"
+defaults.bluealsa.device "40:EF:4C:FA:03:FF"
+defaults.bluealsa.profile "a2dp"
+defaults.bluealsa.delay 10000
