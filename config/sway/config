@@ -91,19 +91,22 @@ bindsym {
   $mod+Alt+Delete exec swaylock.sh
 
   # Brightness
-  XF86MonBrightnessDown exec echo -- > /tmp/brightnessd.fifo
-  XF86MonBrightnessUp exec echo + > /tmp/brightnessd.fifo
+  # TODO: Rewrite this stuff to use a proper brightnessd
+  # XF86MonBrightnessDown exec echo -- > /tmp/brightnessd.fifo
+  # XF86MonBrightnessUp exec echo + > /tmp/brightnessd.fifo
 
   # Audio
-  XF86AudioRaiseVolume exec amixer set Soft 5dB+ && kickbar
-  XF86AudioLowerVolume exec amixer set Soft 5dB- && kickbar
-  XF86AudioMute exec amixer set Soft toggle && kickbar
+  XF86AudioRaiseVolume exec vol ++ && kickbar
+  XF86AudioLowerVolume exec vol -- && kickbar
+  # TODO: Not yet supported in my `vol` program
+  XF86AudioMute exec vol _ && kickbar
 
   # Granular audio
-  Shift+XF86AudioRaiseVolume exec amixer set Soft 1dB+ && kickbar
-  Shift+XF86AudioLowerVolume exec amixer set Soft 1dB- && kickbar
+  Shift+XF86AudioRaiseVolume exec vol + && kickbar
+  Shift+XF86AudioLowerVolume exec vol - && kickbar
 
   XF86AudioPlay exec mpc toggle && kickbar
+
   XF86AudioPrev exec mpc prev && kickbar
   XF86AudioNext exec mpc next && kickbar
 }
@@ -193,7 +196,7 @@ bar {
  pango_markup enabled
  font pango:IosevkaTerm 13
 
- status_command status_command.sh
+ status_command exec status_command # Well that was unfortunate naming
  gaps 5 5
 
  colors {

@@ -88,7 +88,7 @@ def getVol (as=:dB)
         return "𝄼"
       else
         val = minDB + (val * step)
-        return "𝅘𝅥𝅮#{val}dB"
+        return "𝅘𝅥𝅮 #{val}dB"
       end
   end
 end
