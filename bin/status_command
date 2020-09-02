@@ -34,6 +34,20 @@ class MPDMod < StatusMod
     @mpd.connect
     @mpd.on :state do update end
     @mpd.on :song do update end
+    # Not terribly elegant, but it handles restarting the connection
+    @mpd.on :connection do |conn|
+      if !conn
+        while true
+          begin
+          sleep 1
+            @mpd.reconnect
+            break
+          rescue
+            retry
+          end
+        end
+      end
+    end
   end
   def cleanup
     @mpd.disconnect
