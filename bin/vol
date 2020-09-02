@@ -1,0 +1,111 @@
+#!/bin/env ruby
+
+# What control are we messing with? Assume there's also a
+# "#{Sink} Playback Volume" control for amixer's cget
+Sink = "Soft"
+# Stores the pre-mute volume
+CacheFile = File.expand_path "~/.cache/premutevol"
+
+
+bigAmt = "5dB" # ++ and --
+smallAmt = "1dB" # + and -
+
+# Move the volume an amt in a direction
+def mvVol (dir, amt)
+  if dir == :add
+    `amixer set #{Sink} #{amt}+`
+  elsif dir == :sub
+    `amixer set #{Sink} #{amt}-`
+  end
+end
+
+# Set to a direct volume
+def setVol (new)
+  `amixer set #{Sink} #{new}`
+end
+
+
+# Toggle muteness, storing the pre-mute volume in CacheFile
+# Since softvol doesn't support "muting" things, we'll implement our own
+def muteVol
+  if muted?
+    setVol File.open(CacheFile) { |f|
+      f.read
+    }
+    File.delete(CacheFile)
+  else
+    file = File.new(CacheFile, "w")
+    file.write(getVol(:raw))
+    file.close
+    setVol 0
+  end
+end
+
+# Are we muted right now?
+def muted?
+  return File.file? CacheFile
+end
+
+# Get the current volume
+# as={:dB, :raw, :pretty}. :pretty takes muteness into account. Thus,
+# `getVol :dB` will return -51dB (or similar) when "mute"
+def getVol (as=:dB) 
+  out = `amixer cget name="#{Sink} Playback Volume"`
+
+  # Stuff we're pulling out
+  val = nil
+  min = nil
+  max = nil
+  minDB = nil
+  step = nil
+
+  # Get the val
+  # We assume we only care about the left channel
+  if /: values=(\d+).+?$/ =~ out
+    val = $1.to_i
+  end
+  if /dBscale-min=(.+?)dB,/ =~ out
+    minDB = $1.to_f
+  end
+  if /step=(.+?)dB,/ =~ out
+    step = $1.to_f
+  end
+  if /min=(\d+),/ =~ out
+    min = $1.to_f
+  end
+  if /max=(\d+),/ =~ out
+    max = $1.to_f
+  end
+
+  case as
+    when :dB
+      val = minDB + (val * step)
+      return val
+    when :raw
+      return val
+    when :pretty
+      if muted?
+        return "𝄼"
+      else
+        val = minDB + (val * step)
+        return "𝅘𝅥𝅮#{val}dB"
+      end
+  end
+end
+
+ARGV.each do |a|
+  case a
+    when "+"
+      mvVol :add, smallAmt
+    when "++"
+      mvVol :add, bigAmt
+    when "-"
+      mvVol :sub, smallAmt
+    when "--"
+      mvVol :sub, bigAmt
+    when "_"
+      muteVol
+    when "?"
+      puts getVol :pretty
+  end
+end

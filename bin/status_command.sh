@@ -27,8 +27,7 @@ get_status() {
     battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
   fi
   # Audio and multimedia
-  audio_volume=$(amixer get Soft | xargs | cut -d[ -f3 | cut -d] -f1 | xargs)
-  audio_is_muted=$(amixer get Soft | xargs | cut -d[ -f4 | cut -d] -f1)
+  audio_volume=$(vol \?)
   IFS="
 "
   audioInfo="$(mpc)"
@@ -61,19 +60,13 @@ get_status() {
     song_status='⏹'
   fi
 
-  if [ "$audio_is_muted" = "off" ]; then
-    audio_active='𝄻'
-  else
-    audio_active='𝅘𝅥𝅮'
-  fi
-
   if [ $(cat /etc/hostname) = "LUAN" ]; then
     batteryInfo="$battery_pluggedin $battery_charge |"
   else
     batteryInfo=""
   fi
 
-  echo "$([ $song_status = '⏹' ] && echo ⏹   || echo $song_status $songName) | $network_active $ip - $network | $audio_active $audio_volume | $batteryInfo $date_and_week  $current_time"
+  echo "$([ $song_status = '⏹' ] && echo ⏹   || echo $song_status $songName) | $network_active $ip - $network | $audio_volume | $batteryInfo $date_and_week  $current_time"
 }
 
 trap 'get_status' USR1
