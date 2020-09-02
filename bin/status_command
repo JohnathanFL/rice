@@ -1,8 +1,14 @@
 #!/bin/env ruby
 
+PID_FILE = "/tmp/status_command.pid"
+pidFile = File.new(PID_FILE, "w")
+pidFile.write Process.pid
+pidFile.close
+
 $modules = []
 $barFlag = true
 def update
+  # puts caller
   print $modules
     .map { |m| m.render }
     .join(" | ")
@@ -32,15 +38,23 @@ class MPDMod < StatusMod
   def initialize
     @mpd = MPD.new 'localhost', 6600, {callbacks: true}
     @mpd.connect
-    @mpd.on :state do update end
-    @mpd.on :song do update end
+    @mpd.on :state do
+      update
+    end
+    # Note: on :song will be a constant stream of events, I'm guessing because of pointer
+    # comparisons?
+    @mpd.on :songid do
+      update
+    end
     # Not terribly elegant, but it handles restarting the connection
     @mpd.on :connection do |conn|
       if !conn
         while true
           begin
-          sleep 1
+            sleep 1
+            # puts "HERE"
             @mpd.reconnect
+            update
             break
           rescue
             retry
@@ -83,6 +97,12 @@ end
 # TODO: At this point, let's just write our own alsa control library
 # For now, we depend on the vol ruby script
 class AlsaMod < StatusMod
+  # TODO
+  # require "ffi"
+  # module AlsaLib
+  #   extend FFI::Library
+  #   ffi_lib 'asound'
+  # end
   load File.expand_path(File.dirname(__FILE__) + '/vol')
   def render
     return getVol :pretty
@@ -116,6 +136,14 @@ $modules = [
   DateMod.new,
 ]
 
+Signal.trap "USR1" do
+  Thread.new { update } # Can't do it directly in a handler
+end
+
+Signal.trap "TERM" do
+  File.delete(PID_FILE) rescue nil
+end
+
 update
 
 while true
@@ -126,3 +154,5 @@ end
 for mod in $modules
   mod.cleanup
 end
+
+File.delete(PID_FILE) rescue nil
