@@ -9,6 +9,7 @@ plug "andreyorst/powerline.kak" defer powerline %{
   powerline-start
 }
 plug "Delapouite/kakoune-buffers"
+plug "alexherbo2/prelude.kak"
 plug "alexherbo2/auto-pairs.kak"
 plug "Delapouite/kakoune-livedown"
 plug "andreyorst/smarttab.kak" defer smarttab  %{
@@ -26,7 +27,6 @@ plug "andreyorst/fzf.kak" config %{
   require-module kitty
   set-option global kitty_window_type 'os'
 } defer fzf %{
-  set-option global fzf_terminal_command 'kitty-terminal  kak -c %val{session} -e "%arg{@}"'
 }
 plug "danr/kakoune-easymotion" config %{
   map global normal ^ f

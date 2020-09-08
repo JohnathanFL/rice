@@ -1,0 +1,92 @@
+pcm.!default {
+  # This is here so e.g apulse can auto convert as needed
+  type plug
+  slave.pcm "realdefault"
+}
+
+pcm.realdefault {
+  type asym
+  playback.pcm "softvoler"
+  # capture.pcm "ladspad"
+  capture.pcm "dsnooper_plug"
+}
+
+pcm.ladspad {
+  type ladspa
+  slave.pcm "dsnooper_plug"
+  path "/usr/lib/ladspa/"
+  capture_plugins [
+    {
+      label "noise_suppressor_mono"
+      input {
+        control 70
+      }
+    }
+  ]
+}
+
+pcm.dsnooper_plug {
+  type plug
+  slave.pcm "dsnooper"
+}
+
+pcm.dsnooper {
+  type dsnoop
+  ipc_key 1025
+  slave {
+    pcm "mobo"
+  }
+}
+
+pcm.softvoler {
+  type softvol
+  slave.pcm "dmixer"
+  control {
+    name "Soft Playback Volume"
+    card 0
+  }
+}
+
+pcm.dmixer {
+  type dmix
+  ipc_key 1024
+  
+  slave {
+    pcm "mobo"
+    rate 44100
+    period_time 0
+    period_size 1024
+    buffer_size 4096
+  }
+  bindings {
+    0 0
+    1 1
+  }
+}
+
+pcm.mobo {
+  type hw
+  card 0
+  device 0
+}
+
+# TODO
+pcm.bt {
+  type plug
+  slave {
+    pcm {
+      type bluealsa
+      device 40:EF:4C:FA:03:FF
+      profile "a2dp"
+    }
+  }
+  hint {
+    show on
+    description "Bluetooth"
+  }
+}
+
+defaults.bluealsa.service "org.bluealsa"
+defaults.bluealsa.device "40:EF:4C:FA:03:FF"
+defaults.bluealsa.profile "a2dp"
+defaults.bluealsa.delay 10000

@@ -1,13 +1,44 @@
 #!/bin/sh
 #
+export SVDIR=~/runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
 
-export PATH=$HOME/bin:$HOME/.nimble/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH
+setPath() {
+  PATH=""
+  while ! [ -z "$1" ]; do
+    # echo "Adding $1 to the path"
+    export PATH=$1:$PATH
+    shift
+  done
+  # Clean duplicates, using a hash map/hash count-set to keep track
+  export PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
+}
+
+# Those found later in the series override those earlier in the series
+setPath                     \
+  $HOME/.nimble/bin         \
+  $HOME/.cargo/bin          \
+  $HOME/.gem/ruby/2.7.0/bin \
+  $HOME/dotnet/             \
+  /bin/                     \
+  /usr/bin/                 \
+  /usr/local/bin/           \
+  $HOME/bin                 \
+
+
 export TERMINAL=kitty
 export EDITOR=kak
 export BROWSER=qutebrowser
 export PKGEXT=".pkg.tar"
+
+# Donet core stuff
+export CLR_OPENSSL_VERSION_OVERRIDE=47 # Fix to get it working on void
+export DOTNET_ROOT=~/dotnet/
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+
+# All the rest is nothing but theme colors
 
 export NORD_DARK0='#2e3440'
 export NORD_DARK1='#3b4252'
