@@ -3,6 +3,7 @@
 # $TERMINAL is set by environment
 # Logo key
 set $mod Mod4
+set $term $TERMINAL
 
 set $menu launcher.sh
 
@@ -68,7 +69,7 @@ floating_modifier $mod normal
 # App control
 bindsym {
   # TERMINAL
-  $mod+grave exec $TERMINAL
+  $mod+grave exec $term
   # LAUNCHER
   $mod+r exec $menu
   # PICK BROWSER
@@ -129,6 +130,8 @@ bindsym {
   $mod+W focus up
   $mod+D focus right
   $mod+A focus left
+
+  $mod+P focus parent
 
   # ditto, with arrow keys
   $mod+Shift+A move left
