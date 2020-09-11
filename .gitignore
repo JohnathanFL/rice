@@ -3,3 +3,4 @@ launcher.list.tmp
 config/kak/plugins/
 .fzf-projects
 config/fish/fish_variables
+config/status_command/mods-enabled/

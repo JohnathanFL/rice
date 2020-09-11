@@ -93,8 +93,8 @@ bindsym {
 
   # Brightness
   # TODO: Rewrite this stuff to use a proper brightnessd
-  # XF86MonBrightnessDown exec echo -- > /tmp/brightnessd.fifo
-  # XF86MonBrightnessUp exec echo + > /tmp/brightnessd.fifo
+  XF86MonBrightnessDown exec brillo -U 10
+  XF86MonBrightnessUp exec brillo -A 10
 
   # Audio
   XF86AudioRaiseVolume exec vol ++ && kickbar

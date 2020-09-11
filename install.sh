@@ -21,6 +21,8 @@ ensureDir() {
 }
 
 # install() is to be preferred, as it should be a little safer
+# Really just a thin wrapper over ensureDir that ensures $2's dirname exists,
+# then links $1 as $2
 installAs() {
   srcFilename="$(basename "$1")"
   destDir="$(dirname "$2")"
@@ -32,6 +34,7 @@ installAs() {
   fi
 }
 
+# `install a/b/c d/` creates `d/b/c`, where b is a dir and `d/b/c` points to `a/b/c`
 install() {
   filename="$(basename "$1")"
   printf "  Installing %-22s to %s\n" "$filename" "$2"

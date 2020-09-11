@@ -1,12 +1,30 @@
 #!/bin/env ruby
 
+require "listen"
+
+
+$modules = [] # Holds instances of all status modules
+$barFlag = true # Handles the |-|-| animation on the right
+
+# All status modules should conform to the following protocol
+class StatusMod
+  # Called once at module load (startup)
+  def initialize
+  end
+  # Called once at module unload (shutdown)
+  def cleanup
+  end
+  # Returns the current string that should be displayed for the module
+  def render
+    print "EMPTY"
+  end
+end
+
 PID_FILE = "/tmp/status_command.pid"
 pidFile = File.new(PID_FILE, "w")
 pidFile.write Process.pid
 pidFile.close
 
-$modules = []
-$barFlag = true
 def update
   # puts caller
   print $modules
@@ -23,118 +41,36 @@ def update
   
 end
 
-class StatusMod
-  def initialize
-  end
-  def cleanup
-  end
-  def render
-    print "EMPTY"
+def classname(str)
+  modname = str[str.index('-')+1..str.length]
+  modname = modname[0..modname.index('.')-1]
+end
+
+ModDir = File.expand_path("~/.config/status_command/mods-enabled")
+def refresh_mods
+  $modules.clear()
+  Dir.chdir(ModDir)
+  mods = Dir.glob('*')
+    .select { |f|
+      # puts "Checking #{f}"
+      not File.directory?(f)
+    }
+    # Now we sort the list lexographically (based off the /\d+/ portion)
+    .sort()
+  for mod in mods do
+    modname = classname mod
+    puts "Loading #{modname}"
+    load mod # The module is responsible for adding to $modules
+    $modules.append Object.const_get(modname).new
   end
 end
 
-class MPDMod < StatusMod
-  require "ruby-mpd"
-  def initialize
-    @mpd = MPD.new 'localhost', 6600, {callbacks: true}
-    @mpd.connect
-    @mpd.on :state do
-      update
-    end
-    # Note: on :song will be a constant stream of events, I'm guessing because of pointer
-    # comparisons?
-    @mpd.on :songid do
-      update
-    end
-    # Not terribly elegant, but it handles restarting the connection
-    @mpd.on :connection do |conn|
-      if !conn
-        while true
-          begin
-            sleep 1
-            # puts "HERE"
-            @mpd.reconnect
-            update
-            break
-          rescue
-            retry
-          end
-        end
-      end
-    end
-  end
-  def cleanup
-    @mpd.disconnect
-  end
-  def render
-    status = @mpd.status
-    case status[:state]
-      when :stop
-        return "⏹"
-      when :play, :pause
-        cur = @mpd.current_song
-        icon = case status[:state]
-          when :play
-            "▶"
-          when :pause
-            "⏸"
-        end
-        return "#{icon} #{cur.artist} - #{cur.title}"
-    end
+def cleanups
+  for mod in $modules
+    mod.cleanup rescue nil
   end
 end
 
-class NetworkMod < StatusMod
-  def render
-    # TODO: Make this a proper, Ruby-calling interface, rather than falling back to shell
-    route = `ip route get 1.1.1.1`
-    ip = route[/src .+/][/\d+\.\d+\.\d+\.\d+/]
-    dev = route[/dev \w+/].split(" ")[1]
-    return "⇆ #{ip} - #{dev}"
-  end
-end
-
-# TODO: At this point, let's just write our own alsa control library
-# For now, we depend on the vol ruby script
-class AlsaMod < StatusMod
-  # TODO
-  # require "ffi"
-  # module AlsaLib
-  #   extend FFI::Library
-  #   ffi_lib 'asound'
-  # end
-  load File.expand_path(File.dirname(__FILE__) + '/vol')
-  def render
-    return getVol :pretty
-  end
-end
-
-class DateMod < StatusMod
-  # require "process"
-  def initialize
-    # Make sure we wake up once a minute to update the clock
-    @sleeper = Thread.new do
-      while true
-        # > 60 to make sure we're in the new minute
-        remSecs = 61 - Time.new.sec
-        sleep remSecs
-        update
-      end
-    end
-  end
-  def render
-    time = Time.new
-    return time.strftime "%a %Y/%m/%d (w%W)  %H:%M"
-  end
-end
-
-
-$modules = [
-  MPDMod.new,
-  NetworkMod.new,
-  AlsaMod.new,
-  DateMod.new,
-]
 
 Signal.trap "USR1" do
   Thread.new { update } # Can't do it directly in a handler
@@ -144,15 +80,18 @@ Signal.trap "TERM" do
   File.delete(PID_FILE) rescue nil
 end
 
+# TODO
+listener = Listen.to(ModDir) do |modded, added, deleted|
+  cleanups
+  refresh_mods
+end
+
+
+refresh_mods
+
+# We're further updated by callbacks from various modules (or signals)
 update
-
-while true
-  # We're further updated by callbacks from various modules (or signals)
-  sleep 900
-end
-
-for mod in $modules
-  mod.cleanup
-end
+sleep
+cleanups
 
 File.delete(PID_FILE) rescue nil
