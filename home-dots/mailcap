@@ -1,0 +1,5 @@
+text/*; qutebrowser %s
+text/html; qutebrowser %s
+video/*; mpv --keep-open=always %s
+image/*; mvi %s
+#mpv %s --keep-open=always
