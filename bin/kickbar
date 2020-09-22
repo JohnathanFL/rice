@@ -1,2 +1,2 @@
 #!/bin/sh
-kill -usr1 $(cat /tmp/status_command.pid)
+exec pkill -usr1 status_command

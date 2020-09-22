@@ -1,6 +1,8 @@
 #!/bin/env ruby
 
-require "listen"
+$0 = "status_command"
+
+# require "listen"
 
 
 $modules = [] # Holds instances of all status modules
@@ -81,10 +83,10 @@ Signal.trap "TERM" do
 end
 
 # TODO
-listener = Listen.to(ModDir) do |modded, added, deleted|
-  cleanups
-  refresh_mods
-end
+# listener = Listen.to(ModDir) do |modded, added, deleted|
+#   cleanups
+#   refresh_mods
+# end
 
 
 refresh_mods
