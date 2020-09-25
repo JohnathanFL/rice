@@ -1,40 +1,30 @@
 pcm.!default {
   # This is here so e.g apulse can auto convert as needed
   type plug
-  slave.pcm "realdefault"
+  slave.pcm {
+    type asym
+    # playback.pcm "equaler" # Doesn't currently work with Firefox
+    playback.pcm "softvoler"
+
+    # capture.pcm "ladspad"
+    capture.pcm "dsnooper_plug"
+  }
 }
 
-pcm.realdefault {
-  type asym
-  playback.pcm "softvoler"
-  # capture.pcm "ladspad"
-  capture.pcm "dsnooper_plug"
-}
+# Playback
+# equalize -> softvol -> dmixer -> out
 
-pcm.ladspad {
-  type ladspa
-  slave.pcm "dsnooper_plug"
-  path "/usr/lib/ladspa/"
-  capture_plugins [
-    {
-      label "noise_suppressor_mono"
-      input {
-        control 70
-      }
-    }
-  ]
+ctl.equaler {
+  type equal
+  library "/usr/lib/ladspa/caps.so"
 }
-
-pcm.dsnooper_plug {
-  type plug
-  slave.pcm "dsnooper"
-}
-
-pcm.dsnooper {
-  type dsnoop
-  ipc_key 1025
-  slave {
-    pcm "mobo"
+pcm.equaler {
+  type equal
+  library "/usr/lib/ladspa/caps.so"
+  
+  slave.pcm {
+    type plug
+    slave.pcm "softvoler"
   }
 }
 
@@ -61,6 +51,36 @@ pcm.dmixer {
   bindings {
     0 0
     1 1
+  }
+}
+
+# WIP: Mic
+# ladspa(noise suppression) <- dsnooper <- in
+
+pcm.ladspaer {
+  type ladspa
+  slave.pcm "dsnooper_plug"
+  path "/usr/lib/ladspa/"
+  capture_plugins [
+    {
+      label "noise_suppressor_mono"
+      input {
+        control 70
+      }
+    }
+  ]
+}
+
+pcm.dsnooper_plug {
+  type plug
+  slave.pcm "dsnooper"
+}
+
+pcm.dsnooper {
+  type dsnoop
+  ipc_key 1025
+  slave {
+    pcm "mobo"
   }
 }
 
