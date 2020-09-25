@@ -8,7 +8,7 @@ set $term $TERMINAL
 set $menu launcher.sh
 
 #                             <border>  <background>     <text>  <indicator> <child_border>
-         client.focused        #F92672     #00000000  #FFFFFFFF    #80808080        #F92672
+         client.focused        #8ae9fc     #00000000  #FFFFFFFF    #80808080        #8ae9fc
        client.unfocused      #00000000     #00000000  #FFFFFFFF    #80808080      #80808080
 client.focused_inactive      #00000000     #00000000  #FFFFFFFF    #80808080      #80808080
 
