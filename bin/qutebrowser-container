@@ -85,11 +85,11 @@ elif [ "$container" = private ]; then # we need to make a new private instance
   setsid sh -c "
     QUTE_CONTAINER=private nohup $QUTE \
       --basedir $baseDir \
-      --config-py $RICE/quteconfig.py \
+      --config-py ~/.config/qutebrowser/config.py \
       $ARGS \
       >/dev/null \
     && rm -rf $baseDir/*" &
 else # we need to make a new normal container
   export QUTE_CONTAINER=$container
-  setsid $QUTE --basedir "$baseDir" --config-py "$RICE/quteconfig.py" $ARGS &
+  setsid $QUTE --basedir "$baseDir" --config-py ~/.config/qutebrowser/config.py $ARGS &
 fi

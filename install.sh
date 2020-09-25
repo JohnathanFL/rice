@@ -76,7 +76,4 @@ for file in $RICE/config/* ; do
   install "$file" ~/.config
 done
 
-installAs $RICE/quteconfig.py         ~/.config/qutebrowser/config.py
-
-
 echo "/etc/issue requires manual installation"

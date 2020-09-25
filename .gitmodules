@@ -10,3 +10,6 @@
 [submodule "config/kak/plugins/plug.kak"]
 	path = config/kak/plugins/plug.kak
 	url = https://github.com/andreyorst/plug.kak
+[submodule "config/qutebrowser/dracula"]
+	path = config/qutebrowser/dracula
+	url = https://github.com/dracula/qutebrowser-dracula-theme.git

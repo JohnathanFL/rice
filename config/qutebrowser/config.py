@@ -1,5 +1,6 @@
 import os
 
+RICE = os.environ['RICE']
 c.downloads.location.directory = "~/Downloads/"
 
 c.tabs.position = "left"
@@ -46,7 +47,14 @@ for key, bind in bindings.items():
 
 
 # THEME
-config.source(os.environ['RICE'] + '/themes/monokai-qutebrowser.py')
+# config.source(RICE + '/themes/monokai-qutebrowser.py')
+import dracula.draw
+dracula.draw.blood(c, {
+    'spacing': {
+        'vertical': 6,
+        'horizontal': 8,
+    }
+})
 
 # Use a different color for work container to give visual distinction
 if "QUTE_CONTAINER" not in os.environ or os.environ['QUTE_CONTAINER'] == "facebook":
