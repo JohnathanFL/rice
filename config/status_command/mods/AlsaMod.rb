@@ -7,7 +7,7 @@ class AlsaMod < StatusMod
   #   extend FFI::Library
   #   ffi_lib 'asound'
   # end
-  load File.expand_path(File.dirname(__FILE__) + '/vol')
+  load File.expand_path('~/bin/vol')
   def render
     return getVol :pretty
   end
