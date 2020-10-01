@@ -3,18 +3,18 @@
 
 # MONOKAI THEME
 font="Victor mono 10"
-titleBg=$MONOKAI_RED
-titleFg=$MONOKAI_WHITE
-filterBg=$MONOKAI_BLACK
-filterFg=$MONOKAI_WHITE
-normalBg=$MONOKAI_BLACK
-normalFg=$MONOKAI_WHITE
-highlightBg=$MONOKAI_RED
-highlightFg=$MONOKAI_WHITE
-selectedBg=$MONOKAI_BLUE
-selectedFg=$MONOKAI_BLUE
-scrollbarBg=$MONOKAI_PURPLE
-scrollbarFg=$MONOKAI_WHITE
+titleBg=$DRACULA_RED
+titleFg=$DRACULA_WHITE
+filterBg="#282a36"
+filterFg=$DRACULA_WHITE
+normalBg='#282a36'
+normalFg=$DRACULA_WHITE
+highlightBg=$DRACULA_RED
+highlightFg=$DRACULA_WHITE
+selectedBg=$DRACULA_BLUE
+selectedFg=$DRACULA_BLUE
+scrollbarBg=$DRACULA_PURPLE
+scrollbarFg=$DRACULA_WHITE
 
 bemenu -b \
   -m -1 \
