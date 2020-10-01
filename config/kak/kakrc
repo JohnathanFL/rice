@@ -11,6 +11,8 @@ plug "andreyorst/powerline.kak" defer powerline %{
 plug "Delapouite/kakoune-buffers"
 plug "alexherbo2/prelude.kak"
 plug "alexherbo2/auto-pairs.kak"
+require-module auto-pairs # For some reason, this is needed on new versions of the plugin
+auto-pairs-enable
 plug "Delapouite/kakoune-livedown"
 plug "andreyorst/smarttab.kak" defer smarttab  %{
   set global softtabstop 2
