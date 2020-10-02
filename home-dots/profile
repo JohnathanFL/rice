@@ -20,7 +20,8 @@ setPath                     \
   $HOME/.nimble/bin         \
   $HOME/.cargo/bin          \
   $HOME/.gem/ruby/2.7.0/bin \
-  $HOME/dotnet/             \
+  $HOME/.dotnet/            \
+  $HOME/.dotnet/tools       \
   /bin/                     \
   /usr/bin/                 \
   /usr/local/bin/           \
@@ -71,5 +72,17 @@ export MONOKAI_GREEN='#A6E22E'
 export MONOKAI_ORANGE='#FD971F'
 export MONOKAI_PURPLE='#ae81ff'
 export MONOKAI_YELLOW='#e6db74'
+
+
+export DRACULA_BLACK='#000000'
+export DRACULA_GREY='#545454'
+export DRACULA_RED='#ff5454'
+export DRACULA_GREEN='#50fa7b'
+export DRACULA_YELLOW='#f0fa8b'
+export DRACULA_PURPLE='#bd92f8'
+export DRACULA_PINK='#ff78c5'
+export DRACULA_BLUE='#8ae9fc'
+export DRACULA_LIGHT_GREY='#bbbbbb'
+export DRACULA_WHITE='#ffffff'
 
 . $ENV
