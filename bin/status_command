@@ -30,7 +30,14 @@ pidFile.close
 def update
   # puts caller
   print $modules
-    .map { |m| m.render }
+    .map { |m|
+      begin
+        m.render
+      rescue
+        ""
+      end
+    }
+    .select { |s| s != "" }
     .join(" | ")
   if $barFlag # Gives a visual indication that we're not frozen
     print " |"
