@@ -39,13 +39,18 @@ input "1204:51:HID_04b4:0033" {
   pointer_accel -0.3
 }
 
+input "1:1:AT_Translated_Set_2_keyboard" {
+    repeat_delay 300
+    repeat_rate 20
+}
+
 
 output eDP-1 pos 1920 1080 res 1920x1080
 output DVI-D-1 pos 0 0 res 1920x1080
 output HDMI-A-1 pos 1920 0 res 1920x1080
 
 # Only gets used for my samsung TV
-output HDMI-A-2 pos -1360 0 res 1360x768 
+output HDMI-A-2 pos 1920 0 res 1360x768 
 
 # 1-5 on main monitor, 6-10 on secondary monitor where possible
 # DVI is my main monitor, eDP-1 is my laptop's screen
