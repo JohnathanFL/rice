@@ -1,3 +1,3 @@
 function code --wraps code
-  GDK_BACKEND=x11 /bin/code $argv
+  GDK_BACKEND=x11 code-insiders $argv
 end
