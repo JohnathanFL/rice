@@ -4,6 +4,7 @@ export SVDIR=~/runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
 
+# Those found later in the series override those earlier in the series
 setPath() {
   PATH=""
   while ! [ -z "$1" ]; do
@@ -12,20 +13,34 @@ setPath() {
     shift
   done
   # Clean duplicates, using a hash map/hash count-set to keep track
+  # TODO: Make it keep the last of each, so we can maintain overrides?
   export PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
 }
 
-# Those found later in the series override those earlier in the series
-setPath                     \
+# Maintain the current path and add (without overriding the previous $PATH's executables)
+addPath() {
+  setPath $@ $PATH
+}
+
+# Make sure all my computers use the same set of path dirs (only adds those that aren't already present)
+addPath                     \
+  /bin                      \
+  /sbin/                    \
+  /usr/bin                  \
+  /usr/sbin/                \
+  /usr/local/bin/           \
+  /usr/local/sbin           \
+
+addPath                     \
   $HOME/.nimble/bin         \
   $HOME/.cargo/bin          \
   $HOME/.gem/ruby/2.7.0/bin \
   $HOME/.dotnet/            \
   $HOME/.dotnet/tools       \
-  /bin/                     \
-  /usr/bin/                 \
-  /usr/local/bin/           \
-  $HOME/bin                 \
+  $HOME/.local/bin          \
+
+# I want my own bin to override everything else, since that's what I use it for.
+setPath $PATH $HOME/bin
 
 
 export TERMINAL=kitty
@@ -84,5 +99,3 @@ export DRACULA_PINK='#ff78c5'
 export DRACULA_BLUE='#8ae9fc'
 export DRACULA_LIGHT_GREY='#bbbbbb'
 export DRACULA_WHITE='#ffffff'
-
-. $ENV
