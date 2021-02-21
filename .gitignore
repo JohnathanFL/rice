@@ -4,3 +4,5 @@ config/kak/plugins/
 .fzf-projects
 config/fish/fish_variables
 config/status_command/mods-enabled/
+home-dots/runit/service/
+home-dots/runit/sv/*/supervise

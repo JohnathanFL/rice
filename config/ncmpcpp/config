@@ -26,7 +26,7 @@ locked_screen_width_part = "60"
 display_bitrate = "no"
 external_editor = "nano"
 
-main_window_highlight_color = "blue"
+#main_window_highlight_color = "blue"
 
 progressbar_elapsed_color = "blue"
 progressbar_color = "red"

@@ -102,14 +102,14 @@ bindsym {
   XF86MonBrightnessUp exec brillo -A 10
 
   # Audio
-  XF86AudioRaiseVolume exec vol ++ && kickbar
-  XF86AudioLowerVolume exec vol -- && kickbar
+  XF86AudioRaiseVolume exec pamixer -i 5 && kickbar
+  XF86AudioLowerVolume exec pamixer -d 5 && kickbar
   # TODO: Not yet supported in my `vol` program
-  XF86AudioMute exec vol _ && kickbar
+  XF86AudioMute exec pamixer -t && kickbar
 
   # Granular audio
-  Shift+XF86AudioRaiseVolume exec vol + && kickbar
-  Shift+XF86AudioLowerVolume exec vol - && kickbar
+  Shift+XF86AudioRaiseVolume exec pamixer -i 2.5 && kickbar
+  Shift+XF86AudioLowerVolume exec pamixer -d 2.5 && kickbar
 
   XF86AudioPlay exec mpc toggle && kickbar
 

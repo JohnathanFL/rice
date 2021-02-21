@@ -1,8 +1,9 @@
 #!/bin/sh
-#
+# To be run on login
 export SVDIR=~/runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
+export MY_DBUS_SESSION_HOLDER="/run/user/$(id -u)/wheels_on_the_dbus_go_stupid"
 
 # Those found later in the series override those earlier in the series
 setPath() {
@@ -42,6 +43,14 @@ addPath                     \
 # I want my own bin to override everything else, since that's what I use it for.
 setPath $PATH $HOME/bin
 
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    echo "No dbus session found for us."
+    if ! [ -f "$MY_DBUS_SESSION_HOLDER" ]; then
+      echo "Creating a new one at $MY_DBUS_SESSION_HOLDER"
+      dbus-launch --sh-syntax > "$MY_DBUS_SESSION_HOLDER"
+    fi
+    eval $(cat "$MY_DBUS_SESSION_HOLDER")
+fi
 
 export TERMINAL=kitty
 export EDITOR=kak

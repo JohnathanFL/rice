@@ -1,5 +1,7 @@
 import os
 
+config.load_autoconfig()
+
 RICE = os.environ['RICE']
 c.downloads.location.directory = "~/Downloads/"
 
