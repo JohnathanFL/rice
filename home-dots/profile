@@ -1,9 +1,9 @@
 #!/bin/sh
 # To be run on login
-export SVDIR=~/runit/service/
+export SVDIR=~/.runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
-export MY_DBUS_SESSION_HOLDER="/run/user/$(id -u)/wheels_on_the_dbus_go_stupid"
+export MY_DBUS_SESSION_HOLDER="/run/user/$(id -u)/wheels_on_dbus_go_stupid"
 
 # Those found later in the series override those earlier in the series
 setPath() {
@@ -50,6 +50,12 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
       dbus-launch --sh-syntax > "$MY_DBUS_SESSION_HOLDER"
     fi
     eval $(cat "$MY_DBUS_SESSION_HOLDER")
+fi
+
+RUNSVDIR_PID_FILE="/run/user/$(id -u)/runsvdir.pid"
+RUNSVDIR_PID=$(cat "$RUNSVDIR_PID_FILE" | xargs)
+if ! [ -f "$RUNSVDIR_PID_FILE" ] || ! [ -n "$RUNSVDIR_PID" -a -d "/proc/$RUNSVDIR_PID" ]; then
+  nohup runsvdir $SVDIR >$HOME/runsvdir.log 2>&1 & echo $! > "$RUNSVDIR_PID_FILE"
 fi
 
 export TERMINAL=kitty
