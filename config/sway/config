@@ -41,7 +41,7 @@ input "1204:51:HID_04b4:0033" {
 
 input "1:1:AT_Translated_Set_2_keyboard" {
     repeat_delay 300
-    repeat_rate 20
+    repeat_rate 35
 }
 
 
@@ -85,6 +85,7 @@ bindsym {
 
 
   Print exec screenshot.sh
+  Ctrl+Print exec screenshot.sh now
   
   $mod+e exec thunar
 
@@ -202,7 +203,7 @@ bar {
  strip_workspace_numbers yes
 
  pango_markup enabled
- font pango:IosevkaTerm 13
+ font pango:Victor Mono 13
 
  status_command exec status_command # Well that was unfortunate naming
  gaps 5 5
