@@ -74,7 +74,7 @@ floating_modifier $mod normal
 # App control
 bindsym {
   # TERMINAL
-  $mod+grave exec exec $term
+  $mod+grave exec exec $term 2>&1 >> ~/.out
   # LAUNCHER
   $mod+r exec $menu
   # PICK BROWSER

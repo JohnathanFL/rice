@@ -4,6 +4,9 @@ config.load_autoconfig()
 
 RICE = os.environ['RICE']
 c.downloads.location.directory = "~/Downloads/"
+c.qt.args += " disable-features=InstalledApp"
+c.qt.args += ' /usr/lib/qt/plugins/ppapi/libwidevinecdm.so'
+c.qt.process_model = 'process-per-site-instance'
 
 c.tabs.position = "left"
 c.tabs.width = '10%'
@@ -14,9 +17,6 @@ c.qt.low_end_device_mode = "never"
 
 c.completion.shrink = True
 c.content.pdfjs = True
-
-c.qt.args += ' /usr/lib/qt/plugins/ppapi/libwidevinecdm.so'
-c.qt.process_model = 'process-per-site-instance'
 
 bindings = {
     "<Ctrl+Tab>": "tab-next",

@@ -118,3 +118,8 @@ runtime = "node"
 elmPath = "elm"
 elmFormatPath = "elm-format"
 elmTestPath = "elm-test"
+
+[language.zig]
+filetypes = ["zig"]
+roots = ["build.zig"]
+command = "/home/drako/Dev/Ext/zls/zig-cache/bin/zls"

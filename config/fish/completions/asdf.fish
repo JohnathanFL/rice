@@ -1,0 +1,1 @@
+/home/drako/.asdf/completions/asdf.fish
