@@ -1,0 +1,8 @@
+{
+  "languageserver": {
+    "zls" : {
+      "command": "/home/drako/bin/zls",
+      "filetypes": ["zig"]
+    }
+  }
+}
