@@ -1,3 +1,4 @@
 function code --wraps code
-  GDK_BACKEND=x11 code-insiders $argv
+  # Rejoice, ye X-oppressed masses, for wayland cometh!
+  code-insiders --enable-features=UseOzonePlatform --ozone-platform=wayland $argv
 end
