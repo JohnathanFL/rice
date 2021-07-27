@@ -6,6 +6,7 @@ RICE = os.environ['RICE']
 c.downloads.location.directory = "~/Downloads/"
 c.qt.args += " disable-features=InstalledApp"
 c.qt.args += ' /usr/lib/qt/plugins/ppapi/libwidevinecdm.so'
+c.qt.args += 'enable-features=WebRTCPipeWireCapturer'
 c.qt.process_model = 'process-per-site-instance'
 
 c.tabs.position = "left"
