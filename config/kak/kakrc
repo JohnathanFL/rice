@@ -1,4 +1,7 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "lePerdu/kakboard" %{
+  hook global WinCreate .* %{ kakboard-enable }
+}
 plug "occivink/kakoune-roguelight"
 plug "andreyorst/powerline.kak" defer powerline %{
   colorscheme monokai
@@ -9,10 +12,6 @@ plug "andreyorst/powerline.kak" defer powerline %{
   powerline-start
 }
 plug "Delapouite/kakoune-buffers"
-plug "alexherbo2/prelude.kak"
-plug "alexherbo2/auto-pairs.kak"
-require-module auto-pairs # For some reason, this is needed on new versions of the plugin
-auto-pairs-enable
 plug "Delapouite/kakoune-livedown"
 plug "andreyorst/smarttab.kak" defer smarttab  %{
   set global softtabstop 2
@@ -69,13 +68,17 @@ map global normal <c-c> ':comment-line'
 map global normal ^ <c-b>
 map global normal <c-b> ':lsp-definition<ret>'
 map global normal '#' ':comment-line<ret>'
+map global normal ^ '!'
+map global normal '!' ':lsp-diagnostics<ret>'
+map global normal ^ '@'
+map global normal '@' ':format<ret>'
 
 #map global insert <c-j> '<esc>ji'
 
 hook global WinDisplay .* info-buffers
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|html|js|css|json|php|nim|zig) %{
+hook global WinSetOption filetype=(elixir|erlang|rust|python|go|javascript|typescript|c|cpp|html|js|css|json|php|nim|zig) %{
   lsp-enable-window
 }
 hook global WinSetOption filetype=zig %{
@@ -85,6 +88,9 @@ hook global WinSetOption filetype=zig %{
   expandtab
   set window formatcmd 'zig fmt --color off --stdin'
   hook buffer BufWritePre .* %{format}
+}
+hook global WinSetOption filetype=rust %{
+  set window formatcmd 'rustfmt'
 }
 
 hook global InsertCompletionShow .* %{

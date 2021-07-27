@@ -123,3 +123,8 @@ elmTestPath = "elm-test"
 filetypes = ["zig"]
 roots = ["build.zig"]
 command = "/home/drako/Dev/Ext/zls/zig-cache/bin/zls"
+
+[language.elixir]
+filetypes = ["elixir"]
+roots = ["mix.exs"]
+command = "elixir-ls"
