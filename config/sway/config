@@ -12,7 +12,7 @@ set $menu launcher.sh
        client.unfocused      #00000000     #00000000  #FFFFFFFF    #80808080      #80808080
 client.focused_inactive      #00000000     #00000000  #FFFFFFFF    #80808080      #80808080
 
-hide_edge_borders both
+# hide_edge_borders both
 
 # Always start floating so we can choose to tile longer-lived windows
 for_window [title=".*"] floating enable
