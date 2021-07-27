@@ -76,15 +76,3 @@ for file in $RICE/config/* ; do
   install "$file" ~/.config
 done
 
-printf "Install runit user service? [y/n] "
-read answer
-case $answer in
-  y|Y)
-    echo "Installing user service"
-    sudo mkdir /etc/sv/runsvdir-user/
-    sudo cp $RICE/runsvdir-user /etc/sv/runsvdir-user/run
-    sudo chmod +x /etc/sv/runsvdir-user/run
-    sudo chown root:root /etc/sv/runsvdir-user/run
-    ;;
-  *) ;;
-esac
