@@ -11,3 +11,4 @@ exec j4-dmenu-desktop \
   --usage-log=$HOME/.local/share/launcher-usage \
   --dmenu="bemenu.sh"\
   $@
+#fuzzel.sh

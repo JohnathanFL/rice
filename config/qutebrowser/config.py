@@ -5,7 +5,7 @@ config.load_autoconfig()
 RICE = os.environ['RICE']
 c.downloads.location.directory = "~/Downloads/"
 c.qt.args += " disable-features=InstalledApp"
-c.qt.args += ' /usr/lib/qt/plugins/ppapi/libwidevinecdm.so'
+c.qt.args += ' /home/drako/bin/libwidevinecdm.so'
 c.qt.args += 'enable-features=WebRTCPipeWireCapturer'
 c.qt.process_model = 'process-per-site-instance'
 
@@ -22,7 +22,7 @@ c.content.pdfjs = True
 bindings = {
     "<Ctrl+Tab>": "tab-next",
     "<Ctrl+Shift+Tab>": "tab-prev",
-    "<F1>": "spawn --detach mpv {url} --gpu-api=vulkan --gpu-context=waylandvk --force-window --keep-open",
+    "<F1>": "spawn --detach mpv {url} --force-window --keep-open", # --gpu-api=vulkan --gpu-context=waylandvk # Vulkan is bugged right now
 
     # In case the page grabs our arrow keys
     "<Alt+j>": "scroll-px 0 50",

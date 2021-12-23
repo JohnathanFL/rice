@@ -1,34 +1,8 @@
-
-call plug#begin('~/.vim/plugged')
-  Plug 'hrsh7th/nvim-compe'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'tpope/vim-sensible'
-  Plug 'b3nj5m1n/kommentary'
-
-  Plug 'ziglang/zig.vim'
-
-  Plug 'windwp/nvim-autopairs'
-
-  Plug 'kyazdani42/nvim-web-devicons'
-  " Plug 'akinsho/nvim-bufferline.lua'
-
-  " Plug 'matbme/JABS.nvim'
-  Plug 'romgrk/barbar.nvim'
-  Plug 'srcery-colors/srcery-vim'
-call plug#end()
-
-set completeopt=menuone,noselect
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set nu
-set inccommand=nosplit
-set hidden
-colorscheme srcery
+colorscheme default
 
 
 lua <<EOF
+-- vim.api.nvim_set_keymap("n", "#", "<Plug>kommentary_line_default", {})
 
 vim.opt.termguicolors = true
 
@@ -119,8 +93,9 @@ let g:completion_enable_auto_popup = 1
 
 nnoremap q b
 vnoremap q b
-nnoremap b :JABSOpen <Return>
-nnoremap gd :lua vim.lsp.buf.definition() <Return>
+nnoremap b :JABSOpen <CR>
+nnoremap gd :lua vim.lsp.buf.definition() <CR>
+nnoremap # <Plug>kommentary_line_default
 
 " ########################################################################### "
 " BarBar stuff "
@@ -131,9 +106,11 @@ nnoremap <silent>    <A-d> :BufferNext<CR>
 " Re-order to previous/next
 nnoremap <silent>    <A-A> :BufferMovePrevious<CR>
 nnoremap <silent>    <A-D> :BufferMoveNext<CR>
-nnoremap <silent>    <A-Q> :BufferClose<CR>
+nnoremap <silent>    <A-w> :BufferClose<CR>
 " Magic buffer-picking mode
 nnoremap <silent> <C-b>    :BufferPick<CR>
+nnoremap bd :bd<CR>
+nnoremap go :SymbolsOutline<CR>
 
 " Other:
 " :BarbarEnable - enables barbar (enabled by default)

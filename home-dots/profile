@@ -1,9 +1,11 @@
 #!/bin/sh
 # To be run on login
+export SHELL=fish
 export SVDIR=~/.runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
 export MY_DBUS_SESSION_HOLDER="/run/user/$(id -u)/wheels_on_dbus_go_stupid"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/drako/.local/share/flatpak/exports/share"
 
 # Those found later in the series override those earlier in the series
 setPath() {
@@ -36,9 +38,12 @@ addPath                     \
   $HOME/.nimble/bin         \
   $HOME/.cargo/bin          \
   $HOME/.gem/ruby/2.7.0/bin \
+  $HOME/.gem/ruby/3.0.0/bin \
   $HOME/.dotnet/            \
   $HOME/.dotnet/tools       \
   $HOME/.local/bin          \
+  ./node_modules/.bin/      \
+  $HOME/opt/depot_tools
 
 # I want my own bin to override everything else, since that's what I use it for.
 setPath $PATH $HOME/bin
@@ -58,8 +63,8 @@ if ! [ -f "$RUNSVDIR_PID_FILE" ] || ! [ -n "$RUNSVDIR_PID" -a -d "/proc/$RUNSVDI
   runsvdir $SVDIR >$HOME/runsvdir.log 2>&1 & echo $! > "$RUNSVDIR_PID_FILE"
 fi
 
-export TERMINAL=foot
-export EDITOR=kak
+export TERMINAL=kitty
+export EDITOR=nvim
 export BROWSER=qutebrowser
 export PKGEXT=".pkg.tar"
 
@@ -71,46 +76,46 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # All the rest is nothing but theme colors
 
-export NORD_DARK0='#2e3440'
-export NORD_DARK1='#3b4252'
-export NORD_DARK2='#434c5e'
-export NORD_DARK3='#4c566a'
+export NORD_DARK0='2e3440'
+export NORD_DARK1='3b4252'
+export NORD_DARK2='434c5e'
+export NORD_DARK3='4c566a'
 
 # Lights
-export NORD_LIGHT0='#d8dee9'
-export NORD_LIGHT1='#e5e9f0'
-export NORD_LIGHT2='#eceff4'
+export NORD_LIGHT0='d8dee9'
+export NORD_LIGHT1='e5e9f0'
+export NORD_LIGHT2='eceff4'
 
 # Frosts
-export NORD_FROST0='#8fbcbb'
-export NORD_FROST1='#88c0d0'
-export NORD_FROST2='#81a1c1'
-export NORD_FROST3='#5e81ac'
+export NORD_FROST0='8fbcbb'
+export NORD_FROST1='88c0d0'
+export NORD_FROST2='81a1c1'
+export NORD_FROST3='5e81ac'
 
-export NORD_AURORA0='#bf616a'
-export NORD_AURORA1='#d08770'
-export NORD_AURORA2='#ebcb8b'
-export NORD_AURORA3='#a3be8c'
-export NORD_AURORA4='#b48ead'
+export NORD_AURORA0='bf616a'
+export NORD_AURORA1='d08770'
+export NORD_AURORA2='ebcb8b'
+export NORD_AURORA3='a3be8c'
+export NORD_AURORA4='b48ead'
 
-export MONOKAI_BLACK='#272822'
-export MONOKAI_WHITE='#f8f8f2'
-export MONOKAI_GREY='#74715e'
-export MONOKAI_RED='#F92672'
-export MONOKAI_BLUE='#66D9EF'
-export MONOKAI_GREEN='#A6E22E'
-export MONOKAI_ORANGE='#FD971F'
-export MONOKAI_PURPLE='#ae81ff'
-export MONOKAI_YELLOW='#e6db74'
+export MONOKAI_BLACK='272822'
+export MONOKAI_WHITE='f8f8f2'
+export MONOKAI_GREY='74715e'
+export MONOKAI_RED='F92672'
+export MONOKAI_BLUE='66D9EF'
+export MONOKAI_GREEN='A6E22E'
+export MONOKAI_ORANGE='FD971F'
+export MONOKAI_PURPLE='ae81ff'
+export MONOKAI_YELLOW='e6db74'
 
 
-export DRACULA_BLACK='#000000'
-export DRACULA_GREY='#545454'
-export DRACULA_RED='#ff5454'
-export DRACULA_GREEN='#50fa7b'
-export DRACULA_YELLOW='#f0fa8b'
-export DRACULA_PURPLE='#bd92f8'
-export DRACULA_PINK='#ff78c5'
-export DRACULA_BLUE='#8ae9fc'
-export DRACULA_LIGHT_GREY='#bbbbbb'
-export DRACULA_WHITE='#ffffff'
+export DRACULA_BLACK='000000'
+export DRACULA_GREY='545454'
+export DRACULA_RED='ff5454'
+export DRACULA_GREEN='50fa7b'
+export DRACULA_YELLOW='f0fa8b'
+export DRACULA_PURPLE='bd92f8'
+export DRACULA_PINK='ff78c5'
+export DRACULA_BLUE='8ae9fc'
+export DRACULA_LIGHT_GREY='bbbbbb'
+export DRACULA_WHITE='ffffff'

@@ -35,7 +35,7 @@ if [ "$(basename "$0")" = "qutebrowser-container" ]; then
       tail -n +2 | # Ignore . and ..
       sed -e 's/\b\(.\)/\u\1/g' |
       sort |
-      bemenu.sh --prompt "Container:" |
+      bemenu.sh -p "Container: " | #bemenu.sh --prompt "Container:" |
       sed -e 's/\b\(.\)/\l\1/g' # Lowercase it
     ) 
 else

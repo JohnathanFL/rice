@@ -1,7 +1,4 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-plug "lePerdu/kakboard" %{
-  hook global WinCreate .* %{ kakboard-enable }
-}
 plug "occivink/kakoune-roguelight"
 plug "andreyorst/powerline.kak" defer powerline %{
   colorscheme monokai
@@ -25,8 +22,8 @@ plug "andreyorst/smarttab.kak" defer smarttab  %{
 
 }
 plug "andreyorst/fzf.kak" config %{
-  require-module kitty
-  set-option global kitty_window_type 'os'
+  # require-module kitty
+  # set-option global kitty_window_type 'os'
 } defer fzf %{
 }
 plug "danr/kakoune-easymotion" config %{
@@ -77,10 +74,10 @@ map global normal '@' ':format<ret>'
 
 hook global WinDisplay .* info-buffers
 
-eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(elixir|erlang|rust|python|go|javascript|typescript|c|cpp|html|js|css|json|php|nim|zig) %{
-  lsp-enable-window
-}
+# eval %sh{kak-lsp --kakoune -s $kak_session}
+# hook global WinSetOption filetype=(elixir|erlang|rust|python|go|javascript|typescript|c|cpp|html|js|css|json|php|nim|zig) %{
+#   lsp-enable-window
+# }
 hook global WinSetOption filetype=zig %{
   set buffer softtabstop 4
   set buffer tabstop 4
@@ -145,7 +142,7 @@ hook global WinSetOption filetype=elixir %{
   set buffer indentwidth 2
 }
 
-set-option global lsp_server_configuration pyls.configurationSources=["flake8"]
+# set-option global lsp_server_configuration pyls.configurationSources=["flake8"]
 
 require-module x11
 set-option global termcmd 'foot sh -c'
