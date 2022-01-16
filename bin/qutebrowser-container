@@ -27,25 +27,28 @@ else
 fi
 ARGS=$@
 
+container=$(uuidgen)
 
-if [ "$(basename "$0")" = "qutebrowser-container" ]; then
-  # The extra seds are so I have nice Pascal Case names to select from.
-  container=$(
-    find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" |
-      tail -n +2 | # Ignore . and ..
-      sed -e 's/\b\(.\)/\u\1/g' |
-      sort |
-      bemenu.sh -p "Container: " | #bemenu.sh --prompt "Container:" |
-      sed -e 's/\b\(.\)/\l\1/g' # Lowercase it
-    ) 
-else
-  container=$(basename "$0" | cut -d- -f2)
-  mkdir -p "$HOME/.local/share/qutebrowser-containers/$container"
-fi
+while ! [ -d "$HOME/.local/share/qutebrowser-containers/$container" ]; do
+  if [ "$(basename "$0")" = "qutebrowser-container" ]; then
+    # The extra seds are so I have nice Pascal Case names to select from.
+    container=$(
+      find ~/.local/share/qutebrowser-containers/ -maxdepth 1 -type d -printf "%f\n" |
+        tail -n +2 | # Ignore . and ..
+        sed -e 's/\b\(.\)/\u\1/g' |
+        sort |
+        bemenu.sh -i -p "Container: " |
+        tr '[:upper:]' '[:lower:]' # Lowercase it
+      ) 
+  else
+    container=$(basename "$0" | cut -d- -f2 | tr '[:upper:]' '[:lower:]')
+    mkdir -p "$HOME/.local/share/qutebrowser-containers/$container"
+  fi
 
-if [ -z "$container" ]; then
-  exit
-fi
+  if [ -z "$container" ]; then
+    exit
+  fi
+done
 
 if [ -z "$1" ]; then
   url="duckduckgo.com"
@@ -86,7 +89,7 @@ elif [ "$container" = private ]; then # we need to make a new private instance
     QUTE_CONTAINER=private nohup $QUTE \
       --basedir $baseDir \
       --config-py ~/.config/qutebrowser/config.py \
-      $ARGS \
+      '$ARGS' \
       >/dev/null \
     && rm -rf $baseDir/*" &
 else # we need to make a new normal container
