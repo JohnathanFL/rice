@@ -5,7 +5,7 @@ export SVDIR=~/.runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
 export MY_DBUS_SESSION_HOLDER="/run/user/$(id -u)/wheels_on_dbus_go_stupid"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/drako/.local/share/flatpak/exports/share"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/drako/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share"
 
 # Those found later in the series override those earlier in the series
 setPath() {
