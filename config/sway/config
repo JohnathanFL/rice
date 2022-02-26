@@ -39,9 +39,9 @@ input "1204:51:HID_04b4:0033" {
   pointer_accel -0.3
 }
 
-input "1:1:AT_Translated_Set_2_keyboard" {
-    repeat_delay 300
-    repeat_rate 45
+input "3141:307:SONiX_USB_Keyboard" {
+    repeat_delay 250
+    repeat_rate 55
 }
 
 
