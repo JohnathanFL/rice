@@ -39,11 +39,14 @@ addPath                     \
   $HOME/.cargo/bin          \
   $HOME/.gem/ruby/2.7.0/bin \
   $HOME/.gem/ruby/3.0.0/bin \
+  $HOME/.gem/ruby/3.1.0/bin \
   $HOME/.dotnet/            \
   $HOME/.dotnet/tools       \
   $HOME/.local/bin          \
   ./node_modules/.bin/      \
-  $HOME/opt/depot_tools
+  $HOME/opt/depot_tools     \
+  $HOME/.ghcup/bin          \
+  $HOME/.cabal/bin
 
 # I want my own bin to override everything else, since that's what I use it for.
 setPath $PATH $HOME/bin
