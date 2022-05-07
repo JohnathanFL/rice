@@ -7,14 +7,14 @@ c.downloads.location.directory = "~/Downloads/"
 c.qt.args += " disable-features=InstalledApp"
 c.qt.args += ' /home/drako/bin/libwidevinecdm.so'
 c.qt.args += 'enable-features=WebRTCPipeWireCapturer'
-c.qt.process_model = 'process-per-site-instance'
+#c.qt.process_model = 'process-per-site-instance'
 
 c.tabs.position = "left"
 c.tabs.width = '10%'
 c.tabs.show = 'always'
 c.tabs.show_switching_delay = 1500
 #c.scrolling.smooth = True
-c.qt.low_end_device_mode = "never"
+c.qt.chromium.low_end_device_mode = "never"
 
 c.completion.shrink = True
 c.content.pdfjs = True

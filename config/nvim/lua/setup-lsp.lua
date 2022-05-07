@@ -53,6 +53,22 @@ local langs = {
   elixirls = {
     on_attach = on_attach,
   },
+  ccls = {
+    on_attach = on_attach,
+  },
+  sqls = {
+    on_attach = function(client, bufnr)
+      require('sqls').on_attach(client, bufnr)
+    end,
+    setup = {
+      connections = {
+        {
+          driver = 'postgresql',
+          dataSourceName = 'host=/tmp/c46-pg/ user=c4 dbname=c4'
+        }
+      },
+    },
+  },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

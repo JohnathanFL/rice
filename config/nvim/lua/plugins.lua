@@ -5,6 +5,7 @@ local startup = require("packer").startup
 return startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'junegunn/vim-easy-align'
+  use 'nanotee/sqls.nvim'
   use {
     'neovim/nvim-lspconfig',
     config = function() require 'setup-lsp' end,
