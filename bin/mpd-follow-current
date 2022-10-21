@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while true; do
+  state=$(mpc status '%state%' | sed -e 's/playing/▶️/g' -e 's/paused/⏸️/g')
+  echo $state '  ' $(mpc current) '  ' $state
+  mpc idle player > /dev/null
+done

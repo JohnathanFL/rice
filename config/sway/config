@@ -47,6 +47,7 @@ input "3141:307:SONiX_USB_Keyboard" {
 
 output eDP-1 pos 1920 1080 res 1920x1080
 output DVI-D-1 pos 0 0 res 1920x1080
+output DVI-D-1 max_render_time 3
 output HDMI-A-1 pos 1920 0 res 1920x1080
 
 # Only gets used for my samsung TV
@@ -197,27 +198,28 @@ bindsym {
   $mod+up focus parent
 }
 
-bar {
- mode dock
- position top
- strip_workspace_numbers yes
+# bar {
+#  mode dock
+#  position top
+#  strip_workspace_numbers yes
 
- pango_markup enabled
- font pango:Victor Mono 13
+#  pango_markup enabled
+#  font pango:Victor Mono 13
 
- status_command exec status_command # Well that was unfortunate naming
- gaps 5 5
+#  status_command exec status_command # Well that was unfortunate naming
+#  gaps 5 5
 
- colors {
-   statusline #ffffff
-   #background #2e3440
-   background #00000000
-   focused_workspace #808080FF #00000000 #FFFFFF
-   active_workspace #00000000 #00000000 #FFFFFF
-   inactive_workspace #32323200 #32323200 #FFFFFFFF
- }
-}
+#  colors {
+#    statusline #ffffff
+#    #background #2e3440
+#    background #00000000
+#    focused_workspace #808080FF #00000000 #FFFFFF
+#    active_workspace #00000000 #00000000 #FFFFFF
+#    inactive_workspace #32323200 #32323200 #FFFFFFFF
+#  }
+# }
 
 
 exec mako
 exec setwall
+exec kitty fish -c 'ssh-add ~/.ssh/id_rsa'

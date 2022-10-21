@@ -101,7 +101,7 @@ _G.packer_plugins = {
   },
   ["nvim-compe"] = {
     after_files = { "/home/drako/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
-    config = { "\27LJ\2\2+\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\16setup-compe\frequire\0" },
+    config = { "\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16setup-compe\frequire\0" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -109,7 +109,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-compe"
   },
   ["nvim-hardline"] = {
-    config = { "\27LJ\2\2t\0\0\3\0\6\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\4\0=\2\5\1B\0\2\1K\0\1\0\24bufferline_settings\1\0\1\15show_index\2\1\0\1\15bufferline\2\nsetup\rhardline\frequire\0" },
+    config = { "\27LJ\2\nt\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\24bufferline_settings\1\0\1\15show_index\2\1\0\1\15bufferline\2\nsetup\rhardline\frequire\0" },
     loaded = true,
     path = "/home/drako/.local/share/nvim/site/pack/packer/start/nvim-hardline",
     url = "https://github.com/ojroques/nvim-hardline"
@@ -164,18 +164,18 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: nvim-hardline
 time([[Config for nvim-hardline]], true)
-try_loadstring("\27LJ\2\2t\0\0\3\0\6\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\4\0=\2\5\1B\0\2\1K\0\1\0\24bufferline_settings\1\0\1\15show_index\2\1\0\1\15bufferline\2\nsetup\rhardline\frequire\0", "config", "nvim-hardline")
+try_loadstring("\27LJ\2\nt\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\24bufferline_settings\1\0\1\15show_index\2\1\0\1\15bufferline\2\nsetup\rhardline\frequire\0", "config", "nvim-hardline")
 time([[Config for nvim-hardline]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
-try_loadstring("\27LJ\2\2)\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\14setup-lsp\frequire\0", "config", "nvim-lspconfig")
+try_loadstring("\27LJ\2\n)\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\14setup-lsp\frequire\0", "config", "nvim-lspconfig")
 time([[Config for nvim-lspconfig]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-compe ]]
 
 -- Config for: nvim-compe
-try_loadstring("\27LJ\2\2+\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\16setup-compe\frequire\0", "config", "nvim-compe")
+try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16setup-compe\frequire\0", "config", "nvim-compe")
 
 time([[Sequenced loading]], false)
 if should_profile then save_profiles() end

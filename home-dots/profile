@@ -4,8 +4,10 @@ export SHELL=fish
 export SVDIR=~/.runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
-export MY_DBUS_SESSION_HOLDER="/run/user/$(id -u)/wheels_on_dbus_go_stupid"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/drako/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share"
+#export MY_DBUS_SESSION_HOLDER="/run/user/$(id -u)/wheels_on_dbus_go_stupid"
+export XDG_DATA_DIRS="/usr/share/applications:$XDG_DATA_DIRS:/home/drako/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share"
+export SSH_ASKPASS="lxqt-openssh-askpass"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Those found later in the series override those earlier in the series
 setPath() {
@@ -43,7 +45,6 @@ addPath                     \
   $HOME/.dotnet/            \
   $HOME/.dotnet/tools       \
   $HOME/.local/bin          \
-  ./node_modules/.bin/      \
   $HOME/opt/depot_tools     \
   $HOME/.ghcup/bin          \
   $HOME/.cabal/bin
@@ -51,20 +52,20 @@ addPath                     \
 # I want my own bin to override everything else, since that's what I use it for.
 setPath $PATH $HOME/bin
 
-if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    echo "No dbus session found for us."
-    if ! [ -f "$MY_DBUS_SESSION_HOLDER" ]; then
-      echo "Creating a new one at $MY_DBUS_SESSION_HOLDER"
-      dbus-launch --sh-syntax > "$MY_DBUS_SESSION_HOLDER"
-    fi
-    eval $(cat "$MY_DBUS_SESSION_HOLDER")
-fi
+#if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+#    echo "No dbus session found for us."
+#    if ! [ -f "$MY_DBUS_SESSION_HOLDER" ]; then
+#      echo "Creating a new one at $MY_DBUS_SESSION_HOLDER"
+#      dbus-launch --sh-syntax > "$MY_DBUS_SESSION_HOLDER"
+#    fi
+#    eval $(cat "$MY_DBUS_SESSION_HOLDER")
+#fi
 
-RUNSVDIR_PID_FILE="/run/user/$(id -u)/runsvdir.pid"
-RUNSVDIR_PID=$(cat "$RUNSVDIR_PID_FILE" | xargs)
-if ! [ -f "$RUNSVDIR_PID_FILE" ] || ! [ -n "$RUNSVDIR_PID" -a -d "/proc/$RUNSVDIR_PID" ]; then
-  runsvdir $SVDIR >$HOME/runsvdir.log 2>&1 & echo $! > "$RUNSVDIR_PID_FILE"
-fi
+#RUNSVDIR_PID_FILE="/run/user/$(id -u)/runsvdir.pid"
+#RUNSVDIR_PID=$(cat "$RUNSVDIR_PID_FILE" | xargs)
+#if ! [ -f "$RUNSVDIR_PID_FILE" ] || ! [ -n "$RUNSVDIR_PID" -a -d "/proc/$RUNSVDIR_PID" ]; then
+#  runsvdir $SVDIR >$HOME/runsvdir.log 2>&1 & echo $! > "$RUNSVDIR_PID_FILE"
+#fi
 
 export TERMINAL=kitty
 export EDITOR=nvim
@@ -73,7 +74,7 @@ export PKGEXT=".pkg.tar"
 
 # Donet core stuff
 export CLR_OPENSSL_VERSION_OVERRIDE=47 # Fix to get it working on void
-export DOTNET_ROOT=~/.dotnet/
+#export DOTNET_ROOT=~/.dotnet/
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 
