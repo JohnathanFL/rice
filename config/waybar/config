@@ -1,0 +1,71 @@
+{
+  "layer": "top ",
+  "mode": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "position": "top",
+  "height": 32,
+  "width": "",
+  "spacing": 0,
+  "margin": 0,
+  "margin-top": 15,
+  "margin-bottom": 0,
+  "margin-left": 24,
+  "margin-right": 24,
+  "fixed-center": true,
+  "ipc": true,
+  "bar_id": "bar-0",
+
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["mpd"],
+  "modules-right": ["tray", "temperature", "cpu", "network", "clock"],
+
+  "sway/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+    }
+  },
+  "sway/window": {
+    "max-length": 50,
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8
+  },
+  "clock": {
+    "format": " {:%H:%M:%S}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": " {:%Y-%m-%d}",
+    "interval": 1
+  },
+  "cpu": {
+    "format": "{usage}%",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{}% 󰍛"
+  },
+  "temperature": {
+    "thermal-zone": 2,
+    "interval": 3,
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format-critical": "##CRITICAL - {temperatureC}°C - CRITICAL##",
+    "format": "{temperatureC}°C",
+    "format-icons": ["󰔏"]
+  },
+  "network": {
+    "format": " {ifname} ",
+    "format-ethernet": "{ifname}",
+    "format-wifi": " {essid}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": " Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  }
+}

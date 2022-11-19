@@ -7,10 +7,10 @@ set $term $TERMINAL
 
 set $menu launcher.sh
 
-#                             <border>  <background>     <text>  <indicator> <child_border>
-         client.focused        #8ae9fc     #00000000  #FFFFFFFF    #80808080        #8ae9fc
-       client.unfocused      #00000000     #00000000  #FFFFFFFF    #80808080      #80808080
-client.focused_inactive      #00000000     #00000000  #FFFFFFFF    #80808080      #80808080
+#                            <border>      <background> <text>       <indicator>    <child_border>
+client.focused               #8ae9fc       #00000000    #FFFFFFFF    #80808080      #8ae9fc
+client.unfocused             #00000000     #00000000    #FFFFFFFF    #80808080      #80808080
+client.focused_inactive      #00000000     #00000000    #FFFFFFFF    #80808080      #80808080
 
 # hide_edge_borders both
 
@@ -22,8 +22,11 @@ for_window [app_id="^mpv$"] fullscreen enable
 for_window [app_id="^mvi$"] fullscreen enable
 
 default_border pixel 2
-gaps outer 15
+gaps outer 10
 gaps inner 10
+corner_radius 10
+default_border pixel 2
+default_floating_border none
 
 # Main mouse
 input "1133:49970:Logitech_Gaming_Mouse_G502" {
@@ -40,8 +43,8 @@ input "1204:51:HID_04b4:0033" {
 }
 
 input "3141:307:SONiX_USB_Keyboard" {
-    repeat_delay 250
-    repeat_rate 55
+  repeat_delay 250
+  repeat_rate 55
 }
 
 
@@ -223,3 +226,4 @@ bindsym {
 exec mako
 exec setwall
 exec kitty fish -c 'ssh-add ~/.ssh/id_rsa'
+exec waybar

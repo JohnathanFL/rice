@@ -1,0 +1,75 @@
+/* General configuration */
+* {
+  border: none;
+  font-family: "SF Pro Display","Font Awesome 6 Free Regular","Font Awesome 6 Free Solid","Font Awesome 6 Pro Regular","Font Awesome 6 Pro Thin","Font Awesome 6 Pro Solid","Font Awesome 6 Pro Light","Font Awesome 6 Brands Regular";
+  font-size: 14px;
+  font-weight: normal;
+}
+
+window#waybar {
+  background-color: #2e3440;
+  transition-property: background-color;
+  transition-duration: .5s;
+  border-radius: 12px 12px 12px 12px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+tooltip {
+  background: rgba(30, 30, 46, 0.7);
+  border: 1px solid rgba(49, 50, 68, 0.7);
+}
+tooltip label {
+  color: #5e81ac;
+}
+
+/* Workspaces */
+#workspaces,
+
+#workspaces button {
+  min-width: 10px;
+  color: #8ae9fc;
+  margin-left: 5px;
+}
+#workspaces button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+#workspaces button.focused {
+  color: #ebcb8b;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ebcb8b;
+  }
+}
+
+/* Tray */
+#tray {
+  background: #4c566a;
+  padding: 0 12px;
+}
+
+/* Clock */
+#clock {
+  color: #eceff4;
+  margin-right: 5px;
+  padding: 0 12px;
+}
+
+#custom-media,
+#network,
+#temperature,
+#window,
+#cpu,
+#memory,
+#disk {
+  padding: 0 12px;
+}
