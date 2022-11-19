@@ -64,6 +64,9 @@ window#waybar.empty #window {
   padding: 0 12px;
 }
 
+#mpd { color: white; }
+#mpd.paused { color: gray; }
+
 #custom-media,
 #network,
 #temperature,
