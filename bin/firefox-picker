@@ -1,8 +1,8 @@
 #!/bin/sh
 
 choice=$(
-  find .mozilla/firefox/ -maxdepth 1 -type d -name '*.*' | # Find all profile directories
-  sed -re 's/.+?\/\w+\.((\w|_|-)+)/\1/'                  | # Get the name of each profile
+  cat ~/.mozilla/firefox/profiles.ini                    |
+  grep Name= | sed -re 's/Name=((\w|-|_)+)/\1/'          | # Get the name of each profile
   sed -re 's/(.+)/\1\n\1 (Private)/'                     | # Duplicate each so we can pick private variants
   bemenu.sh
 )
