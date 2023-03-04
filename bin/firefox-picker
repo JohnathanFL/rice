@@ -1,0 +1,23 @@
+#!/bin/sh
+
+choice=$(
+  find .mozilla/firefox/ -maxdepth 1 -type d -name '*.*' | # Find all profile directories
+  sed -re 's/.+?\/\w+\.((\w|_|-)+)/\1/'                  | # Get the name of each profile
+  sed -re 's/(.+)/\1\n\1 (Private)/'                     | # Duplicate each so we can pick private variants
+  bemenu.sh
+)
+ret=$?
+[ $ret != 0 ] && exit $ret
+
+case "$choice" in
+  *\(Private\))
+    flags="--private-window"
+    ;;
+  *)
+    flags=""
+esac
+
+# Note the extra whitespace between % and (. It's important since we used whitespace when duplicating entries.
+choice="${choice% (Private)}"
+
+exec firefox -P "$choice" $flags $@
