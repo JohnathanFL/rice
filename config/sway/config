@@ -12,7 +12,7 @@ client.focused               #8ae9fc       #00000000    #FFFFFFFF    #80808080  
 client.unfocused             #00000000     #00000000    #FFFFFFFF    #80808080      #80808080
 client.focused_inactive      #00000000     #00000000    #FFFFFFFF    #80808080      #80808080
 
-# hide_edge_borders both
+hide_edge_borders smart
 
 # Always start floating so we can choose to tile longer-lived windows
 for_window [title=".*"] floating enable
@@ -21,12 +21,11 @@ for_window [title=".*"] floating enable
 for_window [app_id="^mpv$"] fullscreen enable
 for_window [app_id="^mvi$"] fullscreen enable
 
-default_border pixel 2
 gaps outer 10
 gaps inner 10
 corner_radius 10
+smart_borders on
 default_border pixel 2
-default_floating_border none
 
 # Main mouse
 input "1133:49970:Logitech_Gaming_Mouse_G502" {
@@ -43,18 +42,24 @@ input "1204:51:HID_04b4:0033" {
 }
 
 input "3141:307:SONiX_USB_Keyboard" {
-  repeat_delay 250
+  repeat_delay 175
   repeat_rate 55
 }
 
 
-output eDP-1 pos 1920 1080 res 1920x1080
-output DVI-D-1 pos 0 0 res 1920x1080
-output DVI-D-1 max_render_time 3
-output HDMI-A-1 pos 1920 0 res 1920x1080
-
+output eDP-1 {
+  pos 1920 1080
+  res 1920x1080
+}
+output DVI-D-1 {
+  pos 0 0 res 1920x1080
+  max_render_time 3
+}
 # Only gets used for my samsung TV
-output HDMI-A-2 pos 1920 0 res 1360x768 
+output HDMI-A-2 {
+  pos 1920 0
+  res 1360x768
+}
 
 # 1-5 on main monitor, 6-10 on secondary monitor where possible
 # DVI is my main monitor, eDP-1 is my laptop's screen
@@ -82,7 +87,8 @@ bindsym {
   # LAUNCHER
   $mod+r exec $menu
   # PICK BROWSER
-  $mod+Shift+r exec qutebrowser-container
+  $mod+Shift+r exec firefox-picker
+  $mod+p exec clipman pick --tool=bemenu --tool-args="-p Clipboard"
 
   # CLOSE WINDOW
   $mod+Shift+q kill
@@ -96,6 +102,8 @@ bindsym {
 
   # reload the configuration file
   $mod+Shift+c reload
+
+  $mod+Delete exec makoctl dismiss
 
   # Choose between shutdown/reboot/suspend/quit sway
   $mod+Shift+Escape exec system_action.sh
@@ -141,7 +149,7 @@ bindsym {
   $mod+D focus right
   $mod+A focus left
 
-  $mod+P focus parent
+  #$mod+P focus parent
 
   # ditto, with arrow keys
   $mod+Shift+A move left
@@ -227,3 +235,6 @@ exec mako
 exec setwall
 exec kitty fish -c 'ssh-add ~/.ssh/id_rsa'
 exec waybar
+# To allow screen-sharing to work
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec wl-paste -t text --watch clipman store 1>> ~/.cache/clipman.log 2>&1 &
