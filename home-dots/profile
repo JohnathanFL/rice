@@ -9,6 +9,8 @@ export XDG_DATA_DIRS="/usr/share/applications:$XDG_DATA_DIRS:/home/drako/.local/
 export SSH_ASKPASS="lxqt-openssh-askpass"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export XDG_CURRENT_DESKTOP=Unity
+export GTK_THEME=Adwaita:dark
+export GNOME_THEME=Adwaita:dark
 
 # Those found later in the series override those earlier in the series
 setPath() {
@@ -70,11 +72,11 @@ setPath $PATH $HOME/bin
 
 export TERMINAL=kitty
 export EDITOR=nvim
-export BROWSER=qutebrowser
+export BROWSER="firefox-picker"
 export PKGEXT=".pkg.tar"
 
 # Donet core stuff
-export CLR_OPENSSL_VERSION_OVERRIDE=47 # Fix to get it working on void
+#export CLR_OPEN#SSL_VERSION_OVERRIDE=47 # Fix to get it working on void
 #export DOTNET_ROOT=~/.dotnet/
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
