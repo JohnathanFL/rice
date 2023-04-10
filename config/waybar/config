@@ -15,6 +15,9 @@
   "fixed-center": true,
   "ipc": true,
   "bar_id": "bar-0",
+  "output": [
+    "DVI-D-1"
+  ],
 
   "modules-left": ["sway/workspaces"],
   "modules-center": ["mpd"],
@@ -24,7 +27,7 @@
     "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
     "format-disconnected": "Disconnected ",
     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-    "interval": 1,
+    "interval": 0.5,
     "consume-icons": {
       "on": " " // Icon shows only when "consume" is on
     },
