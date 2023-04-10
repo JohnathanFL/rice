@@ -16,7 +16,7 @@ selectedFg=$DRACULA_BLUE
 scrollbarBg=$DRACULA_PURPLE
 scrollbarFg=$DRACULA_WHITE
 
-bemenu -b \
+exec /usr/bin/bemenu -b \
   -m -1 \
   --list 10 \
   --ignorecase \
