@@ -1,0 +1,16 @@
+#!/bin/dash
+
+export QT_QPA_PLATFORM=wayland
+export QT_WAYLAND_FORCE_DPI=logical
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export GDK_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=sway
+#export XDG_CURRENT_DESKTOP=sway
+
+# Done in sway config
+#export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+
+/usr/bin/sway

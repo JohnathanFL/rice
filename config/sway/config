@@ -1,3 +1,4 @@
+include /etc/sway/config.d/*
 ### Variables
 #
 # $TERMINAL is set by environment
@@ -236,5 +237,6 @@ exec setwall
 exec kitty fish -c 'ssh-add ~/.ssh/id_rsa'
 exec waybar
 # To allow screen-sharing to work
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+#exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec wl-paste -t text --watch clipman store 1>> ~/.cache/clipman.log 2>&1 &
+#exec gnome-keyring-daemon --start --components=secrets

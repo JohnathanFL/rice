@@ -9,8 +9,8 @@ export XDG_DATA_DIRS="/usr/share/applications:$XDG_DATA_DIRS:/home/drako/.local/
 export SSH_ASKPASS="lxqt-openssh-askpass"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export XDG_CURRENT_DESKTOP=Unity
-export GTK_THEME=Adwaita:dark
-export GNOME_THEME=Adwaita:dark
+export GTK_THEME=Graphite-Dark-nord
+export GNOME_THEME=Graphite-Dark-nord
 
 # Those found later in the series override those earlier in the series
 setPath() {

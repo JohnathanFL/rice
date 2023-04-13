@@ -13,3 +13,6 @@
 [submodule "config/qutebrowser/dracula"]
 	path = config/qutebrowser/dracula
 	url = https://github.com/dracula/qutebrowser-dracula-theme.git
+[submodule "Graphite-gtk-theme"]
+	path = Graphite-gtk-theme
+	url = https://github.com/vinceliuice/Graphite-gtk-theme

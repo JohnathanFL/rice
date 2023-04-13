@@ -1,0 +1,7 @@
+[terminal]
+vt = 1
+
+[default_session]
+#command = "tuigreet --cmd /usr/local/bin/sway"
+command = "/usr/local/bin/swaycage -c /etc/greetd/swayconf"
+user = "greeter"

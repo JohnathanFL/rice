@@ -1,0 +1,6 @@
+#!/bin/sh
+export XDG_CURRENT_DESKTOP=sway
+export GTK_THEME=Graphite-Dark-nord
+export GNOME_THEME=Graphite-Dark-nord
+
+/usr/bin/sway $@

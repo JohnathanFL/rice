@@ -20,18 +20,3 @@ set_wayland() {
   fi
 }
 
-sway() {
-  set_wayland on
-  command sway
-  pkill status_command.sh
-}
-hikari() {
-  set_wayland on
-  command hikari
-  pkill status_command.sh
-}
-startx() {
-  set_wayland off
-  command startx
-  pkill status_command.sh
-}
