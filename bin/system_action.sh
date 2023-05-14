@@ -12,20 +12,17 @@ choice=$(echo "$options" | bemenu.sh)
 case $choice in
   # TODO: Move this to an abstract thing for awesome or sway
   "Exit" )
-    #echo "Exiting sway"
-    swaymsg exit
+    exec swaymsg exit
     ;;
   Shutdown )
-    #echo "Shutting down"
-    shutdown now
+    exec shutdown now
     ;;
   Reboot )
-    #echo "Rebooting"
-    reboot
+    exec reboot
     ;;
   Suspend )
-    #echo "Suspending"
-    systemctl suspend
+    ~/bin/swaylock.sh &
+    exec systemctl suspend
     ;;
   "")
     # bemenu was quit
