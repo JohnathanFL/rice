@@ -78,7 +78,9 @@ export PKGEXT=".pkg.tar"
 # Donet core stuff
 #export CLR_OPEN#SSL_VERSION_OVERRIDE=47 # Fix to get it working on void
 #export DOTNET_ROOT=~/.dotnet/
+# Dotnet: increasing the reasons I don't want to use it by the day.
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_SVCUTIL_TELEMETRY_OPTOUT=1
 
 
 # All the rest is nothing but theme colors
