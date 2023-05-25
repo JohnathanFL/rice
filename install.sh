@@ -76,3 +76,4 @@ for file in $RICE/config/* ; do
   install "$file" ~/.config
 done
 
+sudo ./Graphite-gtk-theme/install.sh --tweaks nord rimless --libadwaita
