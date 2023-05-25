@@ -15,10 +15,7 @@
   "fixed-center": true,
   "ipc": true,
   "bar_id": "bar-0",
-  "output": [
-    "DVI-D-1"
-  ],
-
+  "output": [ "DP-1" ],
   "modules-left": ["sway/workspaces"],
   "modules-center": ["mpd"],
   "modules-right": ["tray", "temperature", "cpu", "network", "clock"],

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+trap 'kill -SIGTERM 0' EXIT
+
 choice=$(
   cat ~/.mozilla/firefox/profiles.ini                    |
   grep Name= | sed -re 's/Name=((\w|-|_)+)/\1/'          | # Get the name of each profile

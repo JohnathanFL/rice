@@ -1,7 +1,8 @@
 /* General configuration */
 * {
   border: none;
-  font-family: "SF Pro Display","Font Awesome 6 Free Regular","Font Awesome 6 Free Solid","Font Awesome 6 Pro Regular","Font Awesome 6 Pro Thin","Font Awesome 6 Pro Solid","Font Awesome 6 Pro Light","Font Awesome 6 Brands Regular";
+  /* font-family: "SF Pro Display","Font Awesome 6 Free Regular","Font Awesome 6 Free Solid","Font Awesome 6 Pro Regular","Font Awesome 6 Pro Thin","Font Awesome 6 Pro Solid","Font Awesome 6 Pro Light","Font Awesome 6 Brands Regular"; */
+  font-family: "FiraCode Nerd Font Mono";
   font-size: 14px;
   font-weight: normal;
 }
@@ -27,11 +28,11 @@ tooltip label {
 
 /* Workspaces */
 #workspaces,
-
 #workspaces button {
   min-width: 10px;
   color: #8ae9fc;
   margin-left: 5px;
+  font-family: "FiraCode Nerd Font Mono";
 }
 #workspaces button:hover {
   background-color: rgba(0, 0, 0, 0.1);

@@ -22,6 +22,11 @@ for_window [title=".*"] floating enable
 for_window [app_id="^mpv$"] fullscreen enable
 for_window [app_id="^mvi$"] fullscreen enable
 
+blur enable
+blur_radius 2
+blur_passes 2
+shadows enable
+titlebar_separator disable
 gaps outer 10
 gaps inner 10
 corner_radius 10
@@ -35,47 +40,41 @@ input "1133:49970:Logitech_Gaming_Mouse_G502" {
   pointer_accel -0.3
 }
 
-# Touchpad
-input "1204:51:HID_04b4:0033" {
-  accel_profile flat
-  scroll_factor 3
-  pointer_accel -0.3
-}
-
 input "3141:307:SONiX_USB_Keyboard" {
   repeat_delay 175
   repeat_rate 55
 }
 
-
-output eDP-1 {
-  pos 1920 1080
-  res 1920x1080
-}
-output DVI-D-1 {
-  pos 0 0 res 1920x1080
-  max_render_time 3
-}
-# Only gets used for my samsung TV
-output HDMI-A-2 {
-  pos 1920 0
-  res 1360x768
-}
-
 # 1-5 on main monitor, 6-10 on secondary monitor where possible
-# DVI is my main monitor, eDP-1 is my laptop's screen
 
-workspace 1 output DVI-D-1 eDP-1
-workspace 2 output DVI-D-1 eDP-1
-workspace 3 output DVI-D-1 eDP-1
-workspace 4 output DVI-D-1 eDP-1
-workspace 5 output DVI-D-1 eDP-1
+# Dell S3422DWG
+output DP-1 {
+  pos 0 0 res 3440x1440@143.975Hz
+  max_render_time off
+  adaptive_sync on
+}
+workspace 1 output DP-1
+workspace 2 output DP-1
+workspace 3 output DP-1
+workspace 4 output DP-1
+workspace 5 output DP-1
 
-workspace 6 output  HDMI-A-1 HDMI-A-2 eDP-1 DVI-D-1
-workspace 7 output  HDMI-A-1 HDMI-A-2 eDP-1 DVI-D-1
-workspace 8 output  HDMI-A-1 HDMI-A-2 eDP-1 DVI-D-1
-workspace 9 output  HDMI-A-1 HDMI-A-2 eDP-1 DVI-D-1
-workspace 10 output HDMI-A-1 HDMI-A-2 eDP-1 DVI-D-1 
+# Dell E2414H
+output DVI-D-1 {
+  pos 3440 0 res 1920x1080
+  max_render_time off
+}
+workspace 6 output  DVI-D-1
+workspace 7 output  DVI-D-1
+workspace 8 output  DVI-D-1
+workspace 9 output  DVI-D-1
+workspace 10 output DVI-D-1 
+
+# Samsung TV (not presently used)
+# output HDMI-A-2 {
+#   pos 1920 0
+#   res 1360x768
+# }
 
 workspace_auto_back_and_forth yes
 ### Key bindings
@@ -209,28 +208,6 @@ bindsym {
 
   $mod+up focus parent
 }
-
-# bar {
-#  mode dock
-#  position top
-#  strip_workspace_numbers yes
-
-#  pango_markup enabled
-#  font pango:Victor Mono 13
-
-#  status_command exec status_command # Well that was unfortunate naming
-#  gaps 5 5
-
-#  colors {
-#    statusline #ffffff
-#    #background #2e3440
-#    background #00000000
-#    focused_workspace #808080FF #00000000 #FFFFFF
-#    active_workspace #00000000 #00000000 #FFFFFF
-#    inactive_workspace #32323200 #32323200 #FFFFFFFF
-#  }
-# }
-
 
 exec mako
 exec setwall
