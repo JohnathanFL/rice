@@ -1,5 +1,5 @@
-text/*; qutebrowser %s
-text/html; qutebrowser %s
+text/*; firefox-picker %s
+text/html; firefox-picker %s
 video/*; mpv --keep-open=always %s
 image/*; mvi %s
 #mpv %s --keep-open=always
