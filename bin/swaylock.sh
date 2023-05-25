@@ -13,6 +13,8 @@ addArg() {
 
 addArg --image $(find $RICE/wallpapers/rotation -type f,l | sort -R | tail -1)
 
+addArg -s center
+
 addArg --disable-caps-lock-text
     #Disable the Caps Lock Text.
 
