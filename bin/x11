@@ -2,4 +2,4 @@
 . ~/.dashrc
 
 set_wayland off
-exec setsid "$@"
+exec "$@"
