@@ -1,3 +1,4 @@
+# Main mouse
 include /etc/sway/config.d/*
 
 bindsym Mod4+shift+Escape exec swaynag \
@@ -6,4 +7,5 @@ bindsym Mod4+shift+Escape exec swaynag \
 	-b 'Poweroff' 'systemctl poweroff' \
 	-b 'Reboot' 'systemctl reboot'
 
+#exec "regreet; swaymsg exit"
 exec "gtkgreet -l; swaymsg exit"

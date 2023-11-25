@@ -4,10 +4,13 @@
 
 //Global Styles
 .bar {
-  background-color: transparent;
+  background-color: #363d4d;
   color: #b0b4bc;
-  padding: 10px;
-  border-radius: 50px;
+  border-radius: 15px;
+}
+
+.horizontal {
+  padding: 5px 10px 5px 10px;
 }
 
 // Styles on classes (see eww.yuck for more information)
@@ -53,4 +56,6 @@
 .workspaces button:hover {
   color: #D35D6E;
 }
-
+.workspaces button.current {
+  color: white;
+}
