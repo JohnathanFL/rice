@@ -22,4 +22,4 @@ esac
 # Note the extra whitespace between % and (. It's important since we used whitespace when duplicating entries.
 choice="${choice% (Private)}"
 
-exec firefox -P "$choice" $flags $@
+exec firefox -P "$choice" $flags "$@"
