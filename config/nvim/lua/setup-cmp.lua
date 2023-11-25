@@ -7,16 +7,16 @@ cmp.setup {
   snippet = {
     expand = function(args)
       -- You must install `vim-vsnip` if you set up as same as the following.
-      vim.fn['vsnip#anonymous'](args.body)
+      require('luasnip').lsp_expand(args.body)
     end
   },
 
   -- You must set mapping.
-  mapping = {
-    ['<S-Tab>'] = cmp.mapping.prev_item(),
-    ['<Tab>'] = cmp.mapping.next_item(),
-    ['<C-d>'] = cmp.mapping.scroll(-4),
-    ['<C-f>'] = cmp.mapping.scroll(4),
+  mapping = cmp.mapping.preset.insert {
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
@@ -27,7 +27,6 @@ cmp.setup {
 
   -- You should specify your *installed* sources.
   sources = {
-    { name = 'buffer' },
     { name = 'nvim_lsp' },
   },
 }

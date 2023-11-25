@@ -20,10 +20,37 @@ addVimBinds {
   {"n", "<A-D>", t":tabMoveNext<CR>"},
   {"n", "<A-w>", t":bd<CR>"},
   {"n", "<C-b>", t":BufferLinePick<CR>"},
+  {"n", "<A-f>", t":lua vim.lsp.buf.format()<CR>"},
 
   {"n", "bd", t":bd<CR>"},
   {"n", "go", t":SymbolsOutline<CR>"},
   {"n", "gd", t":lua vim.lsp.buf.definition()<CR>"},
+  { "n", "<C-/>", '', {
+    callback = function()
+      require('telescope.builtin').builtin()
+    end
+  } },
+  { "n", "<C-p>", '', {
+    callback = function()
+      require('telescope.builtin').fd({
+        no_ignore = false,
+        no_ignore_parent = false
+      })
+    end
+  } },
+  { "n", "<C-S-/>", '', {
+    callback = function()
+      require('telescope.builtin').live_grep({
+        no_ignore = false,
+        no_ignore_parent = false
+      })
+    end
+  } },
+  { "n", "<C-.>", '', {
+    callback = function()
+      require('telescope.builtin').quickfix()
+    end
+  } },
 }
 
 vim.cmd [[xmap ga <Plug>(EasyAlign)]]
