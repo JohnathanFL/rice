@@ -18,10 +18,18 @@
   "output": [ "DP-1" ],
   "modules-left": ["sway/workspaces"],
   "modules-center": ["mpd"],
-  "modules-right": ["tray", "temperature", "cpu", "network", "clock"],
+  "modules-right": ["custom/mic" ,"tray", "temperature", "cpu", "network", "clock"],
+
+  "custom/mic": {
+    "format": "{}",
+    "max-length": 10,
+    "interval": 1,
+    "exec": "pactl list sources | rg 'Mute: (yes|no)' -o | sort | uniq",
+    "on-click": "toggle-mute-all-mics"
+  },
 
   "mpd": {
-    "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+    "format": "{stateIcon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
     "format-disconnected": "Disconnected ",
     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
     "interval": 0.5,
