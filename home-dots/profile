@@ -1,6 +1,6 @@
 #!/bin/sh
 # To be run on login
-export SHELL=fish
+export SHELL=/usr/bin/fish
 export SVDIR=~/.runit/service/
 export RICE=~/rice
 export ENV=~/.dashrc
@@ -8,9 +8,9 @@ export ENV=~/.dashrc
 export XDG_DATA_DIRS="/usr/share/applications:$XDG_DATA_DIRS:/home/drako/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share"
 export SSH_ASKPASS="lxqt-openssh-askpass"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-export XDG_CURRENT_DESKTOP=Unity
 export GTK_THEME=Graphite-Dark-nord
 export GNOME_THEME=Graphite-Dark-nord
+export BAT_THEME=Nord
 
 # Those found later in the series override those earlier in the series
 setPath() {
@@ -44,6 +44,7 @@ addPath                     \
   $HOME/.cargo/bin          \
   $HOME/.gem/ruby/2.7.0/bin \
   $HOME/.gem/ruby/3.0.0/bin \
+  $HOME/.local/share/gem/ruby/3.0.0/bin \
   $HOME/.gem/ruby/3.1.0/bin \
   $HOME/.dotnet/            \
   $HOME/.dotnet/tools       \
