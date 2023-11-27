@@ -12,7 +12,8 @@ choice=$(echo "$options" | bemenu.sh)
 case $choice in
   # TODO: Move this to an abstract thing for awesome or sway
   "Exit" )
-    exec swaymsg exit
+    #exec swaymsg exit
+    exec hyprctl dispatch exit
     ;;
   Shutdown )
     exec shutdown now
