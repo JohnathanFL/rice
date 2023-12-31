@@ -1,11 +1,25 @@
 #!/bin/bash
+set -euo pipefail
 
-spaces (){
-	WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
-	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'
+show_workspaces() {
+  swaymsg -t get_workspaces | jq -c '[.[] | {name, focused, filled: (.representation != null)}] | sort_by(.name)'
 }
 
-spaces
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
-	spaces
-done
+on_change() {
+  while true; do
+    read && "$@"
+  done
+}
+
+show_workspaces
+swaymsg -m -t subscribe --raw '["window", "binding", "bar_state_update"]' | on_change show_workspaces
+
+# spaces (){
+# 	WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
+# 	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'
+# }
+
+# spaces
+# socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
+# 	spaces
+# done

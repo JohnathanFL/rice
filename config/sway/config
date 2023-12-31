@@ -206,7 +206,8 @@ bindsym {
 exec mako
 exec setwall
 exec kitty fish -c 'ssh-add ~/.ssh/id_rsa'
-exec waybar
+#exec waybar
+exec eww open bar
 # To allow screen-sharing to work
 #exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 #exec wl-paste -t text --watch clipman store 1>> ~/.cache/clipman.log 2>&1 &
